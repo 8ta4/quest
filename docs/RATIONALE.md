@@ -33,11 +33,7 @@ I pledge not to read any new book until my vision, "Choose Your Own Question", c
 
 > How does the extension give visual feedback?
 
-It's like a pop quiz! The extension pops a question, hides the answer, and lets you see how well you've understood. It also hides the next answer or shows where it starts so you know when to stop reading.
-
-> Do you hide one answer or multiple answers?
-
-I only hide one answer. I wish I could hide multiple answers. But it’s hard.
+It's like a pop quiz! The extension pops a question, hides the answer, and lets you see how well you've understood. When you view the current answer, it hides the next answer or shows where it starts so you know when to stop reading. I wish I could hide multiple answers simultaneously. But it’s hard.
 
 ## Technical Constraints
 
