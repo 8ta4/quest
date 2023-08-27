@@ -50,13 +50,13 @@ But this separation makes it hard to spot where your next question is.
 
 Hiding multiple answers at once is tricky in both HTML and PDF.
 
-> What's tricky about hiding answers in HTML?
+> Why is it hard to hide multiple answers in HTML?
 
 - **Text Fragment**: They don't alter the highlighted part of the DOM, so I can't directly get its Y-coordinate.
 - **window.find**: This function doesn't seem to allow highlighting text that spans multiple elements or multiline text. This can be worked around by searching multiple times, but the scrolling behavior could be jarring.
 - **Y-Coordinate**: If I hide content based on its Y-coordinate alone, I might end up hiding the sidebar too.
 
-> What's tricky about hiding answers in PDF?
+> Why is it hard to hide multiple answers in PDF?
 
 - **Search**: PDF.js lets me search for strings to highlight text. But if the string spans multiple pages, highlighting fails (https://github.com/mozilla/pdf.js/issues/10620).
 - **Text Fragment**: PDF.js does not support Text Fragment (https://github.com/mozilla/pdf.js/issues/15223).
