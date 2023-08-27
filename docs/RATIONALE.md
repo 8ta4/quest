@@ -1,16 +1,18 @@
 # Rationale
 
+## Pledge
+
+> What is your level of commitment to this project?
+
+I pledge not to read any new book until the vision, "Choose Your Own Question", becomes a reality.
+
+And until WebAssembly supports garbage collection, I hereby pledge not to take out the trash.
+
 ## Goal
 
 > What is the goal of this Chrome extension?
 
 The goal of this Chrome extension is to revolutionize the way we read, particularly technical and educational content. It will present an engaging sequence of questions and answers, allowing readers to check their understanding as they progress. This enhances comprehension and keeps the reader engaged. The unique formats of "Quick Calculus" and "Little Schemer" inspired this approach, and generative AI has made it viable by enabling automatic question generation.
-
-## Pledge
-
-> What is your level of commitment to this project?
-
-I have pledged to commit to this project. I will not read any new book until the vision of this extension, "Choose Your Own Question", becomes a reality.
 
 ## Non-linear Reading
 
@@ -40,7 +42,7 @@ The choice to develop a Chrome extension was influenced by several factors:
 
 The extension provides visual feedback to test understanding. It presents a question, hides the answer, and lets you test your comprehension. It also hides the next answer and indicates where the next answer starts, so you know where to stop reading.
 
-## Keyboard Shortcut
+## Keyboard Shortcuts
 
 > How did you choose keyboard shortcuts?
 
@@ -52,7 +54,7 @@ The extension provides visual feedback to test understanding. It presents a ques
 
 ### HTML Content
 
-> How does it deal with HTML content?
+> How does it handle HTML content?
 
 - **Text fragment**: Text fragments do not alter the highlighted DOM segment, making it impossible to directly get the Y-coordinate of the highlighted content.
 - **window.find**: This function does not seem to allow highlighting text that spans multiple elements or multiline text. This can be worked around by searching multiple times, but the scrolling behavior could be jarring.
@@ -60,7 +62,7 @@ The extension provides visual feedback to test understanding. It presents a ques
 
 ### PDF Content
 
-> How does it deal with PDF content?
+> How does it handle PDF content?
 
 - **Search**: PDF.js allows you to search strings to highlight text. However, if the search string spans multiple pages, highlighting fails (https://github.com/mozilla/pdf.js/issues/10620).
 - **Text Fragment**: PDF.js does not support Text Fragment (https://github.com/mozilla/pdf.js/issues/15223).
