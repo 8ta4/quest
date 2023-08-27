@@ -12,7 +12,7 @@ And until WebAssembly supports garbage collection, I hereby pledge not to take o
 
 > What is the goal of this Chrome extension?
 
-The goal of this Chrome extension is to revolutionize the way we read, particularly technical and educational content. It will present an engaging sequence of questions and answers, allowing readers to check their understanding as they progress. This enhances comprehension and keeps the reader engaged. This idea was sparked by the unique formats of "Quick Calculus" and "Little Schemer", and now, thanks to generative AI, we can make it happen.
+The goal of this Chrome extension is to revolutionize the way you read, particularly technical and educational content. It will present an engaging sequence of questions and answers, allowing readers to check their understanding as they progress. This enhances comprehension and keeps the reader engaged. This idea was sparked by the unique formats of "Quick Calculus" and "Little Schemer", and now, thanks to generative AI, I can make it happen.
 
 ## Non-linear Reading
 
@@ -45,7 +45,7 @@ Think of it as a mini quiz. The extension asks you a question, hides the answer,
 
 > How did you choose keyboard shortcuts?
 
-- **Efficiency**: Less is more!
+- **Efficiency**: I aimed for the least number of keystrokes
 - **Vim Inspiration**: This extension mirrors Vim's shortcuts.
 - **Mnemonic**: For non-Vim keys, I went with mnemonics or shortcuts that are common in other software.
 
