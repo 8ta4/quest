@@ -55,7 +55,7 @@ Think of it as a mini quiz. The extension asks you a question, hides the answer,
 
 > How does it handle HTML content?
 
-- **Text fragment**: They don't change the highlighted part of the DOM, so I can't directly get its Y-coordinate.
+- **Text Fragment**: They don't change the highlighted part of the DOM, so I can't directly get its Y-coordinate.
 - **window.find**: This function does not seem to allow highlighting text that spans multiple elements or multiline text. This can be worked around by searching multiple times, but the scrolling behavior could be jarring.
 - **Y-coordinate**: If I just hide content based on its Y-coordinate, I might accidentally hide the sidebar too.
 
