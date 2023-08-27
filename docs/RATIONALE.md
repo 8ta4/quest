@@ -1,4 +1,4 @@
-# quest
+# Rationale
 
 ## Goal
 
