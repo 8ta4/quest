@@ -4,7 +4,7 @@
 
 > What is your level of commitment to this project?
 
-I pledge not to read any new book until our vision, "Choose Your Own Question", comes to life.
+I pledge not to read any new book until my vision, "Choose Your Own Question", comes to life.
 
 And until WebAssembly supports garbage collection, I hereby pledge not to take out the trash.
 
@@ -47,7 +47,7 @@ Think of it as a mini quiz. The extension asks you a question, hides the answer,
 
 - **Efficiency**: Less is more!
 - **Vim Inspiration**: This extension mirrors Vim's shortcuts.
-- **Mnemonic**: For non-Vim keys, we went with mnemonics or shortcuts that are common in other software.
+- **Mnemonic**: For non-Vim keys, I went with mnemonics or shortcuts that are common in other software.
 
 ## Technical Constraints
 
@@ -55,22 +55,22 @@ Think of it as a mini quiz. The extension asks you a question, hides the answer,
 
 > How does it handle HTML content?
 
-- **Text fragment**: They don't change the highlighted part of the DOM, so we can't directly get its Y-coordinate.
+- **Text fragment**: They don't change the highlighted part of the DOM, so I can't directly get its Y-coordinate.
 - **window.find**: This function does not seem to allow highlighting text that spans multiple elements or multiline text. This can be worked around by searching multiple times, but the scrolling behavior could be jarring.
-- **Y-coordinate**: If we just hide content based on its Y-coordinate, we might accidentally hide the sidebar too.
+- **Y-coordinate**: If I just hide content based on its Y-coordinate, I might accidentally hide the sidebar too.
 
 ### PDF Content
 
 > How does it handle PDF content?
 
-- **Search**: PDF.js lets us search for strings to highlight text. But if the string goes over multiple pages, highlighting fails (https://github.com/mozilla/pdf.js/issues/10620).
+- **Search**: PDF.js lets me search for strings to highlight text. But if the string goes over multiple pages, highlighting fails (https://github.com/mozilla/pdf.js/issues/10620).
 - **Text Fragment**: PDF.js does not support Text Fragment (https://github.com/mozilla/pdf.js/issues/15223).
-- **window.find**: PDF.js doesn't highlight text when we use window.find to search for text.
+- **window.find**: PDF.js doesn't highlight text when I use window.find to search for text.
 
 ## Looking Ahead
 
 > What are your future plans?
 
-- **Save Locally**: We're planning to let you save files right on your computer.
+- **Save Locally**: I'm planning to let you save files right on your computer.
 - **Related Question**: Each answer might lead to related questions, kind of like "Choose Your Own Adventure".
-- **Conversational AI**: We dream of integrating advanced conversational AI into this extension for more dynamic and interactive Q&A sessions.
+- **Conversational AI**: I dream of integrating advanced conversational AI into this extension for more dynamic and interactive Q&A sessions.
