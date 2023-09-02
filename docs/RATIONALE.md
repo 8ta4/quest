@@ -40,28 +40,6 @@ But some designs had to be ditched for a Chrome extension. Like the footer bar -
 - **Persistence**: Page refresh or navigation won't mess with the questions.
 - **PDFs**: Their fixed format makes it tricky to insert questions directly.
 
-But this separation makes it hard to spot where your next question is.
-
-> Why do you want to know where your next question is?
-
-`quest` lets you finish reading everything if you answer every question. But if you don't know where your next question is, you might end up reading it twice. That's why `quest` either hides or highlights your next answer so you know where to stop.
-
-> Why not hide all answers?
-
-Hiding multiple answers at once is tricky in both HTML and PDF.
-
-> Why is it hard to hide multiple answers in HTML?
-
-- **Text Fragment**: They don't alter the highlighted part of the DOM, so I can't directly get its Y-coordinate.
-- **window.find**: This function doesn't seem to allow highlighting text that spans multiple elements or multiline text. This can be worked around by searching multiple times, but the scrolling behavior could be jarring.
-- **Y-Coordinate**: If I hide content based on its Y-coordinate alone, I might end up hiding the sidebar too.
-
-> Why is it hard to hide multiple answers in PDF?
-
-- **Search**: PDF.js lets me search for strings to highlight text. But if the string spans multiple pages, highlighting fails (https://github.com/mozilla/pdf.js/issues/10620).
-- **Text Fragment**: PDF.js does not support Text Fragment (https://github.com/mozilla/pdf.js/issues/15223).
-- **window.find**: PDF.js doesn't highlight text when I use window.find to search for text.
-
 ## Keyboard Shortcuts
 
 > How did you choose keyboard shortcuts?
@@ -69,3 +47,39 @@ Hiding multiple answers at once is tricky in both HTML and PDF.
 - **Efficiency**: I aimed for minimal keystrokes.
 - **Vim Inspiration**: `quest` borrows Vim's shortcuts.
 - **Mnemonic**: For non-Vim keys, I went with mnemonics or shortcuts common in other software.
+
+`quest` is designed with efficiency and Vim inspiration in mind. But, these two aspects can sometimes conflict, such as in the case of auto save versus manual save.
+
+## Data Management
+
+> Why does this extension auto save?
+
+Auto save is used for efficiency and to provide a customized Vim experience. It eliminates the need for a manual save step that could distract from the immersive reading experience.
+
+> How does this extension handle accidental saves?
+
+Accidental saves can be undone, even after a browser restart or crash. But, there is a limit to the number of undoable actions.
+
+> Why is there an action-based undo limit?
+
+The fixed limit ensures consistent memory and computational overhead, and is inspired by Vim's `undolevels`.
+
+> How did you decide which actions are undoable?
+
+`quest` follows Vim's approach, where navigation is not undoable but actions that add, edit, or delete text are.
+
+But using an import file is recommended for adding, editing, or deleting questions or answers.
+
+> Why do you want to use an import file?
+
+`quest` is a reading extension and lacks some features of text editors. The YAML format is easy to manipulate using text editors.
+
+> Why YAML?
+
+YAML is more human-readable and easier to edit than JSON, and allows nesting unlike CSV.
+
+## Icons
+
+> How did you choose the icons?
+
+I chose intuitive icons that are commonly used in other software.
