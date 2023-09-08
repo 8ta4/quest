@@ -1,6 +1,6 @@
 # Rationale
 
-## Goal
+## Choose Your Own Question
 
 > What is this extension all about?
 
