@@ -72,6 +72,6 @@ If you want to use Vimium again, you can press `Escape` twice.
 
 You press `Escape` once to focus `quest`'s Content Window and press `Escape` once more to exit Vimium's insert mode. Any key excluding `Escape` will focus `quest`'s Question Window. To exit Vimium's insert mode, you first want to focus on the Content Window.
 
-> How do I deactivate this extension?
+> What's the keyboard shortcut to deactivate this extension?
 
-`Option + r` toggles this extension. (Modeled after a browser's reader mode. "r" stands for "read".)
+`Option + r` toggles this extension. Think "r" for "read," similar to a browser's reader mode.
