@@ -1,17 +1,5 @@
 # quest
 
-## Choose Your Own Question
-
-> What is this extension all about?
-
-`quest` is all about changing how you consume technical content. It turns it into a Q&A journey - like a "Choose Your Own Adventure" but with questions.
-
-I pledge not to read any new book until my vision comes to life. And until WebAssembly supports garbage collection, I hereby pledge not to take out the trash.
-
-> Why use a Q&A format?
-
-As you read along, you can answer questions to check your understanding and keep yourself engaged. This idea was sparked by the unique formats of "Quick Calculus" and "Little Schemer".
-
 ## Medium
 
 > Why not a book?

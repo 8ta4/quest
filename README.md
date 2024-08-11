@@ -1,10 +1,14 @@
 # quest
 
-## Introduction
+## Choose Your Own Question
 
 > What is this extension?
 
 `quest` is a Chrome extension that transforms the way you read technical content. It offers a Q&A journey, similar to the "Choose Your Own Adventure" approach.
+
+As you read along, you can answer questions to check your understanding and keep yourself engaged. This idea was sparked by the unique formats of "Quick Calculus" and "Little Schemer".
+
+I pledge not to read any new book until my vision comes to life. And until WebAssembly supports garbage collection, I hereby pledge not to take out the trash.
 
 ## Getting Started
 
