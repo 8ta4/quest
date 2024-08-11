@@ -22,7 +22,7 @@ You can try it on this [demo page]().
 
 > How do I see the answer?
 
-If a question is marked as unseen, pressing `Space` will mark it as seen and reveal its answer. (`Space` is chosen because it's used to toggle checkboxes, and "seen" and "Space" both have "s".)
+If a question is marked as unseen, pressing `Space` will mark it as seen and reveal its answer. `Space` is chosen because it's used to toggle checkboxes, and "seen" and "Space" both have "s".
 
 > How do I unsee the answer?
 
@@ -62,7 +62,7 @@ Yes, the undo limit is 1,000 actions.
 
 You need to import a file.
 
-If there's an existing import file, you can load it by pressing `Ctrl + q`. ("q" stands for "question".)
+If there's an existing import file, you can load it by pressing `Ctrl + q`. "q" stands for "question".
 
 > How can I use it while using Vimium?
 
