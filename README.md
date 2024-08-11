@@ -30,19 +30,19 @@ If a question is marked as unseen, pressing `Space` will mark it as seen and rev
 
 > How do I get to the next question?
 
-Press `j` for the next question.
+Press `Shift + j` for the next question.
 
 > How do I get to the previous question?
 
-Press `k` for the previous question.
+Press `Shift + k` for the previous question.
 
 > How do I get to the next unseen question?
 
-Press `Ctrl + j` for the next unseen question.
+Press `⌘ + j` for the next unseen question.
 
 > How do I get to the previous unseen question?
 
-Press `Ctrl + k` for the previous unseen question.
+Press `⌘ + k` for the previous unseen question.
 
 > How do I undo toggling the seen status?
 
@@ -61,16 +61,6 @@ Yes, the undo limit is 1,000 actions.
 > Can I read something other than the demo page?
 
 Yep, you just need to import a file. You can load it by pressing `Ctrl + q`. "q" stands for "question".
-
-> How can I use it while using Vimium?
-
-If you press `i`, you will enter Vimium's insert mode, and `quest` will be able to receive keystrokes.
-
-If you want to use Vimium again, you can press `Escape` twice.
-
-> Why do I need to press `Escape` twice?
-
-You press `Escape` once to focus `quest`'s Content Window and press `Escape` once more to exit Vimium's insert mode. Any key excluding `Escape` will focus `quest`'s Question Window. To exit Vimium's insert mode, you first want to focus on the Content Window.
 
 > What's the keyboard shortcut to deactivate this extension?
 
