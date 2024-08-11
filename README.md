@@ -48,11 +48,11 @@ Press `⌘ + k` for the previous unseen question.
 
 `Space` lets you toggle the current question's seen status.
 
-Alternatively, you can press `u` to undo it.
+Alternatively, you can press `⌘ + z` to undo it.
 
 > How do I redo my undo?
 
-You can hit `Ctrl + r`.
+You can hit `⌘ + Shift + z`.
 
 > Is there an undo limit?
 
