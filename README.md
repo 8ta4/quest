@@ -58,11 +58,9 @@ You can hit `Ctrl + r`.
 
 Yes, the undo limit is 1,000 actions.
 
-> How do I read something else?
+> Can I read something other than the demo page?
 
-You need to import a file.
-
-If there's an existing import file, you can load it by pressing `Ctrl + q`. "q" stands for "question".
+Yep, you just need to import a file. You can load it by pressing `Ctrl + q`. "q" stands for "question".
 
 > How can I use it while using Vimium?
 
