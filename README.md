@@ -34,19 +34,19 @@ If a question is marked as unseen, pressing `Space` will mark it as seen and rev
 
 > How do I get to the next question?
 
-Press `Shift + j` for the next question.
+Press `Shift + j` for the next question. This is inspired by the Vim command for moving the cursor down.
 
 > How do I get to the previous question?
 
-Press `Shift + k` for the previous question.
+Press `Shift + k` for the previous question. This is inspired by the Vim command for moving the cursor up.
 
 > How do I get to the next unseen question?
 
-Press `⌘ + j` for the next unseen question.
+Press `⌘ + j` for the next unseen question. This is inspired by the Vim command for moving the cursor down.
 
 > How do I get to the previous unseen question?
 
-Press `⌘ + k` for the previous unseen question.
+Press `⌘ + k` for the previous unseen question. This is inspired by the Vim command for moving the cursor up.
 
 > How do I undo toggling the seen status?
 
