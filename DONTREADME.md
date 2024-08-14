@@ -27,3 +27,7 @@ YAML is chosen over JSON because:
 - You can add comments.
 
 - It doesn't need extra commas, so it's easier to edit.
+
+> Why the `.yaml` and not `.yml`?
+
+The YAML FAQ recommends "[using '.yaml' when possible.](https://yaml.org/faq.html#:~:text=Is%20there%20an,yaml%22%20when%20possible.)"
