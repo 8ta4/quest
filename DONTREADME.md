@@ -28,7 +28,7 @@ Nope, `quest` doesn't generate questions. Even though AI might get there someday
 
 > Does `quest` autosave?
 
-Yes, `quest` autosaves your progress. You don't have to worry about saving manually; it just lets you stay focused on what you're reading.
+Yes, `quest` autosaves your progress. It's like they say, "It's better to be saved than sorry." You can just stay focused on what you're reading.
 
 > Why choose YAML over JSON for import files?
 
