@@ -10,13 +10,15 @@ As you read along, you can answer questions to check your understanding and keep
 
 I pledge not to read any new book until my vision comes to life. And until WebAssembly supports garbage collection, I hereby pledge not to take out the trash.
 
-## Getting Started
+## Setup
 
 > How do I install it?
 
 TODO: Add a link to the Chrome Web Store where the quest extension can be installed.
 
 You can install it from [here]().
+
+## Usage
 
 > How do I try it?
 
@@ -69,3 +71,21 @@ Yep, you just need to import a file. You can load it by pressing `Ctrl + q`. "q"
 > What's the keyboard shortcut to deactivate this extension?
 
 `Option + r` toggles this extension. Think "r" for "read," similar to a browser's reader mode.
+
+## Compatibility
+
+> Does `quest` work with PDF files?
+
+Yes, `quest` works with PDF files.
+
+> Does `quest` work with DRM-protected EPUB files?
+
+No, `quest` doesn't work with DRM-protected EPUB files.
+
+> Does `quest` work with DRM-free EPUB files?
+
+Yes, `quest` works with DRM-free EPUB files. But you need to extract the HTML from the EPUB to use it with `quest`. If the content is spread across multiple HTML files, you might need to combine them.
+
+> Can `quest` be used alongside other browser extensions?
+
+Yes, `quest` works well with other browser extensions. It's built to play nicely with popular ones like Vimium and Dark Reader, so you can have a smooth experience even with multiple extensions running.

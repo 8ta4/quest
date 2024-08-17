@@ -41,21 +41,3 @@ YAML is chosen over JSON because:
 > Why the `.yaml` and not `.yml`?
 
 The YAML FAQ recommends "[using '.yaml' when possible.](https://yaml.org/faq.html#:~:text=Is%20there%20an,yaml%22%20when%20possible.)"
-
-## Compatibility
-
-> Does `quest` work with PDF files?
-
-Yes, `quest` works with PDF files.
-
-> Does `quest` work with DRM-protected EPUB files?
-
-No, `quest` doesn't work with DRM-protected EPUB files.
-
-> Does `quest` work with DRM-free EPUB files?
-
-Yes, `quest` works with DRM-free EPUB files. But you need to extract the HTML from the EPUB to use it with `quest`. If the content is spread across multiple HTML files, you might need to combine them.
-
-> Can `quest` be used alongside other browser extensions?
-
-Yes, `quest` works well with other browser extensions. It's built to play nicely with popular ones like Vimium and Dark Reader, so you can have a smooth experience even with multiple extensions running.
