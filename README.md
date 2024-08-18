@@ -30,6 +30,14 @@ You can try it on this [demo page]().
 
 If a question is marked as unseen, pressing `Space` will mark it as seen and reveal its answer. `Space` is chosen because it's used to toggle checkboxes, and "seen" and "Space" both have "s".
 
+> How do you identify the start of a segment that corresponds to a question?
+
+When you're using `quest`, you'll notice a little triangle icon (▼) in the left margin next to the first line of each segment. This is the marker that shows you where the relevant text for that question starts.
+
+> How do you identify the end of a segment that corresponds to a question?
+
+To wrap up a segment, `quest` uses a similar icon in the left margin, but this one points up (▲). This marker lines up with the last line of text for that particular question's content.
+
 > How do I unsee the answer?
 
 `Space` lets you toggle the current question's seen status. If a question is marked as seen, pressing `Space` will mark it as unseen and hide its answer.
