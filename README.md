@@ -82,18 +82,18 @@ Yep, you just need to import a file. You can load it by pressing `Ctrl + q`. "q"
 
 ## Compatibility
 
-> Does `quest` work with PDF files?
+> Can I use `quest` to read PDF files?
 
-Yes, `quest` works with PDF files.
+Absolutely, `quest` can handle PDF files without any issues.
 
-> Does `quest` work with DRM-protected EPUB files?
+> Can I use `quest` to read DRM-protected EPUB files?
 
-No, `quest` doesn't work with DRM-protected EPUB files.
+Nope, `quest` isn't built for DRM-protected EPUB files.
 
-> Does `quest` work with DRM-free EPUB files?
+> Can I use `quest` to read DRM-free EPUB files?
 
-Yes, `quest` works with DRM-free EPUB files. But you need to extract the HTML from the EPUB to use it with `quest`. If the content is spread across multiple HTML files, you might need to combine them.
+Yes, you can! But you'll need to extract the HTML from the EPUB first. If the content is spread across multiple HTML files, you might have to combine them.
 
-> Can `quest` be used alongside other browser extensions?
+> Can I use `quest` alongside other browser extensions?
 
-Yes, `quest` works well with other browser extensions. It's built to play nicely with popular ones like Vimium and Dark Reader, so you can have a smooth experience even with multiple extensions running.
+Absolutely! You can use `quest` with other browser extensions. It's built to play nicely with popular ones like Vimium and Dark Reader, so you can have a smooth experience even with multiple extensions running.
