@@ -1,16 +1,14 @@
 # quest
 
-## Navigation
+## Goals
+
+### Random Access
 
 > Can you freely move between sections when using `quest` for reading?
 
 Yep, with `quest`, you can jump around between sections as you like. It keeps track of where you've been, so you don't have to remember what you've already read. This way, you can explore at your own pace and follow your curiosity.
 
-> Is navigation undoable in `quest`?
-
-No, you can't undo navigation in `quest`. It follows a similar approach to Vim.
-
-## Keyboard Shortcuts
+### Keyboard
 
 > Can you control `quest` entirely with your keyboard?
 
@@ -20,7 +18,15 @@ Absolutely, you can navigate `quest` entirely using keyboard shortcuts. It's qui
 
 Nope, `quest`'s shortcuts are designed to avoid any conflicts with Vimium.
 
-## Data
+## Functionality
+
+### Navigation
+
+> Is navigation undoable in `quest`?
+
+No, you can't undo navigation in `quest`. It follows a similar approach to Vim.
+
+### Data
 
 > Does `quest` generate questions?
 
