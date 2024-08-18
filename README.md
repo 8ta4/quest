@@ -96,4 +96,4 @@ Yes, you can! But you'll need to extract the HTML from the EPUB first. If the co
 
 > Can I use `quest` alongside other browser extensions?
 
-Absolutely! You can use `quest` with other browser extensions. It's built to play nicely with popular ones like Vimium and Dark Reader, so you can have a smooth experience even with multiple extensions running.
+Absolutely! You can use `quest` with other browser extensions. It's built to play nicely with popular ones like [Vimium](https://github.com/philc/vimium) and [Dark Reader](https://github.com/darkreader/darkreader), so you can have a smooth experience even with multiple extensions running.
