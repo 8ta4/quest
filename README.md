@@ -58,6 +58,18 @@ Press `⌘ + j` for the next unseen question. This is inspired by the Vim comman
 
 Press `⌘ + k` for the previous unseen question. This is inspired by the Vim command for moving the cursor up.
 
+> How do you scroll to the beginning of the current segment?
+
+Hit `zt`. This Vim-inspired command will move your view to the start of the segment you're currently in.
+
+> How do you scroll to the end of the current segment?
+
+Hit `zb`. This Vim-inspired command will bring the bottom of your current segment into view.
+
+> How do you center the current segment in the viewport?
+
+Hit `zz`. This Vim-inspired command will adjust your view so that the segment is centered on your screen.
+
 > How do I undo toggling the seen status?
 
 `Space` lets you toggle the current question's seen status.
@@ -81,6 +93,10 @@ Yep, you just need to import a file. You can load it by pressing `Ctrl + q`. "q"
 `Option + r` toggles this extension. Think "r" for "read," similar to a browser's reader mode.
 
 ## Compatibility
+
+> Can I use `quest` on web pages?
+
+Yeah, you can totally use `quest` on web pages. But it works best on pages where the content doesn't change. If you're dealing with pages that get updated, it might not be the best fit. You could end up with questions that don't match what's actually on the page anymore.
 
 > Can I use `quest` to read PDF files?
 

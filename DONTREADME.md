@@ -22,6 +22,10 @@ Nope, `quest`'s shortcuts are designed to avoid any conflicts with Vimium.
 
 ### Navigation
 
+> When a user reveals an answer, how does the viewport adjust?
+
+When someone reveals an answer, the viewport does its thing and automatically scrolls to the start of the current segment. You probably expect to see new stuff when you do something like revealing an answer. Plus, it nudges you to read through the whole segment from the top. That way, you've got all the context before you reaching the answer.
+
 > Is navigation undoable in `quest`?
 
 No, you can't undo navigation in `quest`. It follows a similar approach to Vim.
