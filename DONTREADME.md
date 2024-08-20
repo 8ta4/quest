@@ -22,7 +22,7 @@ Nope, `quest`'s shortcuts are designed to avoid any conflicts with Vimium.
 
 > Do the questions in `quest` form a bijection with the content?
 
-Yeah, absolutely. The questions in `quest` are designed to form a bijection with the content. So if you go through all the questions and read the text they reveal, you'll cover everything. This way, you can get through the entire material by just following the Q&A, which helps you get a full understanding.
+Yeah, absolutely. The questions in `quest` are designed to form a bijection with the content. So if you go through all the questions and read the text they reveal, you'll cover everything.
 
 ## Functionality
 
