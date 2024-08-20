@@ -18,6 +18,12 @@ Absolutely, you can navigate `quest` entirely using keyboard shortcuts. It's qui
 
 Nope, `quest`'s shortcuts are designed to avoid any conflicts with Vimium.
 
+### Coverage
+
+> Do the questions in `quest` form a bijection with the content?
+
+Yeah, absolutely. The questions in `quest` are designed to form a bijection with the content. So if you go through all the questions and read the text they reveal, you'll cover everything. This way, you can get through the entire material by just following the Q&A, which helps you get a full understanding.
+
 ## Functionality
 
 ### Navigation
@@ -39,10 +45,6 @@ No, you can't undo navigation in `quest`. It follows a similar approach to Vim.
 > Does `quest` generate questions?
 
 Nope, `quest` doesn't generate questions. Even though AI might get there someday, it's been pretty tough to make sure the questions meet specific requirements right now.
-
-> Do the questions in `quest` form a bijection with the content?
-
-Yeah, absolutely. The questions in `quest` are designed to form a bijection with the content. So if you go through all the questions and read the text they reveal, you'll cover everything. This way, you can get through the entire material by just following the Q&A, which helps you get a full understanding.
 
 > Do the questions correspond to book sections?
 
