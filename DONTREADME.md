@@ -75,17 +75,17 @@ No, the YAML file doesn't need to be sorted. The software takes care of the orde
 
 Nope, `quest` doesn't generate questions. Even though AI might get there someday, it's been pretty tough to make sure the questions meet specific requirements right now.
 
-> Do the questions correspond to book sections?
+> Does a question correspond to a book section?
 
-Not necessarily. The questions in `quest` don't always line up with specific book sections. They might cover part of a section, multiple sections, or even cross over chapter boundaries.
+Not necessarily. A question in `quest` doesn't always align with a specific book section. It might cover part of a section, multiple sections, or even span across chapter boundaries.
 
-> Can the answer be an arbitrary part of the text?
+> Can an answer be an arbitrary part of the text?
 
-Technically, yes, the answer can be any part of the text. However, it's a good idea to avoid ending an answer in the middle of a sentence. Ending an answer mid-sentence can make the reading experience a bit jarring, as the next segment would pick up in the middle of a sentence.
+Technically, yes, an answer can be any part of the text. However, it's best to avoid ending an answer in the middle of a sentence. Ending an answer mid-sentence can make the reading experience a bit jarring, as the next segment would pick up in the middle of a sentence.
 
-> Does the answer need to be unique within the text?
+> Does an answer need to be unique within the text?
 
-No, the answer doesn't have to be unique. If the text contains multiple instances of the answer, `quest` will use the first instance as the corresponding segment for the question-answer pair.
+No, an answer doesn't have to be unique. If the text contains multiple instances of the answer, `quest` will use the first instance as the corresponding segment for the question-answer pair.
 
 > Does `quest` autosave?
 
