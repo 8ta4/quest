@@ -60,11 +60,17 @@ The YAML FAQ recommends "[using '.yaml' when possible.](https://yaml.org/faq.htm
 
 > Is the structure of the YAML file a list or a map?
 
-The YAML file is structured as a map. Each key in the map is a question, and the corresponding value is the answer. Here's an example:
+The YAML file is a list of maps. In each of these maps, you'll find a "question" field and an "answer" field, both using literal block scalars. Here's a quick example to show you what that looks like:
 
 ```yaml
-"What is the reason most startups fail?": "Most startups that fail do it because they fail at one of these."
-"Is getting rich doable?": "getting rich is doable too. Hard, but doable."
+- question: |
+    What is the reason most startups fail?
+  answer: |
+    Most startups that fail do it because they fail at one of these.
+- question: |
+    Is getting rich doable?
+  answer: |
+    getting rich is doable too. Hard, but doable.
 ```
 
 > Is the YAML file required to be sorted?
@@ -78,6 +84,16 @@ Nope, `quest` doesn't generate questions. Even though AI might get there someday
 > Does a question correspond to a book section?
 
 Not necessarily. A question in `quest` doesn't always align with a specific book section. It might cover part of a section, multiple sections, or even span across chapter boundaries.
+
+> Can a question be arbitrary text?
+
+Technically, yes, a question in `quest` can be pretty much any text you want. But it is recommended to follow these guidelines:
+
+- Ensure each question has a single answer in the text.
+
+- Avoid terms exclusively used by the author or only defined within the specific text.
+
+- Frame questions without referencing the author or the specific text.
 
 > Can an answer be an arbitrary part of the text?
 
