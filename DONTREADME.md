@@ -64,9 +64,9 @@ The YAML file is a list of maps. In each of these maps, you'll find a "question"
 
 ```yaml
 - question: |
-    What is the reason most startups fail?
+    Will a startup that starts with good people, makes something customers actually want, and spends as little money as possible probably succeed?
   answer: |
-    Most startups that fail do it because they fail at one of these.
+    A startup that does all three will probably succeed.
 - question: |
     Is getting rich doable?
   answer: |
@@ -88,6 +88,8 @@ Not necessarily. A question in `quest` doesn't always align with a specific book
 > Can a question be arbitrary text?
 
 Technically, yes, a question in `quest` can be pretty much any text you want. But it is recommended to follow these guidelines:
+
+- Structure each question as a multiple choice question, including yes/no options.
 
 - Ensure each question has a single answer in the text.
 
