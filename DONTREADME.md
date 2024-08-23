@@ -91,7 +91,7 @@ Technically, yes, a question in `quest` can be pretty much any text you want. Bu
 
 - Structure each question as a multiple choice question, including yes/no options.
 
-- Ensure each question has a single answer in the text.
+- Ensure each question has an answer within the text.
 
 - Avoid terms exclusively used by the author or only defined within the specific text.
 
