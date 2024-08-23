@@ -87,15 +87,15 @@ Not necessarily. A question in `quest` doesn't always align with a specific book
 
 > Can a question be arbitrary text?
 
-Technically, yes, a question in `quest` can be pretty much any text you want. But it is recommended to follow these guidelines:
+Technically, yes, a question in `quest` can be pretty much any text you want. But it's recommended that each question should:
 
-- Structure each question as a multiple choice question, including yes/no options.
+- Be binary choice
 
-- Ensure each question has an answer within the text.
+- Have an answer in the text
 
-- Avoid terms exclusively used by the author or only defined within the specific text.
+- Not use terms unique to the author or text
 
-- Frame questions without referencing the author or the specific text.
+- Not refer to the author or text
 
 > Can an answer be an arbitrary part of the text?
 
