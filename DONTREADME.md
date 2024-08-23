@@ -89,9 +89,9 @@ Not necessarily. A question in `quest` doesn't always align with a specific book
 
 Technically, yes, a question in `quest` can be pretty much any text you want. But it's recommended that each question should:
 
-- Be a binary choice: This helps you make quick decisions, keeping your reading momentum going. It also makes it easier to provide clear right or wrong feedback.
-
 - Have an answer in the text: Including the answer directly in the text provides immediate validation and prevents the frustration of encountering a question you can't answer.
+
+- Be a binary choice: This helps you make quick decisions, keeping your reading momentum going. It also makes it easier to provide clear right or wrong feedback.
 
 - Not use terms unique to the author or text: Avoiding these terms ensures that you can understand the question even if you haven't read the text first. If you don't understand the question, it's hard to form a tentative answer in your mind.
 
