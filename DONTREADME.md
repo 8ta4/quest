@@ -73,7 +73,7 @@ The YAML file is a list of maps. In each of these maps, you'll find a "question"
     getting rich is doable too. Hard, but doable.
 ```
 
-This example is based on Paul Graham's essay "How to Start a Startup."
+This example is based on Paul Graham's essay "[How to Start a Startup](https://paulgraham.com/start.html)."
 
 > Is the YAML file required to be sorted?
 
