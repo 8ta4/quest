@@ -66,7 +66,7 @@ The YAML file is a list of maps. In each of these maps, you'll find a "question"
 - question: |
     Will a startup that starts with good people, makes something customers actually want, and spends as little money as possible probably succeed?
   answer: |
-    A startup that does all three will probably succeed.
+    to start with good people, to make something customers actually want, and to spend as little money as possible. Most startups that fail do it because they fail at one of these. A startup that does all three will probably succeed.
 - question: |
     Is getting rich doable?
   answer: |
