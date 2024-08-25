@@ -97,10 +97,6 @@ Technically, yes, a question in `quest` can be pretty much any text you want. Bu
 
 - Not refer to the author or text: Not mentioning the author or text in the question keeps it concise. Every question is subjective in the sense that its answer is given by the author and found in the text, so there's no need to point this out.
 
-> Can an answer be an arbitrary part of the text?
-
-Technically, yes, an answer can be any part of the text. However, it's best to avoid ending an answer in the middle of a sentence. Ending an answer mid-sentence can make the reading experience a bit jarring, as the next segment would pick up in the middle of a sentence.
-
 > Can an answer include content from multiple HTML elements?
 
 Yeah, absolutely. So whether your answer is spread across a bunch of `<div>`s, `<span>`s, or whatever other tags, `quest` will handle it. As long as the content is contiguous in the original text, `quest` will be able to identify it as the answer. This way, if someone decides to change up the HTML structure but keeps the content the same, `quest` will still find answer.
@@ -112,6 +108,10 @@ You bet! Paragraphs are often wrapped in separate `<p>` tags. Since `quest` can 
 > Does an answer need to be unique within the text?
 
 No, an answer doesn't have to be unique. If the text contains multiple instances of the answer, `quest` will use the first instance as the corresponding segment for the question-answer pair.
+
+> Can an answer be an arbitrary part of the text?
+
+Technically, yes, an answer can be any part of the text. However, it's best to avoid ending an answer in the middle of a sentence. Ending an answer mid-sentence can make the reading experience a bit jarring, as the next segment would pick up in the middle of a sentence.
 
 > Will `quest` crash if an answer is not found in the text?
 
