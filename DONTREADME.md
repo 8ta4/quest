@@ -73,6 +73,8 @@ The YAML file is a list of maps. In each of these maps, you'll find a "question"
     getting rich is doable too. Hard, but doable.
 ```
 
+This example is based on Paul Graham's essay "How to Start a Startup."
+
 > Is the YAML file required to be sorted?
 
 No, the YAML file doesn't need to be sorted. The software takes care of the ordering based on the content.
@@ -97,6 +99,8 @@ Technically, yes, a question in `quest` can be pretty much any text you want. Bu
 
 - Not refer to the author or text: Not mentioning the author or text in the question keeps it concise. Every question is subjective in the sense that its answer is given by the author and found in the text, so there's no need to point this out.
 
+- Be as concise as possible: The shorter the question, the better. Concise questions help users quickly understand what's being asked. This way, users can focus more on the text, not the questions themselves.
+
 > Can an answer include content from multiple HTML elements?
 
 Yeah, absolutely. So whether your answer is spread across a bunch of `<div>`s, `<span>`s, or whatever other tags, `quest` will handle it. As long as the content is contiguous in the original text, `quest` will be able to identify it as the answer. This way, if someone decides to change up the HTML structure but keeps the content the same, `quest` will still find answer.
@@ -105,13 +109,21 @@ Yeah, absolutely. So whether your answer is spread across a bunch of `<div>`s, `
 
 You bet! Paragraphs are often wrapped in separate `<p>` tags. Since `quest` can deal with multiple HTML elements, it's got no problem handling multiple paragraphs.
 
-> Does an answer need to be unique within the text?
+> Can an answer be any part of the text?
 
-No, an answer doesn't have to be unique. If the text contains multiple instances of the answer, `quest` will use the first instance as the corresponding segment for the question-answer pair.
+Technically, yes, an answer can be any part of the text. However, it is recommended that each answer should:
 
-> Can an answer be an arbitrary part of the text?
+- Answer the question: This way, you can evaluate the quality of the Q&A pair without having to go back to the original document.
 
-Technically, yes, an answer can be any part of the text. However, it's best to avoid ending an answer in the middle of a sentence. Ending an answer mid-sentence can make the reading experience a bit jarring, as the next segment would pick up in the middle of a sentence.
+- Be unique: A unique answer makes it easier to pinpoint the right segment in the text when checking the Q&A pair.
+
+- Avoid ending mid-sentence: Ending an answer mid-sentence can make the reading experience a bit jarring, as the next segment would pick up in the middle of a sentence.
+
+- Be as concise as possible: The shorter the answer, the easier and quicker it is to evaluate the Q&A pair. It also makes the program run more efficiently by speeding up string searches.
+
+> If the text contains multiple instances of the answer, which one will `quest` use as the corresponding segment?
+
+If the answer appears more than once in the text, `quest` will go with the first occurrence. This makes things easier for anyone manually evaluating the Q&A pairs, as the first instance is usually the quickest to find. Plus, it's simpler and faster for the program to use the first match it finds when sorting questions based on where the answers appear in the text.
 
 > Will `quest` crash if an answer is not found in the text?
 
