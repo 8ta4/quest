@@ -4,9 +4,9 @@
 
 ### Random Access
 
-> Can you freely move between sections when using `quest` for reading?
+> Can you freely move between segments when using `quest` for reading?
 
-Yep, with `quest`, you can jump around between sections as you like. It keeps track of what you've already read, so you don't have to. This way, you can explore at your own pace and follow your curiosity.
+Yep, with `quest`, you can jump around between segments as you like. It keeps track of what you've already read, so you don't have to. This way, you can explore at your own pace and follow your curiosity.
 
 ### Keyboard
 
