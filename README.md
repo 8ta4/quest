@@ -94,7 +94,7 @@ Yep, you just need to import a file. You can load it by pressing `Ctrl + q`. "q"
 
 ## Compatibility
 
-> Can I use `quest` on web pages?
+> Can I use `quest` to read web pages?
 
 Yeah, you can totally use `quest` on web pages. But it works best on pages where the content doesn't change. If you're dealing with pages that get updated, it might not be the best fit. You could end up with questions that don't match what's actually on the page anymore.
 
