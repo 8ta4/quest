@@ -98,7 +98,7 @@ Yep, you just need to import a file. You can load it by pressing `Ctrl + q`. "q"
 
 Yeah, you can totally use `quest` on web pages. But it works best on pages where the content doesn't change. If you're dealing with pages that get updated, it might not be the best fit. You could end up with questions that don't match what's actually on the page anymore.
 
-But here's a workaround: you can use a Chrome extension called SingleFile to save the web page as a single HTML file. By doing this, you're essentially freezing that version of the page, so whenever you come back to it, `quest` will still be in sync with the content, even if the original page has been updated.
+But here's a workaround: you can use a Chrome extension called [SingleFile](https://github.com/gildas-lormeau/SingleFile) to save the web page as a single HTML file. By doing this, you're essentially freezing that version of the page, so whenever you come back to it, `quest` will still be in sync with the content, even if the original page has been updated.
 
 > Can I use `quest` to read PDF files?
 
