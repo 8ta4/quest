@@ -92,6 +92,32 @@ Yep, you just need to import a file. You can load it by pressing `Ctrl + q`. "q"
 
 `Option + r` toggles this extension. Think "r" for "read," similar to a browser's reader mode.
 
+> Where does `quest` store data on a Mac?
+
+Your data is stored in this directory:
+
+TODO: Replace [Extension ID] with the actual Extension ID once the extension is uploaded to the Chrome Web Store.
+
+```
+~/Library/Application Support/Google/Chrome/Default/Local Extension Settings/[Extension ID]
+```
+
+This storage location is based on Chrome's current implementation and may change in future updates without notice.
+
+> Can I use an external syncing or backup service to sync or back up `quest` data?
+
+Yes, you can use an external service to sync or back up your `quest` data by creating a symlink to the directory where `quest` stores its data.
+
+For instance, if your Dropbox folder is at `~/Dropbox`, you can create a symlink like this:
+
+TODO: Replace [Extension ID] with the actual Extension ID once the extension is uploaded to the Chrome Web Store.
+
+```
+ln -s "~/Library/Application Support/Google/Chrome/Default/Local Extension Settings/[Extension ID]" "~/Dropbox/quest"
+```
+
+This symlink trick depends on how Chrome currently handles data storage. There's a chance it could stop working without notice.
+
 ## Compatibility
 
 > Can I use `quest` to read web pages?
