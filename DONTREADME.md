@@ -140,3 +140,27 @@ No, `quest` doesn't allow you to create highlights. This is by design. By not al
 > Does `quest` allow you to take notes?
 
 No, `quest` doesn't allow you to take notes. This is also by design. The idea here is that the need for extensive note-taking often suggests an issue with the content itself. If readers frequently feel the need to take notes for later clarification, it could mean that the content isn't explained clearly enough. The responsibility for easily digestible content lies with the content creator, not the reader. For highly complex content, well-structured external resources, like detailed notes made by experts, tend to be more valuable than personal notes. These resources benefit all readers and are likely more accurate.
+
+> Does `quest` store data on a server?
+
+No, `quest` doesn't store data on a server. Using server storage would mean setting up server-side infrastructure.
+
+> Does `quest` use the File System Access API for storing data?
+
+No, `quest` doesn't use the File System Access API. This API requires the user to pick files or directories through a dialog, which could disrupt the flow of using the extension.
+
+> Does `quest` use chrome.storage.sync for storing data?
+
+No, `quest` doesn't rely on chrome.storage.sync. chrome.storage.sync only provides 100 KB of storage, which is far too limited for the amount of data `quest` needs to store.
+
+> Does `quest` use IndexedDB for storing data?
+
+No, `quest` doesn't use IndexedDB for saving data. IndexedDB is asynchronous, but DataScript needs synchronous operations.
+
+> Does `quest` use `chrome.storage.local` or `localStorage` for storing data?
+
+`quest` goes with `chrome.storage.local`. Here's why:
+
+- `chrome.storage.local` is tucked away in the extension, so website scripts can't mess with it. That's a big plus over `localStorage`, which can be accessed by any script running on the website.
+
+- `localStorage` can get wiped out when users clear their browsing data. That's not great if you want your progress to stick around. On the flip side, `chrome.storage.local` is more reliable for keeping your data safe because it doesn't get cleared as easily.
