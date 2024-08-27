@@ -151,11 +151,11 @@ No, `quest` doesn't use the File System Access API. This API requires the user t
 
 > Does `quest` use chrome.storage.sync for storing data?
 
-No, `quest` doesn't rely on chrome.storage.sync. chrome.storage.sync only provides 100 KB of storage, which is far too limited for the amount of data `quest` needs to store.
+No, `quest` doesn't rely on chrome.storage.sync. "[The quota limitation is approximately 100 KB](https://developer.chrome.com/docs/extensions/reference/api/storage#storage_areas:~:text=The%20quota%20limitation%20is%20approximately%20100%20KB)", which is far too limited for the amount of data `quest` needs to store.
 
 > Does `quest` use IndexedDB for storing data?
 
-No, `quest` doesn't use IndexedDB for saving data. IndexedDB is asynchronous, but DataScript needs synchronous operations.
+No, `quest` doesn't use IndexedDB for saving data. IndexedDB is asynchronous, but DataScript [needs synchronous operations](https://github.com/tonsky/datascript/issues/358#issuecomment-657068278).
 
 > Does `quest` use `chrome.storage.local` or `localStorage` for storing data?
 
