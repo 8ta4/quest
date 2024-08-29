@@ -46,6 +46,26 @@ Yes, `quest` automatically saves your reading progress. When you reopen the appl
 
 ### Data
 
+> What's the query string parameter used to specify a YAML file?
+
+The query string parameter you need to specify a YAML file is simply `quest`.
+
+Let's take Paul Graham's "How to Start a Startup" essay as an example. To add `quest` functionality to it, you'd take the essay's URL and tack on the `quest` parameter. This parameter points to a YAML file. It'd look something like this:
+
+TODO: Replace `[HASH]` with the actual commit hash once available.
+
+```
+http://www.paulgraham.com/start.html?quest=https://github.com/8ta4/quests/blob/[HASH]/start.yaml
+```
+
+> Can I host the YAML file anywhere other than GitHub?
+
+Yes, you can host the YAML file wherever you like, as long as it's accessible to users.
+
+> Does the URL for the YAML file need to contain a hash?
+
+Technically, no, it doesn't need a hash. But it's recommended to include one, or use some other method to ensure the URL points to the exact content you want. This makes sure that everyone accessing the link gets the same version.
+
 > Why choose YAML over JSON for import files?
 
 YAML is chosen over JSON because:
