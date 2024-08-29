@@ -86,11 +86,11 @@ Yes, the undo limit is 1,000 actions.
 
 > Can I read something other than the demo page?
 
-Yep, you just need to import a file. You can load it by pressing `Ctrl + q`. "q" stands for "question".
+Yep, you can use `quest` with all sorts of content beyond just the demo page. Just click on a special link that has a query string pointing to a YAML file.
 
-> What's the keyboard shortcut to deactivate this extension?
+> Can I read the original page without `quest` functionality?
 
-`Option + r` toggles this extension. Think "r" for "read," similar to a browser's reader mode.
+Absolutely. Just open the page using its regular URL, without any `quest`-related query string.
 
 > Where does `quest` store data on a Mac?
 
