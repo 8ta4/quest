@@ -96,7 +96,7 @@ Absolutely. Just open the page using its regular URL, without any `quest`-relate
 
 Your data is stored in this directory:
 
-TODO: Replace [Extension ID] with the actual Extension ID once the extension is uploaded to the Chrome Web Store.
+TODO: Replace [Extension ID] with the actual extension ID once the extension is uploaded to the Chrome Web Store.
 
 ```
 ~/Library/Application Support/Google/Chrome/Default/Local Extension Settings/[Extension ID]
@@ -110,7 +110,7 @@ Yes, you can use an external service to sync or back up your `quest` data by cre
 
 For instance, if your Dropbox folder is at `~/Dropbox`, you can create a symlink like this:
 
-TODO: Replace [Extension ID] with the actual Extension ID once the extension is uploaded to the Chrome Web Store.
+TODO: Replace [Extension ID] with the actual extension ID once the extension is uploaded to the Chrome Web Store.
 
 ```
 ln -s "~/Library/Application Support/Google/Chrome/Default/Local Extension Settings/[Extension ID]" "~/Dropbox/quest"
