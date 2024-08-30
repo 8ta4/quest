@@ -119,6 +119,16 @@ Nope, `quest` doesn't generate questions. Even though AI might get there someday
 
 Not necessarily. A question in `quest` doesn't always align with a specific book section. It might cover part of a section, multiple sections, or even span across chapter boundaries.
 
+> Do questions in a quest need to be unique?
+
+No, they don't have to be unique. Here's the reasoning:
+
+- Simplicity: You don't need to create different versions of questions just to make them unique.
+
+- Alignment: Questions should stay true to the original content's structure.
+
+- Reinforcement: Sometimes, repeating questions reinforces important points that are repeated in the text.
+
 > Can a question be arbitrary text?
 
 Technically, yes, a question in `quest` can be pretty much any text you want. But it's recommended that each question should:
