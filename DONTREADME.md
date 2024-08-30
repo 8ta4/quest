@@ -66,6 +66,18 @@ Yes, you can host the YAML file wherever you like, as long as it's accessible to
 
 Technically, no, it doesn't need a hash. But it's recommended to include one, or use some other method to ensure the URL points to the exact content you want. This makes sure that everyone accessing the link gets the same version.
 
+> Does the URL for the YAML file need to contain the full path of the original content?
+
+Technically, no, but it's a smart move. Including the full path of the original content in the YAML file URL has a few benefits:
+
+- Connection: It keeps a direct link between the YAML file and the content it's tied to.
+
+- Uniqueness: Using the full path ensures each YAML file has its own unique URL, helping you avoid any naming conflicts.
+
+- Naming: You don't have to brainstorm new names for each YAML file. Just use the original content's path, and you're set.
+
+- Discovery: If someone's looking for the YAML file for a specific piece of content, they can figure out where it's located just by following the original URL.
+
 > Why choose YAML over JSON for import files?
 
 YAML is chosen over JSON because:
