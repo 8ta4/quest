@@ -177,7 +177,9 @@ Technically, yes, an answer can be any part of the text. However, it is recommen
 
 - Answer the question: This way, you can evaluate the quality of the Q&A pair without having to go back to the original document.
 
-- Be unique: A unique answer makes it easier to pinpoint the right segment in the text when checking the Q&A pair.
+- Be unique in the text: A unique answer makes it easier to pinpoint the right segment in the text when checking the Q&A pair.
+
+- Be unique in the YAML file: If different questions have the same answer, the system will only keep one of them and throw the rest away.
 
 - Avoid ending mid-sentence: Ending an answer mid-sentence can make the reading experience a bit jarring, as the next segment would pick up in the middle of a sentence.
 
