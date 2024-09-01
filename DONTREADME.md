@@ -52,6 +52,14 @@ Technically, yes, you can do that by using Chrome's API to combine them into a s
 
 - Flexibility: You can arrange the windows side by side, on different monitors, or in any setup that suits your reading style and screen space.
 
+> Is the question window in `quest` a `normal` window or a `popup`?
+
+The question window in `quest` actually uses a `popup` type. Here's why:
+
+- Appearance: With no address bar or tabs cluttering the view, the window looks cleaner. This is especially helpful if you're working on a smaller screen.
+
+- Functionality: Since it's a `popup`, you can't open new tabs. It prevents you from navigating away from the questions.
+
 > Does `quest` assume a left-to-right language or right-to-left language?
 
 `quest` is mainly designed for left-to-right (LTR) languages. The segment indicators are placed in the left margin to fit LTR reading habits. This makes it easier for readers to spot the segment boundaries as they read from left to right.
