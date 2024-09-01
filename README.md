@@ -92,6 +92,18 @@ Yep, you can use `quest` with all sorts of content beyond just the demo page. Ju
 
 Absolutely. Just open the page using its regular URL, without any `quest`-related query string.
 
+> If I close the main window, does the question window close too?
+
+Yep, if you close the main window, the question window will close as well.
+
+> If I close the question window, does the main window close too?
+
+Yes, it works the same way. Closing the question window will also close the main window.
+
+> Can I have multiple documents open in `quest` at the same time?
+
+Yes, you can! `quest` is designed to let you work with multiple documents simultaneously. When you open a new document, it'll use the current main window for its content and pop open a new question window just for that document.
+
 > Where does `quest` store data on a Mac?
 
 Your data is stored in this directory:
