@@ -58,6 +58,14 @@ Press `⌘ + j` for the next unseen question. This is inspired by the Vim comman
 
 Press `⌘ + k` for the previous unseen question. This is inspired by the Vim command for moving the cursor up.
 
+> How do I select the question whose segment is the topmost within the main window's viewport?
+
+Hit the `s` key. I like to think of "s" for "select."
+
+> How do I select the question whose segment is the lowermost within the main window's viewport?
+
+Press `Shift + s`. Again, "s" for "select."
+
 > How do you scroll to the beginning of the current segment?
 
 Hit `zt`. This Vim-inspired command will move your view to the start of the segment you're currently in.
