@@ -2,11 +2,39 @@
 
 ## Goals
 
-### Random Access
+### Injection
 
-> Can you freely move between segments when using `quest` for reading?
+> Do the questions in `quest` form an injection with the content?
 
-Yep, with `quest`, you can jump around between segments as you like. It keeps track of what you've already read, so you don't have to. This way, you can explore at your own pace and follow your curiosity.
+Yes, the questions in `quest` form an injection with the content. You don't have to read the same stuff over and over.
+
+### Surjection
+
+> Do the questions in `quest` form a surjection with the content?
+
+Not necessarily. `quest` tries to cover as much of the content as possible, but there are a couple of exceptions:
+
+1. Content before the first answer: Sometimes there's some introductory text before you get to the first answer.
+
+1. Content after the last answer: There might be some text after the last question and answer.
+
+> Is the content before the first answer always visible?
+
+Yes, it is. Let me explain:
+
+- Engagement: You're usually most interested when you start reading a book, so if I hide this content, it might disrupt your natural curiosity.
+
+- Onboarding: The first question should be easy to answer, something that pulls you in. Having the context visible helps with that.
+
+- Simplicity: Some elements, like navigation, should always stay visible. The main content could be hidden and then revealed. But figuring out which is which would be tricky. Keeping everything visible simplifies the implementation.
+
+> Is the content after the last answer always visible?
+
+Yes, it is. Here's why:
+
+- Naturalness: Sometimes, the content at the end doesn't really fit with a question. If I tried to force a question here, it might come off as awkward.
+
+- Simplicity: Some elements at the end, like footers or navigation, need to stay visible. The main content could be hidden and then revealed. But sorting this out would be tricky. Keeping everything visible simplifies the implementation.
 
 ### Keyboard
 
@@ -18,11 +46,11 @@ Absolutely, you can navigate `quest` entirely using keyboard shortcuts. It's qui
 
 Nope, `quest`'s shortcuts are designed to avoid any conflicts with Vimium.
 
-### Coverage
+### Random Access
 
-> Do the questions in `quest` form a bijection with the content?
+> Can you freely move between segments when using `quest` for reading?
 
-Yeah, absolutely. The questions in `quest` are designed to form a bijection with the content. So if you go through all the questions and read the text they reveal, you'll cover everything. This isn't just about learning; it's about earning the right to say, "I've read this book." This can boost your confidence in discussions, give you credibility among peers, and provide a sense of accomplishment.
+Yep, with `quest`, you can jump around between segments as you like. It keeps track of what you've already read, so you don't have to. This way, you can explore at your own pace and follow your curiosity.
 
 ## Functionality
 
