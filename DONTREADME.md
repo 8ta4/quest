@@ -181,9 +181,11 @@ Technically, yes, an answer can be any part of the text. However, it is recommen
 
 - Be as concise as possible: The shorter the answer, the easier and quicker it is to evaluate the Q&A pair. It also makes the program run more efficiently by speeding up string searches.
 
-> If the text contains multiple instances of the answer, which one will `quest` use as the corresponding segment?
+> If the answer appears more than once in the text, `quest` will go with the first occurrence. Here's why:
 
-If the answer appears more than once in the text, `quest` will go with the first occurrence. This makes things easier for anyone manually evaluating the Q&A pairs, as the first instance is usually the quickest to find. Plus, it's simpler and faster for the program to use the first match it finds when sorting questions based on where the answers appear in the text.
+- Evaluation: This approach makes it easier for anyone manually checking the Q&A pairs, as the first instance is usually the quickest to locate.
+
+- Processing: It's simpler and faster for the program to use the first match it finds when sorting questions based on where the answers appear in the text.
 
 > Will `quest` crash if an answer is not found in the text?
 
