@@ -28,12 +28,6 @@ Yeah, absolutely. The questions in `quest` are designed to form a bijection with
 
 ### Navigation
 
-> When a user reveals an answer, how does the viewport adjust?
-
-When someone reveals an answer, the viewport does its thing and automatically scrolls to the start of the current segment. You probably expect to see new stuff when you do something like revealing an answer. Plus, it nudges you to read through the whole segment from the top. That way, you've got all the context before you reaching the answer.
-
-
-
 > How does the viewport adjust when you reveal an answer?
 
 When you reveal an answer, the viewport automatically scrolls to the start of the current segment. Here's why:
