@@ -72,7 +72,7 @@ https://paulgraham.com/start.html?quest=https://github.com/8ta4/quests/blob/[HAS
 
 > Can I host the YAML file anywhere other than GitHub?
 
-Yes, you can host the YAML file wherever you like, as long as it's accessible to users.
+Yes, you can host the YAML file wherever you like, as long as it's accessible.
 
 > Does the URL for the YAML file need to contain a hash?
 
@@ -153,7 +153,7 @@ Technically, yes, a question in `quest` can be pretty much any text you want. Bu
 
 - Not refer to the author or text: Not mentioning the author or text in the question keeps it concise. Every question is subjective in the sense that its answer is given by the author and found in the text, so there's no need to point this out.
 
-- Be as concise as possible: The shorter the question, the better. Concise questions help users quickly understand what's being asked. This way, users can focus more on the text, not the questions themselves.
+- Be as concise as possible: The shorter the question, the better. Shorter questions help you quickly understand what's being asked, allowing you to focus more on the text, not the questions themselves.
 
 > Can an answer include content from multiple HTML elements?
 
@@ -191,7 +191,7 @@ Yes, `quest` autosaves your progress. It's like they say, "It's better to be sav
 
 > Does `quest` allow you to create highlights?
 
-No, `quest` doesn't allow you to create highlights. This is by design. By not allowing highlighting, `quest` encourages users to rely on memory, which might improve long-term recall and comprehension.
+No, `quest` doesn't allow you to create highlights. This is intentional. By not allowing highlighting, `quest` encourages you to rely on memory, which might improve long-term recall and comprehension.
 
 > Does `quest` allow you to take notes?
 
@@ -203,7 +203,7 @@ No, `quest` doesn't store data on a server. Using server storage would mean sett
 
 > Does `quest` use the File System Access API for storing data?
 
-No, `quest` doesn't use the File System Access API. This API requires the user to pick files or directories through a dialog, which could disrupt the flow of using the extension.
+No, `quest` doesn't use the File System Access API. This API requires you to pick files or directories through a dialog, which could disrupt the flow of using the extension.
 
 > Does `quest` use chrome.storage.sync for storing data?
 
@@ -219,4 +219,4 @@ No, `quest` doesn't use IndexedDB for saving data. IndexedDB is asynchronous, bu
 
 - `chrome.storage.local` is tucked away in the extension, so website scripts can't mess with it. That's a big plus over `localStorage`, which can be accessed by any script running on the website.
 
-- `localStorage` can get wiped out when users clear their browsing data. That's not great if you want your progress to stick around. On the flip side, `chrome.storage.local` is more reliable for keeping your data safe because it doesn't get cleared as easily.
+- `localStorage` can get wiped out when you clear your browsing data. That's not great if you want your progress to stick around. On the flip side, `chrome.storage.local` is more reliable for keeping your data safe because it doesn't get cleared as easily.
