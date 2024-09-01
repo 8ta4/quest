@@ -205,6 +205,14 @@ No, `quest` doesn't allow you to create highlights. This is intentional. By not 
 
 No, `quest` doesn't allow you to take notes. This is also by design. The idea here is that the need for extensive note-taking often suggests an issue with the content itself. If readers frequently feel the need to take notes for later clarification, it could mean that the content isn't explained clearly enough. The responsibility for easily digestible content lies with the content creator, not the reader. For highly complex content, well-structured external resources, like detailed notes made by experts, tend to be more valuable than personal notes. These resources benefit all readers and are likely more accurate.
 
+> Does `quest` use DataScript?
+
+Nope, `quest` doesn't use DataScript. It sticks to good old plain ClojureScript data structures. Here's why:
+
+- Overhead: You don't have to deal with the extra setup and configuration that DataScript would need.
+
+- Reasoning: Using plain data structures makes it easier to wrap your head around what's going on and to debug when things go wrong.
+
 > Does `quest` store data on a server?
 
 No, `quest` doesn't store data on a server. Using server storage would mean setting up server-side infrastructure.
@@ -219,7 +227,7 @@ No, `quest` doesn't rely on chrome.storage.sync. "[The quota limitation is appro
 
 > Does `quest` use IndexedDB for storing data?
 
-No, `quest` doesn't use IndexedDB for saving data. IndexedDB is asynchronous, but DataScript [needs synchronous operations](https://github.com/tonsky/datascript/issues/358#issuecomment-657068278).
+No, `quest` doesn't bother with IndexedDB. The extra complexity, especially with how IndexedDB is asynchronous, would just make the code harder to manage.
 
 > Does `quest` use `chrome.storage.local` or `localStorage` for storing data?
 
