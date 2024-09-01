@@ -18,6 +18,8 @@ Not necessarily. `quest` tries to cover as much of the content as possible, but 
 
 1. Content after the last answer: There might be some text after the last question and answer.
 
+So, if you go through all the questions and read the text they reveal, plus the exceptions I mentioned, you’ll cover everything. This isn't just about learning; it's about earning the right to say, "I've read this book." This can boost your confidence in discussions, give you credibility among peers, and provide a sense of accomplishment.
+
 > Is the content before the first answer always visible?
 
 Yes, it is. Let me explain:
