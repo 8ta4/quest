@@ -40,6 +40,14 @@ No, you can't undo navigation in `quest`. It follows a similar approach to Vim.
 
 Yes, `quest` automatically saves your reading progress. When you reopen the application, it picks up from the last question you were viewing and maintains your scrolling position.
 
+> Is it possible to use just one window for both questions and the main content in `quest`?
+
+Technically, yes, you can do that by using Chrome's API to combine them into a single window. But, the way `quest` is meant to be used is with separate windows for the main content and the questions. Here's why:
+
+- Integrity: Keeping questions in a separate window helps make sure we don't mess up the layout or functionality of the original content.
+
+- Flexibility: You can arrange the windows side by side, on different monitors, or in any setup that suits your reading style and screen space.
+
 > Does `quest` assume a left-to-right language or right-to-left language?
 
 `quest` is mainly designed for left-to-right (LTR) languages. The segment indicators are placed in the left margin to fit LTR reading habits. This makes it easier for readers to spot the segment boundaries as they read from left to right.
