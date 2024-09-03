@@ -45,11 +45,11 @@ To wrap up a segment, `quest` uses a similar icon in the left margin, but this o
 
 > How do I get to the next question?
 
-Press `Shift + j` for the next question. This is inspired by the Vim command for moving the cursor down.
+Press `Control + j` for the next question. This is inspired by the Vim command for moving the cursor down.
 
 > How do I get to the previous question?
 
-Press `Shift + k` for the previous question. This is inspired by the Vim command for moving the cursor up.
+Press `Control + k` for the previous question. This is inspired by the Vim command for moving the cursor up.
 
 > How do I get to the next unseen question?
 
