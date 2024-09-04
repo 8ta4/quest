@@ -66,6 +66,10 @@ When you reveal an answer, the viewport automatically scrolls to the start of th
 
 - Context: This adjustment nudges you to read through the whole segment from the top. That way, you've got all the context before you reaching the answer.
 
+> Does `quest` use inline styles, internal styles, or external styles to control the visibility of content?
+
+`quest` uses inline styles to manage content visibility. This ensures that visibility changes take precedence over other CSS rules. That way, `quest` can work smoothly on different websites, even when their CSS structure is unknown.
+
 > Is navigation undoable in `quest`?
 
 No, you can't undo navigation in `quest`. It follows a similar approach to Vim.
