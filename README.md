@@ -89,10 +89,6 @@ Alternatively, you can press `⌘ + z` to undo it.
 
 You can hit `⌘ + Shift + z`.
 
-> Is there an undo limit?
-
-Yes, the undo limit is 1,000 actions.
-
 > Can I read something other than the demo page?
 
 Yep, you can use `quest` with all sorts of content beyond just the demo page. Just click on a special link that has a query string pointing to a YAML file.
