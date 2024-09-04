@@ -90,6 +90,10 @@ The question window in `quest` actually uses a `popup` type. Here's why:
 
 - Functionality: Since it's a `popup`, you can't open new tabs. It prevents you from navigating away from the questions.
 
+> Does `quest` use Chrome extension message passing or window.postMessage() to communicate between the main window and the question window?
+
+`quest` uses Chrome extension message passing to handle communication between the main window and the question window. It simplifies things by removing the need for manual origin checking, which can be overlooked when using window.postMessage(). By sticking with Chrome extension message passing, communication is restricted to within the extension.
+
 > Does `quest` assume a left-to-right language or right-to-left language?
 
 `quest` is mainly designed for left-to-right (LTR) languages. The segment indicators are placed in the left margin to fit LTR reading habits. This makes it easier for readers to spot the segment boundaries as they read from left to right.
