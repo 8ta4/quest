@@ -33,7 +33,7 @@ If a question is marked as unseen, pressing `Space` will mark it as seen and rev
 
 > How do you identify the start of a segment that corresponds to a question?
 
-When you're using `quest`, you'll see a little triangle icon (▼) in the left margin next to the first line of the segment you're working on. This is the marker that shows you where the relevant text for that question starts.
+When you're using `quest`, you'll see a little triangle icon (▼) that'll always be at a fixed horizontal position in the left margin of your screen. This marker lines up vertically with the first line of the segment you're working on.
 
 > How do you identify the end of a segment that corresponds to a question?
 
