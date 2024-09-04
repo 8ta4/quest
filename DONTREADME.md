@@ -58,6 +58,12 @@ Yep, with `quest`, you can jump around between segments as you like. It keeps tr
 
 ### Navigation
 
+> Does `quest` use `chrome.commands`?
+
+No, it doesn't. `chrome.commands` only supports [up to 4 shortcuts](https://developer.chrome.com/docs/extensions/reference/api/commands#:~:text=at%20most%20four%20suggested%20keyboard%20shortcuts), but `quest` needs more than that.
+
+Instead, `quest` relies on event listeners in the content scripts.
+
 > How does the viewport adjust when you reveal an answer?
 
 When you reveal an answer, the viewport automatically scrolls to the start of the current segment. Here's why:
