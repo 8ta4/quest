@@ -109,6 +109,10 @@ Yes, it works the same way. Closing the question window will also close the main
 
 Yes, you can! `quest` is designed to let you work with multiple documents simultaneously. When you open a new document, it'll use the current main window for its content and pop open a new question window just for that document.
 
+> Can data be lost when `quest` updates?
+
+Yes, it's possible. Since `quest` hasn't reached version 1.0 yet, there might be updates that introduce breaking changes. These changes could lead to losing data.
+
 > Where does `quest` store data on a Mac?
 
 Your data is stored in this directory:
