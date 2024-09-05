@@ -6,8 +6,7 @@
 
 `quest` is a Chrome extension that transforms any content into an interactive Q&A format.
 
-As you read along, you can answer questions to check your understanding and keep yourself engaged. This idea came from 
-the quirky style of "[Choose Your Own Adventure](https://www.goodreads.com/genres/choose-your-own-adventure)" and "[The Little Schemer](https://www.goodreads.com/en/book/show/548914.The_Little_Schemer)".
+As you read along, you can answer questions to check your understanding and keep yourself engaged. This idea came from the quirky style of "[Choose Your Own Adventure](https://www.goodreads.com/genres/choose-your-own-adventure)" and "[The Little Schemer](https://www.goodreads.com/en/book/show/548914.The_Little_Schemer)".
 
 I pledge not to read any new book until my vision comes to life. And until WebAssembly supports garbage collection, I hereby pledge not to take out the trash.
 
