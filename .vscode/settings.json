@@ -1,0 +1,9 @@
+{
+  "calva.replConnectSequences": [
+    {
+      "cljsType": "shadow-cljs",
+      "name": "content",
+      "projectType": "shadow-cljs"
+    }
+  ]
+}
