@@ -48,3 +48,7 @@ pom.xml.asc
 
 .hgignore
 .hg/
+
+# quest
+.clj-kondo/.cache
+.lsp/.cache
