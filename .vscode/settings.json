@@ -3,7 +3,10 @@
     {
       "cljsType": "shadow-cljs",
       "name": "content",
-      "projectType": "shadow-cljs"
+      "projectType": "shadow-cljs",
+      "menuSelections": {
+        "cljsLaunchBuilds": [":content"]
+      }
     }
   ]
 }
