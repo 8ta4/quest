@@ -12,6 +12,10 @@
 
   # https://devenv.sh/scripts/
   scripts.hello.exec = "echo hello from $GREET";
+  scripts.run.exec = ''
+    brew bundle
+    web-ext run -s public
+  '';
 
   enterShell = ''
     hello
