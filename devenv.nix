@@ -12,10 +12,16 @@
 
   # https://devenv.sh/scripts/
   scripts.hello.exec = "echo hello from $GREET";
+  scripts.run.exec = ''
+    brew bundle
+    web-ext run -s public
+  '';
 
   enterShell = ''
     hello
     git --version
+    export PATH="$DEVENV_ROOT/node_modules/.bin:$PATH"
+    npm i
   '';
 
   # https://devenv.sh/tests/
