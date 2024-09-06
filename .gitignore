@@ -30,6 +30,9 @@ devenv.local.nix
 # direnv
 .direnv
 
+# Homebrew
+Brewfile.lock.json
+
 # language-server-protocol
 .lsp/.cache
 
