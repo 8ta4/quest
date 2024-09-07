@@ -5,7 +5,8 @@
       "name": "content",
       "projectType": "shadow-cljs",
       "menuSelections": {
-        "cljsLaunchBuilds": [":content"]
+        "cljsLaunchBuilds": [":content"],
+        "cljsDefaultBuild": ":content"
       }
     }
   ]
