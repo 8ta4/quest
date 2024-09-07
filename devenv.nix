@@ -14,7 +14,7 @@
   scripts.hello.exec = "echo hello from $GREET";
   scripts.run.exec = ''
     brew bundle
-    web-ext run -s public
+    web-ext run --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" -s public
   '';
 
   enterShell = ''
