@@ -14,6 +14,11 @@
   scripts.hello.exec = "echo hello from $GREET";
   scripts.run.exec = ''
     brew bundle
+    # The default Content Security Policy (CSP) for web extensions is:
+    # "script-src 'self' 'wasm-unsafe-eval';"
+    # However, I encountered the following error:
+    # EvalError: call to eval() blocked by CSP
+    # To resolve this, I added 'unsafe-eval' to the CSP to allow eval() calls.
     web-ext run --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" -s public
   '';
 
