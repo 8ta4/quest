@@ -19,7 +19,7 @@
     # However, I encountered the following error:
     # EvalError: call to eval() blocked by CSP
     # To resolve this, I added 'unsafe-eval' to the CSP to allow eval() calls.
-    web-ext run --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" -s public --start-url localhost:8000
+    web-ext run --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" -s public --start-url localhost:8000?quest=localhost:8000/index.yaml
   '';
 
   enterShell = ''
@@ -44,6 +44,7 @@
   # https://devenv.sh/pre-commit-hooks/
   # pre-commit.hooks.shellcheck.enable = true;
   pre-commit.hooks = {
+    cljfmt.enable = true;
     gitleaks = {
       enable = true;
       # https://github.com/gitleaks/gitleaks/blob/4e43d1109303568509596ef5ef576fbdc0509891/.pre-commit-hooks.yaml#L4
