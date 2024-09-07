@@ -8,6 +8,7 @@
         "cljsLaunchBuilds": [":content"]
       },
       "name": "content",
+      "projectRootPath": ["."],
       "projectType": "shadow-cljs"
     }
   ]
