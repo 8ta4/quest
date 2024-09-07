@@ -4,7 +4,7 @@
 
  :dependencies
  []
-
+ :dev-http {8000 "public"}
  :builds
  {:content
   {:target :browser
