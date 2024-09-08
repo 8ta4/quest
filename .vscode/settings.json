@@ -5,7 +5,7 @@
       "cljsType": "shadow-cljs",
       "menuSelections": {
         "cljsDefaultBuild": ":content",
-        "cljsLaunchBuilds": [":content"]
+        "cljsLaunchBuilds": [":background", ":content"]
       },
       "name": "content",
       "projectRootPath": ["."],
