@@ -19,7 +19,11 @@
     # However, I encountered the following error:
     # EvalError: call to eval() blocked by CSP
     # To resolve this, I added 'unsafe-eval' to the CSP to allow eval() calls.
-    web-ext run --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" -s public --start-url localhost:8000?quest=localhost:8000/index.yaml
+    web-ext run \
+      --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" \
+      -s public \
+      --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml" \
+      --start-url "about:debugging#/runtime/this-firefox"
   '';
 
   enterShell = ''
