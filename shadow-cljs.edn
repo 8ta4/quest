@@ -14,4 +14,4 @@
    :modules {:background {:init-fn background/init}}}
   :content
   {:target :browser
-   :modules {:content {}}}}}
+   :modules {:content {:init-fn content/init}}}}}
