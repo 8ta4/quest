@@ -6,4 +6,5 @@
 
 (defn init
   []
-  (js/browser.runtime.sendMessage quest))
+  (when quest
+    (js/browser.runtime.sendMessage quest)))
