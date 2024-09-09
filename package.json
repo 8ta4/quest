@@ -3,5 +3,8 @@
   "devDependencies": {
     "shadow-cljs": "2.28.14",
     "web-ext": "^8.2.0"
+  },
+  "dependencies": {
+    "yaml": "^2.5.1"
   }
 }
