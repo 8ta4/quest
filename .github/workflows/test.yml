@@ -26,3 +26,4 @@ jobs:
 
       - name: Run a single command in the devenv shell
         run: devenv shell hello
+      - run: devenv shell release
