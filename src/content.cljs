@@ -7,4 +7,6 @@
 (defn init
   []
   (when quest
-    (js/browser.runtime.sendMessage quest)))
+    (.then (js/browser.runtime.sendMessage quest)
+           (fn [response]
+             (js/console.log "Received response from background script")))))
