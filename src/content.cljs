@@ -1,5 +1,6 @@
 (ns content
   (:require [lambdaisland.uri :refer [query-map]]
+            [shadow.cljs.modern :refer [js-await]]
             [yaml :refer [parse]]))
 
 (def quest
@@ -8,7 +9,6 @@
 (defn init
   []
   (when quest
-    (.then (js/browser.runtime.sendMessage quest)
-           (fn [response]
-             (js/console.log "Received response from background script")
-             (js->clj (parse response))))))
+    (js-await [response (js/browser.runtime.sendMessage quest)]
+              (js/console.log "Received response from background script")
+              (js->clj (parse response)))))
