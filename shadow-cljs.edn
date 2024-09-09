@@ -3,7 +3,8 @@
  ["src"]
 
  :dependencies
- [[lambdaisland/uri "1.19.155"]]
+ [[cljs-http "0.1.48"]
+  [lambdaisland/uri "1.19.155"]]
 ;https://github.com/shadow-cljs/shadow-cljs.github.io/blob/dd4be69c0144dc0b0ae1cbe8a715eb2be7608ece/docs/UsersGuide.adoc?plain=1#L451
  :dev-http {8000 "public"}
  :builds
