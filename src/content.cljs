@@ -1,5 +1,6 @@
 (ns content
-  (:require [lambdaisland.uri :refer [query-map]]
+  (:require [clojure.string :as str]
+            [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]
             [yaml :refer [parse]]))
 
@@ -11,6 +12,9 @@
 
 (def walker
   (js/document.createTreeWalker js/document js/NodeFilter.SHOW_TEXT))
+
+(def remove-blanks
+  (partial remove str/blank?))
 
 (defn init
   []
