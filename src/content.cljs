@@ -16,9 +16,16 @@
 (def remove-blanks
   (partial remove str/blank?))
 
+(defn match
+  [current answer text]
+  (cond (empty? answer) current
+        (empty? text) answer
+        (str/blank? (first text)) (recur (inc current) answer (rest text))
+        (= (first answer) (first text)) (recur (inc current) (rest answer) (rest text))))
+
 (defn traverse-nodes
   [nodes start current answer]
-  (subs (.-currentNode.nodeValue walker) current))
+  (match current answer (subs (.-currentNode.nodeValue walker) current)))
 
 (defn init
   []
