@@ -9,6 +9,9 @@
 (def quest
   (:quest (query-map js/location.href)))
 
+(def walker
+  (js/document.createTreeWalker js/document js/NodeFilter.SHOW_TEXT))
+
 (defn init
   []
   (when quest
