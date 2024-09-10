@@ -23,7 +23,7 @@
         (str/blank? (first text)) (recur (inc current) answer (rest text))
         (= (first answer) (first text)) (recur (inc current) (rest answer) (rest text))))
 
-(defn traverse-nodes
+(defn traverse
   [nodes start current answer]
   (match current answer (subs (.-currentNode.nodeValue walker) current)))
 
@@ -40,4 +40,4 @@
                    first
                    :answer
                    remove-blanks
-                   (traverse-nodes [] 0 0)))))
+                   (traverse [] 0 0)))))
