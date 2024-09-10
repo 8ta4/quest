@@ -20,6 +20,7 @@
     # To resolve this, I added 'unsafe-eval' to the CSP to allow eval() calls.
     web-ext run \
       --devtools \
+      --pref devtools.toolbox.alwaysOnTop=false \
       --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" \
       -s public \
       --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml"
@@ -29,6 +30,7 @@
     web-ext run \
       --devtools \
       --no-reload \
+      --pref devtools.toolbox.alwaysOnTop=false \
       --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" \
       -s public \
       --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml"
