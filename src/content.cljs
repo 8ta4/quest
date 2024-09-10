@@ -14,6 +14,7 @@
 
 (defn init
   []
+  (.nextNode walker)
   (when quest
     (js-await [response (js/browser.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
