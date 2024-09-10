@@ -16,6 +16,9 @@
 (def remove-blanks
   (partial remove str/blank?))
 
+(defn traverse-nodes
+  [nodes start current answer])
+
 (defn init
   []
   (.nextNode walker)
@@ -23,4 +26,5 @@
     (js-await [response (js/browser.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
               (reset! state {:qa (js->clj (parse response) {:keywordize-keys true})
-                             :index 0}))))
+                             :index 0})
+              (traverse-nodes [] 0 0 (remove-blanks (:answer (first (:qa @state))))))))
