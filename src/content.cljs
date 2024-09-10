@@ -27,4 +27,9 @@
               (js/console.log "Received response from background script")
               (reset! state {:qa (js->clj (parse response) {:keywordize-keys true})
                              :index 0})
-              (traverse-nodes [] 0 0 (remove-blanks (:answer (first (:qa @state))))))))
+              (->> @state
+                   :qa
+                   first
+                   :answer
+                   remove-blanks
+                   (traverse-nodes [] 0 0)))))
