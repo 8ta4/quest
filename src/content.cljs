@@ -3,7 +3,7 @@
             [shadow.cljs.modern :refer [js-await]]
             [yaml :refer [parse]]))
 
-(def state
+(defonce state
   (atom {}))
 
 (def quest
