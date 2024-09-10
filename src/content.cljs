@@ -17,7 +17,8 @@
   (partial remove str/blank?))
 
 (defn traverse-nodes
-  [nodes start current answer])
+  [nodes start current answer]
+  (subs (.-currentNode.nodeValue walker) current))
 
 (defn init
   []
