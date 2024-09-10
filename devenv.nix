@@ -11,9 +11,7 @@
   ];
 
   # https://devenv.sh/scripts/
-  scripts.hello.exec = "echo hello from $GREET";
-  scripts.release.exec = "shadow-cljs release :background :content";
-  scripts.run.exec = ''
+  scripts.background.exec = ''
     brew bundle
     # The default Content Security Policy (CSP) for web extensions is:
     # "script-src 'self' 'wasm-unsafe-eval';"
@@ -23,9 +21,20 @@
     web-ext run \
       --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" \
       -s public \
+      --start-url "about:debugging#/runtime/this-firefox" \
+      --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml"
+  '';
+  scripts.content.exec = ''
+    brew bundle
+    web-ext run \
+      --no-reload \
+      --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" \
+      -s public \
       --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml" \
       --start-url "about:debugging#/runtime/this-firefox"
   '';
+  scripts.hello.exec = "echo hello from $GREET";
+  scripts.release.exec = "shadow-cljs release :background :content";
 
   enterShell = ''
     hello
