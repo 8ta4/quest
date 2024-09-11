@@ -20,8 +20,7 @@
   [current answer text matched]
   (cond (empty? answer) current
         (empty? text) (if matched
-                        answer
-                        nil)
+                        answer)
         (str/blank? (first text)) (recur (inc current) answer (rest text) matched)
         (= (first answer) (first text)) (recur (inc current) (rest answer) (rest text) true)))
 
