@@ -17,15 +17,17 @@
   (partial remove str/blank?))
 
 (defn match
-  [current answer text]
+  [current answer text matched]
   (cond (empty? answer) current
-        (empty? text) answer
-        (str/blank? (first text)) (recur (inc current) answer (rest text))
-        (= (first answer) (first text)) (recur (inc current) (rest answer) (rest text))))
+        (empty? text) (if matched
+                        answer
+                        nil)
+        (str/blank? (first text)) (recur (inc current) answer (rest text) matched)
+        (= (first answer) (first text)) (recur (inc current) (rest answer) (rest text) true)))
 
 (defn traverse
   [nodes start current answer]
-  (match current answer (subs (.-currentNode.nodeValue walker) current)))
+  (match current answer (subs (.-currentNode.nodeValue walker) current) false))
 
 (defn init
   []
