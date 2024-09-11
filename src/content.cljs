@@ -19,9 +19,9 @@
 (defn match
   [current answer text matched]
   (cond (empty? answer) current
-        (empty? text) (if matched
-                        answer)
-        (str/blank? (first text)) (recur (inc current) answer (rest text) matched)
+        (empty? text) answer
+        (str/blank? (first text)) (if matched
+                                    (recur (inc current) answer (rest text) true))
         (= (first answer) (first text)) (recur (inc current) (rest answer) (rest text) true)))
 
 (defn traverse
