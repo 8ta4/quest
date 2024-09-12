@@ -68,7 +68,7 @@
        :answer
        remove-blanks))
 
-(defn wrap
+(defn wrap-node
   [node start end id]
   (let [range* (js/document.createRange)
         span (js/document.createElement "span")]
@@ -78,15 +78,22 @@
     (set! span.style "visibility: hidden !important")
     (.surroundContents range* span)))
 
-(defn match-nodes
+(defn wrap-nodes
+  [{:keys [foo sequence-start text-start sequence-end text-end id]}]
+  (if (= sequence-start sequence-end)
+    (wrap-node (nth foo sequence-start) text-start text-end id)))
+
+(defn process-nodes
   []
-  (match-nodes* {:sequence-start 0
-                 :text-start 0
-                 :sequence-end 0
-                 :text-end 0
-                 :text-sequence (map #(.-nodeValue %) (collect-nodes))
-                 :complete-answer (get-first-answer)
-                 :unmatched-answer (get-first-answer)}))
+  (wrap-nodes (merge (match-nodes* {:sequence-start 0
+                                    :text-start 0
+                                    :sequence-end 0
+                                    :text-end 0
+                                    :text-sequence (map #(.-nodeValue %) (collect-nodes))
+                                    :complete-answer (get-first-answer)
+                                    :unmatched-answer (get-first-answer)})
+                     {:foo (collect-nodes)
+                      :id 0})))
 
 (defn init
   []
@@ -95,4 +102,4 @@
               (js/console.log "Received response from background script")
               (reset! state {:qa (js->clj (parse response) {:keywordize-keys true})
                              :index 0})
-              (match-nodes))))
+              (process-nodes))))
