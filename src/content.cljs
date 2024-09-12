@@ -71,6 +71,15 @@
        :answer
        remove-blanks))
 
+(defn wrap
+  [node start end id]
+  (let [range* (js/document.createRange)
+        span (js/document.createElement "span")]
+    (.setStart range* node start)
+    (.setEnd range* node end)
+    (set! (.-id span) id)
+    (.surroundContents range* span)))
+
 (defn match-nodes
   []
   (match-nodes* {:sequence-start 0
