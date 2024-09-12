@@ -10,9 +10,6 @@
 (def quest
   (:quest (query-map js/location.href)))
 
-(def walker
-  (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT))
-
 (def remove-blanks
   (partial remove str/blank?))
 
@@ -24,13 +21,14 @@
                                     (recur (inc current) answer (rest text) true))
         (= (first answer) (first text)) (recur (inc current) (rest answer) (rest text) true)))
 
-(defn traverse
-  [nodes start current answer]
-  (match current answer (subs (.-currentNode.nodeValue walker) current) false))
+(defn collect-nodes
+  [nodes walker]
+  (if-let [node (.nextNode walker)]
+    (recur (conj nodes node) walker)
+    nodes))
 
 (defn init
   []
-  (.nextNode walker)
   (when quest
     (js-await [response (js/browser.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
@@ -40,5 +38,6 @@
                    :qa
                    first
                    :answer
-                   remove-blanks
-                   (traverse [] 0 0)))))
+                   remove-blanks)
+              (collect-nodes []
+                             (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))))
