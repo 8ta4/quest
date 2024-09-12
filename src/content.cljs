@@ -39,5 +39,6 @@
                    first
                    :answer
                    remove-blanks)
-              (collect-nodes []
-                             (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))))
+              (->> (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)
+                   (collect-nodes [])
+                   (map #(.-nodeValue %))))))
