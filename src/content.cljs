@@ -13,7 +13,7 @@
 (def remove-blanks
   (partial remove str/blank?))
 
-(defn match
+(defn match-node
   [current answer text matched]
   (cond (empty? answer) current
         (empty? text) answer
@@ -31,6 +31,27 @@
   []
   (collect-nodes* [] (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))
 
+(defn match-nodes*
+  [{:keys [text-vector vector-start string-start vector-end string-end complete-answer unmatched-answer]}])
+
+(defn get-first-answer
+  []
+  (->> @state
+       :qa
+       first
+       :answer
+       remove-blanks))
+
+(defn match-nodes
+  []
+  (match-nodes* {:text-vector (collect-nodes)
+                 :vector-start 0
+                 :string-start 0
+                 :vector-end 0
+                 :string-end 0
+                 :complete-answer (get-first-answer)
+                 :unmatched-answer (get-first-answer)}))
+
 (defn init
   []
   (when quest
@@ -38,9 +59,4 @@
               (js/console.log "Received response from background script")
               (reset! state {:qa (js->clj (parse response) {:keywordize-keys true})
                              :index 0})
-              (->> @state
-                   :qa
-                   first
-                   :answer
-                   remove-blanks)
-              (map #(.-nodeValue %) (collect-nodes)))))
+              (match-nodes))))
