@@ -78,6 +78,7 @@
     (.setStart range* node start)
     (.setEnd range* node end)
     (set! span.id id)
+    (set! span.style "visibility: hidden !important")
     (.surroundContents range* span)))
 
 (defn match-nodes
