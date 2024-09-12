@@ -11,7 +11,7 @@
   (:quest (query-map js/location.href)))
 
 (def walker
-  (js/document.createTreeWalker js/document js/NodeFilter.SHOW_TEXT))
+  (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT))
 
 (def remove-blanks
   (partial remove str/blank?))
