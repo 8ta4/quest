@@ -10,35 +10,59 @@
 (def quest
   (:quest (query-map js/location.href)))
 
-(def walker
-  (js/document.createTreeWalker js/document js/NodeFilter.SHOW_TEXT))
-
 (def remove-blanks
   (partial remove str/blank?))
 
-(defn match
-  [current answer text matched]
-  (cond (empty? answer) current
+(defn match-node
+  [{:keys [end answer text matched]}]
+  (cond (empty? answer) end
         (empty? text) answer
         (str/blank? (first text)) (if matched
-                                    (recur (inc current) answer (rest text) true))
-        (= (first answer) (first text)) (recur (inc current) (rest answer) (rest text) true)))
+                                    (recur {:current (inc end)
+                                            :answer answer
+                                            :text (rest text)
+                                            :matched true}))
+        (= (first answer) (first text)) (recur {:current (inc end)
+                                                :answer (rest answer)
+                                                :text (rest text)
+                                                :matched true})))
 
-(defn traverse
-  [nodes start current answer]
-  (match current answer (subs (.-currentNode.nodeValue walker) current) false))
+(defn collect-nodes*
+  [nodes walker]
+  (if-let [node (.nextNode walker)]
+    (recur (conj nodes node) walker)
+    nodes))
+
+(defn collect-nodes
+  []
+  (collect-nodes* [] (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))
+
+(defn match-nodes*
+  [{:keys [vector-start string-start vector-end string-end text-vector complete-answer unmatched-answer]}])
+
+(defn get-first-answer
+  []
+  (->> @state
+       :qa
+       first
+       :answer
+       remove-blanks))
+
+(defn match-nodes
+  []
+  (match-nodes* {:vector-start 0
+                 :string-start 0
+                 :vector-end 0
+                 :string-end 0
+                 :text-vector (map #(.-nodeValue %) (collect-nodes))
+                 :complete-answer (get-first-answer)
+                 :unmatched-answer (get-first-answer)}))
 
 (defn init
   []
-  (.nextNode walker)
   (when quest
     (js-await [response (js/browser.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
               (reset! state {:qa (js->clj (parse response) {:keywordize-keys true})
                              :index 0})
-              (->> @state
-                   :qa
-                   first
-                   :answer
-                   remove-blanks
-                   (traverse [] 0 0)))))
+              (match-nodes))))
