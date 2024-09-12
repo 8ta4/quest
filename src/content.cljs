@@ -19,11 +19,11 @@
   (cond (empty? answer) end
         (empty? text) answer
         (str/blank? (first text)) (if matched
-                                    (recur {:current (inc end)
+                                    (recur {:end (inc end)
                                             :answer answer
                                             :text (rest text)
                                             :matched true}))
-        (= (first answer) (first text)) (recur {:current (inc end)
+        (= (first answer) (first text)) (recur {:end (inc end)
                                                 :answer (rest answer)
                                                 :text (rest text)
                                                 :matched true})))
