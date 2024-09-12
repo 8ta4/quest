@@ -47,21 +47,18 @@
                               :text (subs (nth text-sequence sequence-start) text-start)
                               :matched (not= complete-answer unmatched-answer)})]
       (cond (integer? result) (setval :text-end result context)
-            (string? result) (recur (merge context
-                                           {:text-end 0
-                                            :sequence-end (inc sequence-end)
-                                            :unmatched-answer result}))
-            (< (inc text-start) (count (nth text-sequence sequence-start))) (recur (merge context
-                                                                                          {:text-start (inc text-start)
-                                                                                           :sequence-end sequence-start
-                                                                                           :text-end (inc text-start)
-                                                                                           :unmatched-answer complete-answer}))
-            :else (recur (merge context
-                                {:sequence-start (inc sequence-start)
-                                 :text-start 0
-                                 :sequence-end (inc sequence-start)
-                                 :text-end 0
-                                 :unmatched-answer complete-answer}))))))
+            (string? result) (recur (merge context {:text-end 0
+                                                    :sequence-end (inc sequence-end)
+                                                    :unmatched-answer result}))
+            (< (inc text-start) (count (nth text-sequence sequence-start))) (recur (merge context {:text-start (inc text-start)
+                                                                                                   :sequence-end sequence-start
+                                                                                                   :text-end (inc text-start)
+                                                                                                   :unmatched-answer complete-answer}))
+            :else (recur (merge context {:sequence-start (inc sequence-start)
+                                         :text-start 0
+                                         :sequence-end (inc sequence-start)
+                                         :text-end 0
+                                         :unmatched-answer complete-answer}))))))
 
 (defn get-first-answer
   []
@@ -71,24 +68,32 @@
        :answer
        remove-blanks))
 
-(defn wrap
+(defn wrap-node
   [node start end id]
   (let [range* (js/document.createRange)
         span (js/document.createElement "span")]
     (.setStart range* node start)
     (.setEnd range* node end)
-    (set! (.-id span) id)
+    (set! span.id id)
+    (set! span.style "visibility: hidden !important")
     (.surroundContents range* span)))
 
-(defn match-nodes
+(defn wrap-nodes
+  [{:keys [foo sequence-start text-start sequence-end text-end id]}]
+  (if (= sequence-start sequence-end)
+    (wrap-node (nth foo sequence-start) text-start text-end id)))
+
+(defn process-nodes
   []
-  (match-nodes* {:sequence-start 0
-                 :text-start 0
-                 :sequence-end 0
-                 :text-end 0
-                 :text-sequence (map #(.-nodeValue %) (collect-nodes))
-                 :complete-answer (get-first-answer)
-                 :unmatched-answer (get-first-answer)}))
+  (wrap-nodes (merge (match-nodes* {:sequence-start 0
+                                    :text-start 0
+                                    :sequence-end 0
+                                    :text-end 0
+                                    :text-sequence (map #(.-nodeValue %) (collect-nodes))
+                                    :complete-answer (get-first-answer)
+                                    :unmatched-answer (get-first-answer)})
+                     {:foo (collect-nodes)
+                      :id 0})))
 
 (defn init
   []
@@ -97,4 +102,4 @@
               (js/console.log "Received response from background script")
               (reset! state {:qa (js->clj (parse response) {:keywordize-keys true})
                              :index 0})
-              (match-nodes))))
+              (process-nodes))))
