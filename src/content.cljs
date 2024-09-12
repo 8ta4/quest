@@ -14,12 +14,18 @@
   (partial remove str/blank?))
 
 (defn match-node
-  [current answer text matched]
-  (cond (empty? answer) current
+  [{:keys [end answer text matched]}]
+  (cond (empty? answer) end
         (empty? text) answer
         (str/blank? (first text)) (if matched
-                                    (recur (inc current) answer (rest text) true))
-        (= (first answer) (first text)) (recur (inc current) (rest answer) (rest text) true)))
+                                    (recur {:current (inc end)
+                                            :answer answer
+                                            :text (rest text)
+                                            :matched true}))
+        (= (first answer) (first text)) (recur {:current (inc end)
+                                                :answer (rest answer)
+                                                :text (rest text)
+                                                :matched true})))
 
 (defn collect-nodes*
   [nodes walker]
