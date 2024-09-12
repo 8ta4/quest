@@ -47,21 +47,18 @@
                               :text (subs (nth text-sequence sequence-start) text-start)
                               :matched (not= complete-answer unmatched-answer)})]
       (cond (integer? result) (setval :text-end result context)
-            (string? result) (recur (merge context
-                                           {:text-end 0
-                                            :sequence-end (inc sequence-end)
-                                            :unmatched-answer result}))
-            (< (inc text-start) (count (nth text-sequence sequence-start))) (recur (merge context
-                                                                                          {:text-start (inc text-start)
-                                                                                           :sequence-end sequence-start
-                                                                                           :text-end (inc text-start)
-                                                                                           :unmatched-answer complete-answer}))
-            :else (recur (merge context
-                                {:sequence-start (inc sequence-start)
-                                 :text-start 0
-                                 :sequence-end (inc sequence-start)
-                                 :text-end 0
-                                 :unmatched-answer complete-answer}))))))
+            (string? result) (recur (merge context {:text-end 0
+                                                    :sequence-end (inc sequence-end)
+                                                    :unmatched-answer result}))
+            (< (inc text-start) (count (nth text-sequence sequence-start))) (recur (merge context {:text-start (inc text-start)
+                                                                                                   :sequence-end sequence-start
+                                                                                                   :text-end (inc text-start)
+                                                                                                   :unmatched-answer complete-answer}))
+            :else (recur (merge context {:sequence-start (inc sequence-start)
+                                         :text-start 0
+                                         :sequence-end (inc sequence-start)
+                                         :text-end 0
+                                         :unmatched-answer complete-answer}))))))
 
 (defn get-first-answer
   []
