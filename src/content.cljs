@@ -48,7 +48,7 @@
                  :string-start 0
                  :vector-end 0
                  :string-end 0
-                 :text-vector (collect-nodes)
+                 :text-vector (map #(.-nodeValue %) (collect-nodes))
                  :complete-answer (get-first-answer)
                  :unmatched-answer (get-first-answer)}))
 
