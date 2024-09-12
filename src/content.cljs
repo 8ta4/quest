@@ -1,5 +1,6 @@
 (ns content
   (:require [clojure.string :as str]
+            [com.rpl.specter :refer [setval]]
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]
             [yaml :refer [parse]]))
@@ -18,11 +19,11 @@
   (cond (empty? answer) end
         (empty? text) answer
         (str/blank? (first text)) (if matched
-                                    (recur {:current (inc end)
+                                    (recur {:end (inc end)
                                             :answer answer
                                             :text (rest text)
                                             :matched true}))
-        (= (first answer) (first text)) (recur {:current (inc end)
+        (= (first answer) (first text)) (recur {:end (inc end)
                                                 :answer (rest answer)
                                                 :text (rest text)
                                                 :matched true})))
@@ -38,7 +39,29 @@
   (collect-nodes* [] (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))
 
 (defn match-nodes*
-  [{:keys [sequence-start text-start sequence-end text-end text-sequence complete-answer unmatched-answer]}])
+  [{:keys [sequence-start text-start sequence-end text-end text-sequence complete-answer unmatched-answer] :as context}]
+  (if (empty? unmatched-answer)
+    context
+    (let [result (match-node {:end text-end
+                              :answer unmatched-answer
+                              :text (subs (nth text-sequence sequence-start) text-start)
+                              :matched (not= complete-answer unmatched-answer)})]
+      (cond (integer? result) (setval :text-end result context)
+            (string? result) (recur (merge context
+                                           {:text-end 0
+                                            :sequence-end (inc sequence-end)
+                                            :unmatched-answer result}))
+            (< (inc text-start) (count (nth text-sequence sequence-start))) (recur (merge context
+                                                                                          {:text-start (inc text-start)
+                                                                                           :sequence-end sequence-start
+                                                                                           :text-end (inc text-start)
+                                                                                           :unmatched-answer complete-answer}))
+            :else (recur (merge context
+                                {:sequence-start (inc sequence-start)
+                                 :text-start 0
+                                 :sequence-end (inc sequence-start)
+                                 :text-end 0
+                                 :unmatched-answer complete-answer}))))))
 
 (defn get-first-answer
   []
