@@ -77,7 +77,7 @@
         span (js/document.createElement "span")]
     (.setStart range* node start)
     (.setEnd range* node end)
-    (set! (.-id span) id)
+    (set! span.id id)
     (.surroundContents range* span)))
 
 (defn match-nodes
