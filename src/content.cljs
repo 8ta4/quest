@@ -32,7 +32,7 @@
   (collect-nodes* [] (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))
 
 (defn match-nodes*
-  [{:keys [text-vector vector-start string-start vector-end string-end complete-answer unmatched-answer]}])
+  [{:keys [vector-start string-start vector-end string-end text-vector complete-answer unmatched-answer]}])
 
 (defn get-first-answer
   []
@@ -44,11 +44,11 @@
 
 (defn match-nodes
   []
-  (match-nodes* {:text-vector (collect-nodes)
-                 :vector-start 0
+  (match-nodes* {:vector-start 0
                  :string-start 0
                  :vector-end 0
                  :string-end 0
+                 :text-vector (collect-nodes)
                  :complete-answer (get-first-answer)
                  :unmatched-answer (get-first-answer)}))
 
