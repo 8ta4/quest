@@ -21,11 +21,15 @@
                                     (recur (inc current) answer (rest text) true))
         (= (first answer) (first text)) (recur (inc current) (rest answer) (rest text) true)))
 
-(defn collect-nodes
+(defn collect-nodes*
   [nodes walker]
   (if-let [node (.nextNode walker)]
     (recur (conj nodes node) walker)
     nodes))
+
+(defn collect-nodes
+  []
+  (collect-nodes* [] (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))
 
 (defn init
   []
@@ -39,6 +43,4 @@
                    first
                    :answer
                    remove-blanks)
-              (->> (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)
-                   (collect-nodes [])
-                   (map #(.-nodeValue %))))))
+              (map #(.-nodeValue %) (collect-nodes)))))
