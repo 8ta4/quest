@@ -79,9 +79,9 @@
     (.surroundContents range* span)))
 
 (defn wrap-nodes
-  [{:keys [foo sequence-start text-start sequence-end text-end id]}]
+  [{:keys [nodes sequence-start text-start sequence-end text-end id]}]
   (if (= sequence-start sequence-end)
-    (wrap-node (nth foo sequence-start) text-start text-end id)))
+    (wrap-node (nth nodes sequence-start) text-start text-end id)))
 
 (defn process-nodes
   []
@@ -92,7 +92,7 @@
                                     :text-sequence (map #(.-nodeValue %) (collect-nodes))
                                     :complete-answer (get-first-answer)
                                     :unmatched-answer (get-first-answer)})
-                     {:foo (collect-nodes)
+                     {:nodes (collect-nodes)
                       :id 0})))
 
 (defn init
