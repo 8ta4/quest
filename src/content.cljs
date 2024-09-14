@@ -66,8 +66,9 @@
   "visibility: hidden !important")
 
 (defn wrap-node
-  [node start end id]
+  [index start end id]
   (let [range* (js/document.createRange)
+        node (nth nodes index)
         span (js/document.createElement "span")]
     (.setStart range* node (or start 0))
     (.setEnd range* node (or end (count node.nodeValue)))
@@ -75,7 +76,7 @@
     (set! span.style style)
     (.surroundContents range* span)))
 
-(defn build-segments
+(defn build-segment
   [{:keys [sequence-start text-start sequence-end text-end id]}]
   (if (= sequence-start sequence-end)
     [[sequence-start text-start text-end id]]
@@ -87,7 +88,7 @@
   []
   (map (comp remove-blanks :answer) (:qa @state)))
 
-(defn process-nodes
+(defn build-segments
   []
   (->> (get-answers)
        (map-indexed vector)
@@ -99,13 +100,13 @@
                                                    :unmatched-answer answer}))]
 
                    (setval [:segments END]
-                           (build-segments (setval :id
-                                                   id
-                                                   (if (zero? id)
-                                                     result
-                                                     (merge result
-                                                            {:sequence-start sequence-end
-                                                             :text-start text-end}))))
+                           (build-segment (setval :id
+                                                  id
+                                                  (if (zero? id)
+                                                    result
+                                                    (merge result
+                                                           {:sequence-start sequence-end
+                                                            :text-start text-end}))))
                            result)))
                {:segments []
                 :sequence-start 0
@@ -114,6 +115,10 @@
                 :text-end 0})
        :segments
        reverse))
+
+(defn process-nodes
+  []
+  (run! (partial apply wrap-node) (build-segments)))
 
 (defn toggle
   []
