@@ -118,5 +118,5 @@
     (js-await [response (js/browser.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
               (reset! state {:qa (js->clj (parse response) {:keywordize-keys true})
-                             :index 0})
+                             :id 0})
               (process-nodes))))
