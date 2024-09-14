@@ -75,13 +75,13 @@
     (set! span.style style)
     (.surroundContents range* span)))
 
-(defn wrap-nodes
+(defn build-segments
   [{:keys [sequence-start text-start sequence-end text-end id]}]
   (if (= sequence-start sequence-end)
-    (wrap-node (nth nodes sequence-start) text-start text-end id)
-    (do (wrap-node (nth nodes sequence-start) text-start nil id)
-        (run! #(wrap-node % nil nil id) (subvec nodes (inc sequence-start) sequence-end))
-        (wrap-node (nth nodes sequence-end) nil text-end id))))
+    [[sequence-start text-start text-end id]]
+    (concat [[sequence-start text-start nil id]]
+            (map #(vector % nil nil id) (range (inc sequence-start) sequence-end))
+            [[sequence-end nil text-end id]])))
 
 (defn get-answers
   []
@@ -95,11 +95,11 @@
                                               :text-start text-end
                                               :complete-answer answer
                                               :unmatched-answer answer}))]
-              (wrap-nodes (setval :id id (if (zero? id)
-                                           result
-                                           (merge result
-                                                  {:sequence-start sequence-end
-                                                   :text-start text-end}))))
+              (build-segments (setval :id id (if (zero? id)
+                                               result
+                                               (merge result
+                                                      {:sequence-start sequence-end
+                                                       :text-start text-end}))))
               result))
           {:sequence-start 0
            :text-start 0
