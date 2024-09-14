@@ -89,28 +89,31 @@
 
 (defn process-nodes
   []
-  (reduce (fn [{:keys [sequence-end text-end] :as context} [id answer]]
-            (let [result (match-nodes (merge context
-                                             {:sequence-start sequence-end
-                                              :text-start text-end
-                                              :complete-answer answer
-                                              :unmatched-answer answer}))]
+  (->> (get-answers)
+       (map-indexed vector)
+       (reduce (fn [{:keys [sequence-end text-end] :as context} [id answer]]
+                 (let [result (match-nodes (merge context
+                                                  {:sequence-start sequence-end
+                                                   :text-start text-end
+                                                   :complete-answer answer
+                                                   :unmatched-answer answer}))]
 
-              (setval [:segments END]
-                      (build-segments (setval :id
-                                              id
-                                              (if (zero? id)
-                                                result
-                                                (merge result
-                                                       {:sequence-start sequence-end
-                                                        :text-start text-end}))))
-                      result)))
-          {:segments []
-           :sequence-start 0
-           :text-start 0
-           :sequence-end 0
-           :text-end 0}
-          (map-indexed vector (get-answers))))
+                   (setval [:segments END]
+                           (build-segments (setval :id
+                                                   id
+                                                   (if (zero? id)
+                                                     result
+                                                     (merge result
+                                                            {:sequence-start sequence-end
+                                                             :text-start text-end}))))
+                           result)))
+               {:segments []
+                :sequence-start 0
+                :text-start 0
+                :sequence-end 0
+                :text-end 0})
+       :segments
+       reverse))
 
 (defn toggle
   []
