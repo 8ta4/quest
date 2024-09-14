@@ -72,8 +72,8 @@
   [node start end id]
   (let [range* (js/document.createRange)
         span (js/document.createElement "span")]
-    (.setStart range* node start)
-    (.setEnd range* node end)
+    (.setStart range* node (or start 0))
+    (.setEnd range* node (or end (count node.nodeValue)))
     (set! span.id id)
     (set! span.style "visibility: hidden !important")
     (.surroundContents range* span)))
@@ -81,7 +81,10 @@
 (defn wrap-nodes
   [{:keys [nodes sequence-start text-start sequence-end text-end id]}]
   (if (= sequence-start sequence-end)
-    (wrap-node (nth nodes sequence-start) text-start text-end id)))
+    (wrap-node (nth nodes sequence-start) text-start text-end id)
+    (do (wrap-node (nth nodes sequence-start) text-start nil id)
+        (run! #(wrap-node % nil nil id) (subvec nodes (inc sequence-start) sequence-end))
+        (wrap-node (nth nodes sequence-end) nil text-end id))))
 
 (defn process-nodes
   []

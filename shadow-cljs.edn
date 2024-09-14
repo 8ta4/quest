@@ -16,5 +16,4 @@
    :modules {:background {:init-fn background/init}}}
   :content
   {:target :browser
-   :modules {:content {:init-fn content/init}}
-   :devtools {:after-load content/init}}}}
+   :modules {:content {:init-fn content/init}}}}}
