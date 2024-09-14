@@ -114,6 +114,10 @@
                 :sequence-end 0
                 :text-end 0})
        :segments
+;; Reversing the segments is necessary because if we add spans in the original order,
+;; the offsets get messed up. This happens because adding a span modifies the DOM,
+;; which shifts the positions of subsequent text nodes. By reversing the segments,
+;; we ensure that spans are added from the end to the beginning, avoiding this issue.
        reverse))
 
 (defn process-nodes
