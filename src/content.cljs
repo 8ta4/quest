@@ -28,18 +28,20 @@
                                                 :text (rest text)
                                                 :matched true})))
 
-(defn collect-nodes*
+(defn collect-nodes
   [nodes walker]
   (if-let [node (.nextNode walker)]
     (recur (conj nodes node) walker)
     nodes))
 
-(defn collect-nodes
-  []
-  (collect-nodes* [] (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))
+(def nodes
+  (collect-nodes [] (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))
 
-(defn match-nodes*
-  [{:keys [sequence-start text-start sequence-end text-end text-sequence complete-answer unmatched-answer] :as context}]
+(def text-sequence
+  (map #(.-nodeValue %) nodes))
+
+(defn match-nodes
+  [{:keys [sequence-start text-start sequence-end text-end complete-answer unmatched-answer] :as context}]
   (if (empty? unmatched-answer)
     context
     (let [result (match-node {:end text-end
@@ -79,24 +81,36 @@
     (.surroundContents range* span)))
 
 (defn wrap-nodes
-  [{:keys [nodes sequence-start text-start sequence-end text-end id]}]
+  [{:keys [sequence-start text-start sequence-end text-end id]}]
   (if (= sequence-start sequence-end)
     (wrap-node (nth nodes sequence-start) text-start text-end id)
     (do (wrap-node (nth nodes sequence-start) text-start nil id)
         (run! #(wrap-node % nil nil id) (subvec nodes (inc sequence-start) sequence-end))
         (wrap-node (nth nodes sequence-end) nil text-end id))))
 
+(defn get-answers
+  []
+  (map (comp remove-blanks :answer) (:qa @state)))
+
 (defn process-nodes
   []
-  (wrap-nodes (merge (match-nodes* {:sequence-start 0
-                                    :text-start 0
-                                    :sequence-end 0
-                                    :text-end 0
-                                    :text-sequence (map #(.-nodeValue %) (collect-nodes))
-                                    :complete-answer (get-first-answer)
-                                    :unmatched-answer (get-first-answer)})
-                     {:nodes (collect-nodes)
-                      :id 0})))
+  (reduce (fn [{:keys [sequence-start text-start sequence-end text-end] :as context} [id answer]]
+            (let [result (match-nodes (merge context
+                                             {:sequence-start sequence-end
+                                              :text-start text-end
+                                              :complete-answer answer
+                                              :unmatched-answer answer}))]
+              (wrap-nodes (setval :id id (if (zero? id)
+                                           result
+                                           (merge result
+                                                  {:sequence-start sequence-start
+                                                   :text-start text-start}))))
+              result))
+          {:sequence-start 0
+           :text-start 0
+           :sequence-end 0
+           :text-end 0}
+          (map-indexed vector (get-answers))))
 
 (defn init
   []
