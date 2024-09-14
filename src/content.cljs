@@ -125,7 +125,13 @@
 
 (defn move-to-next
   []
-  (transform [ATOM :id] (fn [id] (min (inc id) (dec (count (:qa @state))))) state))
+  (transform [ATOM :id]
+             #(-> @state
+                  :qa
+                  count
+                  dec
+                  (min (inc %)))
+             state))
 
 (defn handle
   [event]
