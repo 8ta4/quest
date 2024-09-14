@@ -133,6 +133,10 @@
                   (min (inc %)))
              state))
 
+(defn move-to-previous
+  []
+  (transform [ATOM :id] #(max 0 (dec %)) state))
+
 (defn handle
   [event]
   (js/console.log "Key down event detected:")
@@ -140,6 +144,7 @@
   (case event.key
     " " (toggle)
     "ArrowDown" (move-to-next)
+    "ArrowUp" (move-to-previous)
     nil))
 
 (defn init
