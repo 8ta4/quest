@@ -89,7 +89,7 @@
 
 (defn process-nodes
   []
-  (reduce (fn [{:keys [sequence-start text-start sequence-end text-end] :as context} [id answer]]
+  (reduce (fn [{:keys [sequence-end text-end] :as context} [id answer]]
             (let [result (match-nodes (merge context
                                              {:sequence-start sequence-end
                                               :text-start text-end
@@ -98,8 +98,8 @@
               (wrap-nodes (setval :id id (if (zero? id)
                                            result
                                            (merge result
-                                                  {:sequence-start sequence-start
-                                                   :text-start text-start}))))
+                                                  {:sequence-start sequence-end
+                                                   :text-start text-end}))))
               result))
           {:sequence-start 0
            :text-start 0
