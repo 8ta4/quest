@@ -83,6 +83,7 @@
   (if (= sequence-start sequence-end)
     (wrap-node (nth nodes sequence-start) text-start text-end id)
     (do (wrap-node (nth nodes sequence-start) text-start nil id)
+        (run! #(wrap-node % nil nil id) (subvec nodes (inc sequence-start) sequence-end))
         (wrap-node (nth nodes sequence-end) nil text-end id))))
 
 (defn process-nodes
