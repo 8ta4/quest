@@ -120,13 +120,17 @@
   []
   (run! (partial apply wrap-node) (build-segments)))
 
+(defn eval-path-transform
+  [apath transform-fn structure]
+  (transform apath transform-fn structure))
+
 (defn toggle
   []
   (run! #(set! (.-style %) (if (:seen ((:qa @state) (:id @state)))
                              style
                              ""))
         (js->clj (js/document.getElementsByClassName (:id @state))))
-  (transform [ATOM :qa (nthpath (:id @state)) :seen] #(not %) state))
+  (eval-path-transform [ATOM :qa (nthpath (:id @state)) :seen] #(not %) state))
 
 (defn move-to-next
   []
