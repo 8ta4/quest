@@ -37,8 +37,11 @@
 (def nodes
   (collect-nodes [] (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))
 
+(def text-sequence
+  (map #(.-nodeValue %) nodes))
+
 (defn match-nodes
-  [{:keys [sequence-start text-start sequence-end text-end text-sequence complete-answer unmatched-answer] :as context}]
+  [{:keys [sequence-start text-start sequence-end text-end complete-answer unmatched-answer] :as context}]
   (if (empty? unmatched-answer)
     context
     (let [result (match-node {:end text-end
@@ -95,7 +98,6 @@
                                           :text-start 0
                                           :sequence-end 0
                                           :text-end 0
-                                          :text-sequence (map #(.-nodeValue %) nodes)
                                           :complete-answer (get-first-answer)
                                           :unmatched-answer (get-first-answer)}))))
 
