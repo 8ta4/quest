@@ -1,6 +1,6 @@
 (ns content
   (:require [clojure.string :as str]
-            [com.rpl.specter :refer [setval]]
+            [com.rpl.specter :refer [ALL ATOM nthpath setval transform]]
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]
             [yaml :refer [parse]]))
@@ -62,13 +62,8 @@
                                          :text-end 0
                                          :unmatched-answer complete-answer}))))))
 
-(defn get-first-answer
-  []
-  (->> @state
-       :qa
-       first
-       :answer
-       remove-blanks))
+(def style
+  "visibility: hidden !important")
 
 (defn wrap-node
   [node start end id]
@@ -76,8 +71,8 @@
         span (js/document.createElement "span")]
     (.setStart range* node (or start 0))
     (.setEnd range* node (or end (count node.nodeValue)))
-    (set! span.id id)
-    (set! span.style "visibility: hidden !important")
+    (set! span.className id)
+    (set! span.style style)
     (.surroundContents range* span)))
 
 (defn wrap-nodes
@@ -112,11 +107,44 @@
            :text-end 0}
           (map-indexed vector (get-answers))))
 
+(defn toggle
+  []
+  (run! #(set! (.-style %) (if (:seen ((:qa @state) (:id @state)))
+                             style
+                             ""))
+        (js->clj (js/document.getElementsByClassName (:id @state))))
+  (transform [ATOM :qa (nthpath (:id @state)) :seen] #(not %) state))
+
+(defn move-to-next
+  []
+  (transform [ATOM :id]
+             #(-> @state
+                  :qa
+                  count
+                  dec
+                  (min (inc %)))
+             state))
+
+(defn move-to-previous
+  []
+  (transform [ATOM :id] #(max 0 (dec %)) state))
+
+(defn handle
+  [event]
+  (js/console.log "Key down event detected:")
+  (js/console.log event.key)
+  (case event.key
+    " " (toggle)
+    "ArrowDown" (move-to-next)
+    "ArrowUp" (move-to-previous)
+    nil))
+
 (defn init
   []
   (when quest
     (js-await [response (js/browser.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
-              (reset! state {:qa (js->clj (parse response) {:keywordize-keys true})
-                             :index 0})
-              (process-nodes))))
+              (reset! state {:qa (setval [ALL :seen] false (js->clj (parse response) {:keywordize-keys true}))
+                             :id 0})
+              (process-nodes)
+              (set! js/document.onkeydown handle))))
