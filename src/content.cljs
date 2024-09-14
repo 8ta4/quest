@@ -1,6 +1,6 @@
 (ns content
   (:require [clojure.string :as str]
-            [com.rpl.specter :refer [ALL ATOM nthpath setval transform]]
+            [com.rpl.specter :refer [ALL ATOM END nthpath setval transform]]
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]
             [yaml :refer [parse]]))
@@ -66,8 +66,9 @@
   "visibility: hidden !important")
 
 (defn wrap-node
-  [node start end id]
+  [index start end id]
   (let [range* (js/document.createRange)
+        node (nth nodes index)
         span (js/document.createElement "span")]
     (.setStart range* node (or start 0))
     (.setEnd range* node (or end (count node.nodeValue)))
@@ -75,37 +76,60 @@
     (set! span.style style)
     (.surroundContents range* span)))
 
-(defn wrap-nodes
+(defn build-segment
   [{:keys [sequence-start text-start sequence-end text-end id]}]
   (if (= sequence-start sequence-end)
-    (wrap-node (nth nodes sequence-start) text-start text-end id)
-    (do (wrap-node (nth nodes sequence-start) text-start nil id)
-        (run! #(wrap-node % nil nil id) (subvec nodes (inc sequence-start) sequence-end))
-        (wrap-node (nth nodes sequence-end) nil text-end id))))
+    [[sequence-start text-start text-end id]]
+    (concat [[sequence-start text-start nil id]]
+            (map #(vector % nil nil id) (range (inc sequence-start) sequence-end))
+            [[sequence-end nil text-end id]])))
 
 (defn get-answers
   []
   (map (comp remove-blanks :answer) (:qa @state)))
 
+(defn build-segments
+  []
+  (->> (get-answers)
+       (map-indexed vector)
+       (reduce (fn [{:keys [sequence-end text-end] :as context} [id answer]]
+                 (let [result (match-nodes (merge context
+                                                  {:sequence-start sequence-end
+                                                   :text-start text-end
+                                                   :complete-answer answer
+                                                   :unmatched-answer answer}))]
+
+                   (setval [:segments END]
+                           (build-segment (setval :id
+                                                  id
+                                                  (if (zero? id)
+                                                    result
+                                                    (merge result
+                                                           {:sequence-start sequence-end
+                                                            :text-start text-end}))))
+                           result)))
+               {:segments []
+                :sequence-start 0
+                :text-start 0
+                :sequence-end 0
+                :text-end 0})
+       :segments
+;; Reversing the segments is necessary because if we add spans in the original order,
+;; the offsets get messed up. This happens because adding a span modifies the DOM,
+;; which shifts the positions of subsequent text nodes. By reversing the segments,
+;; we ensure that spans are added from the end to the beginning, avoiding this issue.
+       reverse))
+
 (defn process-nodes
   []
-  (reduce (fn [{:keys [sequence-start text-start sequence-end text-end] :as context} [id answer]]
-            (let [result (match-nodes (merge context
-                                             {:sequence-start sequence-end
-                                              :text-start text-end
-                                              :complete-answer answer
-                                              :unmatched-answer answer}))]
-              (wrap-nodes (setval :id id (if (zero? id)
-                                           result
-                                           (merge result
-                                                  {:sequence-start sequence-start
-                                                   :text-start text-start}))))
-              result))
-          {:sequence-start 0
-           :text-start 0
-           :sequence-end 0
-           :text-end 0}
-          (map-indexed vector (get-answers))))
+  (run! (partial apply wrap-node) (build-segments)))
+
+(defn eval-path-transform
+  "The path (`apath`) is dynamically evaluated, and the `transform-fn` is applied
+   to the value at that path within the `structure`. This is useful when the path
+   needs to be determined at runtime."
+  [apath transform-fn structure]
+  (transform apath transform-fn structure))
 
 (defn toggle
   []
@@ -113,7 +137,7 @@
                              style
                              ""))
         (js->clj (js/document.getElementsByClassName (:id @state))))
-  (transform [ATOM :qa (nthpath (:id @state)) :seen] #(not %) state))
+  (eval-path-transform [ATOM :qa (nthpath (:id @state)) :seen] #(not %) state))
 
 (defn move-to-next
   []
