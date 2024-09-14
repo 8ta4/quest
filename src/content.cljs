@@ -86,6 +86,10 @@
         (run! #(wrap-node % nil nil id) (subvec nodes (inc sequence-start) sequence-end))
         (wrap-node (nth nodes sequence-end) nil text-end id))))
 
+(defn get-answers
+  []
+  (map (comp remove-blanks :answer) (:qa @state)))
+
 (defn process-nodes
   []
   (wrap-nodes (merge (match-nodes* {:sequence-start 0
