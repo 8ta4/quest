@@ -1,6 +1,6 @@
 (ns content
   (:require [clojure.string :as str]
-            [com.rpl.specter :refer [ALL ATOM nthpath setval transform]]
+            [com.rpl.specter :refer [ALL ATOM END nthpath setval transform]]
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]
             [yaml :refer [parse]]))
@@ -95,13 +95,18 @@
                                               :text-start text-end
                                               :complete-answer answer
                                               :unmatched-answer answer}))]
-              (build-segments (setval :id id (if (zero? id)
-                                               result
-                                               (merge result
-                                                      {:sequence-start sequence-end
-                                                       :text-start text-end}))))
-              result))
-          {:sequence-start 0
+
+              (setval [:segments END]
+                      (build-segments (setval :id
+                                              id
+                                              (if (zero? id)
+                                                result
+                                                (merge result
+                                                       {:sequence-start sequence-end
+                                                        :text-start text-end}))))
+                      result)))
+          {:segments []
+           :sequence-start 0
            :text-start 0
            :sequence-end 0
            :text-end 0}
