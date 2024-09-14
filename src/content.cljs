@@ -125,6 +125,8 @@
 
 (defn handle
   [event]
+  (js/console.log "Key down event detected:")
+  (js/console.log event.key)
   (case event.key
     " " (toggle)
     nil))
