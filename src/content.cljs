@@ -28,15 +28,14 @@
                                                 :text (rest text)
                                                 :matched true})))
 
-(defn collect-nodes*
+(defn collect-nodes
   [nodes walker]
   (if-let [node (.nextNode walker)]
     (recur (conj nodes node) walker)
     nodes))
 
-(defn collect-nodes
-  []
-  (collect-nodes* [] (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))
+(def nodes
+  (collect-nodes [] (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))
 
 (defn match-nodes*
   [{:keys [sequence-start text-start sequence-end text-end text-sequence complete-answer unmatched-answer] :as context}]
@@ -96,10 +95,10 @@
                                     :text-start 0
                                     :sequence-end 0
                                     :text-end 0
-                                    :text-sequence (map #(.-nodeValue %) (collect-nodes))
+                                    :text-sequence (map #(.-nodeValue %) nodes)
                                     :complete-answer (get-first-answer)
                                     :unmatched-answer (get-first-answer)})
-                     {:nodes (collect-nodes)
+                     {:nodes nodes
                       :id 0})))
 
 (defn init
