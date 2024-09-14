@@ -70,6 +70,9 @@
        :answer
        remove-blanks))
 
+(def style
+  "visibility: hidden !important")
+
 (defn wrap-node
   [node start end id]
   (let [range* (js/document.createRange)
@@ -77,7 +80,7 @@
     (.setStart range* node (or start 0))
     (.setEnd range* node (or end (count node.nodeValue)))
     (set! span.className id)
-    (set! span.style "visibility: hidden !important")
+    (set! span.style style)
     (.surroundContents range* span)))
 
 (defn wrap-nodes
@@ -115,7 +118,7 @@
 (defn toggle
   []
   (run! #(set! (.-style %) (if (:seen ((:qa @state) (:id @state)))
-                             "visibility: hidden !important"
+                             style
                              ""))
         (js->clj (js/document.getElementsByClassName (:id @state))))
   (transform [ATOM :qa (nthpath (:id @state)) :seen] #(not %) state))
