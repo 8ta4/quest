@@ -81,7 +81,9 @@
 (defn wrap-nodes
   [{:keys [nodes sequence-start text-start sequence-end text-end id]}]
   (if (= sequence-start sequence-end)
-    (wrap-node (nth nodes sequence-start) text-start text-end id)))
+    (wrap-node (nth nodes sequence-start) text-start text-end id)
+    (do (wrap-node (nth nodes sequence-start) text-start nil id)
+        (wrap-node (nth nodes sequence-end) nil text-end id))))
 
 (defn process-nodes
   []
