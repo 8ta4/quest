@@ -123,12 +123,17 @@
         (js->clj (js/document.getElementsByClassName (:id @state))))
   (transform [ATOM :qa (nthpath (:id @state)) :seen] #(not %) state))
 
+(defn move-to-next
+  []
+  (transform [ATOM :id] (fn [id] (min (inc id) (dec (count (:qa @state))))) state))
+
 (defn handle
   [event]
   (js/console.log "Key down event detected:")
   (js/console.log event.key)
   (case event.key
     " " (toggle)
+    "ArrowDown" (move-to-next)
     nil))
 
 (defn init
