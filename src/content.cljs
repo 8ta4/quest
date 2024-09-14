@@ -123,6 +123,12 @@
         (js->clj (js/document.getElementsByClassName (:id @state))))
   (transform [ATOM :qa (nthpath (:id @state)) :seen] #(not %) state))
 
+(defn handle
+  [event]
+  (case event.key
+    " " (toggle)
+    nil))
+
 (defn init
   []
   (when quest
@@ -131,4 +137,4 @@
               (reset! state {:qa (setval [ALL :seen] false (js->clj (parse response) {:keywordize-keys true}))
                              :id 0})
               (process-nodes)
-              (set! js/document.onkeydown toggle))))
+              (set! js/document.onkeydown handle))))
