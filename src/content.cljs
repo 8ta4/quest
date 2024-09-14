@@ -62,14 +62,6 @@
                                          :text-end 0
                                          :unmatched-answer complete-answer}))))))
 
-(defn get-first-answer
-  []
-  (->> @state
-       :qa
-       first
-       :answer
-       remove-blanks))
-
 (def style
   "visibility: hidden !important")
 
