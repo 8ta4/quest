@@ -114,6 +114,10 @@
 
 (defn toggle
   []
+  (run! #(set! (.-style %) (if (:seen ((:qa @state) (:id @state)))
+                             "visibility: hidden !important"
+                             ""))
+        (js->clj (js/document.getElementsByClassName (:id @state))))
   (transform [ATOM :qa (nthpath (:id @state)) :seen] #(not %) state))
 
 (defn init
