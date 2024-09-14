@@ -1,6 +1,6 @@
 (ns content
   (:require [clojure.string :as str]
-            [com.rpl.specter :refer [setval]]
+            [com.rpl.specter :refer [ALL ATOM nthpath setval transform]]
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]
             [yaml :refer [parse]]))
@@ -112,11 +112,16 @@
            :text-end 0}
           (map-indexed vector (get-answers))))
 
+(defn toggle
+  []
+  (transform [ATOM :qa (nthpath (:id @state)) :seen] #(not %) state))
+
 (defn init
   []
   (when quest
     (js-await [response (js/browser.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
-              (reset! state {:qa (js->clj (parse response) {:keywordize-keys true})
+              (reset! state {:qa (setval [ALL :seen] false (js->clj (parse response) {:keywordize-keys true}))
                              :id 0})
-              (process-nodes))))
+              (process-nodes)
+              (set! js/document.onkeydown toggle))))
