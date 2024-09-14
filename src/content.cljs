@@ -94,12 +94,23 @@
 
 (defn process-nodes
   []
-  (wrap-nodes (setval :id 0 (match-nodes {:sequence-start 0
-                                          :text-start 0
-                                          :sequence-end 0
-                                          :text-end 0
-                                          :complete-answer (get-first-answer)
-                                          :unmatched-answer (get-first-answer)}))))
+  (reduce (fn [{:keys [sequence-start text-start sequence-end text-end] :as context} [id answer]]
+            (let [result (match-nodes (merge context
+                                             {:sequence-start sequence-end
+                                              :text-start text-end
+                                              :complete-answer answer
+                                              :unmatched-answer answer}))]
+              (wrap-nodes (setval :id id (if (zero? id)
+                                           result
+                                           (merge result
+                                                  {:sequence-start sequence-start
+                                                   :text-start text-start}))))
+              result))
+          {:sequence-start 0
+           :text-start 0
+           :sequence-end 0
+           :text-end 0}
+          (map-indexed vector (get-answers))))
 
 (defn init
   []
