@@ -76,7 +76,7 @@
         span (js/document.createElement "span")]
     (.setStart range* node (or start 0))
     (.setEnd range* node (or end (count node.nodeValue)))
-    (set! span.id id)
+    (set! span.className id)
     (set! span.style "visibility: hidden !important")
     (.surroundContents range* span)))
 
