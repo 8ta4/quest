@@ -14,9 +14,6 @@
    :output-dir "public/js"
    :runtime :custom
    :modules {:background {:init-fn background/init}}}
-  :temporary
-  {:target :browser
-   :modules {:temporary {:init-fn temporary/init}}}
   :content
   {:target :browser
    :modules {:content {:init-fn content/init}}
