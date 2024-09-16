@@ -163,6 +163,10 @@
     "ArrowUp" (move-to-previous)
     nil))
 
+(defn after-load
+  []
+  (set! js/document.onkeydown handle))
+
 (defn init
   []
   (when quest
@@ -171,4 +175,4 @@
               (reset! state {:qa (setval [ALL :seen] false (js->clj (parse response) {:keywordize-keys true}))
                              :id 0})
               (process-nodes)
-              (set! js/document.onkeydown handle))))
+              (after-load))))
