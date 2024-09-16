@@ -170,6 +170,9 @@
 
 (defn after-load
   []
+;; In development mode, the document body is replaced with a cloned version to enable hot reloading.
+;; In production, the body content could have event listeners attached.
+;; Cloning the body may result in the loss of those event listeners.
   (when js/goog.DEBUG
     (js/document.body.replaceWith (.cloneNode @body true)))
   (process-nodes)
