@@ -34,14 +34,16 @@
     (recur (conj nodes node) walker)
     nodes))
 
-(def nodes
+(defn collect-text-nodes
+  []
   (collect-nodes [] (js/document.createTreeWalker js/document.body js/NodeFilter.SHOW_TEXT)))
 
-(def text-sequence
-  (map #(.-nodeValue %) nodes))
+(defn collect-text-sequence
+  []
+  (map #(.-nodeValue %) (collect-text-nodes)))
 
 (defn match-nodes
-  [{:keys [sequence-start text-start sequence-end text-end complete-answer unmatched-answer] :as context}]
+  [{:keys [text-sequence sequence-start text-start sequence-end text-end complete-answer unmatched-answer] :as context}]
   (if (empty? unmatched-answer)
     context
     (let [result (match-node {:end text-end
@@ -66,7 +68,7 @@
   "visibility: hidden !important")
 
 (defn wrap-node
-  [index start end id]
+  [nodes index start end id]
   (let [range* (js/document.createRange)
         node (nth nodes index)
         span (js/document.createElement "span")]
@@ -108,7 +110,8 @@
                                                            {:sequence-start sequence-end
                                                             :text-start text-end}))))
                            result)))
-               {:segments []
+               {:text-sequence (collect-text-sequence)
+                :segments []
                 :sequence-start 0
                 :text-start 0
                 :sequence-end 0
@@ -122,7 +125,7 @@
 
 (defn process-nodes
   []
-  (run! (partial apply wrap-node) (build-segments)))
+  (run! (partial apply wrap-node (collect-text-nodes)) (build-segments)))
 
 (defn eval-path-transform
   "The path (`apath`) is dynamically evaluated, and the `transform-fn` is applied
@@ -163,8 +166,16 @@
     "ArrowUp" (move-to-previous)
     nil))
 
+(defonce body (atom nil))
+
 (defn after-load
   []
+;; In development mode, the document body is replaced with a cloned version to enable hot reloading.
+;; In production, the body content could have event listeners attached.
+;; Cloning the body may result in the loss of those event listeners.
+  (when js/goog.DEBUG
+    (js/document.body.replaceWith (.cloneNode @body true)))
+  (process-nodes)
   (set! js/document.onkeydown handle))
 
 (defn init
@@ -174,5 +185,6 @@
               (js/console.log "Received response from background script")
               (reset! state {:qa (setval [ALL :seen] false (js->clj (parse response) {:keywordize-keys true}))
                              :id 0})
-              (process-nodes)
+              (when js/goog.DEBUG
+                (reset! body (js/document.body.cloneNode true)))
               (after-load))))
