@@ -11,6 +11,8 @@
   ];
 
   # https://devenv.sh/scripts/
+  scripts.hello.exec = "echo hello from $GREET";
+  scripts.release.exec = "shadow-cljs release :background :content";
   scripts.run.exec = ''
     brew bundle
     # The default Content Security Policy (CSP) for web extensions is:
