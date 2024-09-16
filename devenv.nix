@@ -23,7 +23,7 @@
       --pref devtools.toolbox.alwaysOnTop=false \
       --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" \
       -s public \
-      --start-url "http://localhost:8000/close.html" &
+      --start-url "http://localhost:8000/temporary.html" &
     web-ext run \
       --no-reload \
       --pref devtools.toolbox.alwaysOnTop=false \
