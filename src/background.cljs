@@ -3,6 +3,10 @@
   (:require [cljs-http.client :as http]
             [cljs.core.async :refer [<!]]))
 
+(defn create-question-window []
+  (js/chrome.windows.create (clj->js {:url "question.html"
+                                      :type "popup"})))
+
 (defn init
   []
   (js/console.log "Background script initialized")
