@@ -11,7 +11,7 @@
   ];
 
   # https://devenv.sh/scripts/
-  scripts.background.exec = ''
+  scripts.run.exec = ''
     brew bundle
     # The default Content Security Policy (CSP) for web extensions is:
     # "script-src 'self' 'wasm-unsafe-eval';"
@@ -22,21 +22,15 @@
       --devtools \
       --pref devtools.toolbox.alwaysOnTop=false \
       --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" \
-      -s public \
-      --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml"
-  '';
-  scripts.content.exec = ''
-    brew bundle
+      -s public &
     web-ext run \
-      --devtools \
       --no-reload \
       --pref devtools.toolbox.alwaysOnTop=false \
       --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" \
       -s public \
-      --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml"
+      --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml" &
+    wait
   '';
-  scripts.hello.exec = "echo hello from $GREET";
-  scripts.release.exec = "shadow-cljs release :background :content";
 
   enterShell = ''
     hello
