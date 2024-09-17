@@ -166,7 +166,8 @@
     "ArrowUp" (move-to-previous)
     nil))
 
-(defonce body (atom nil))
+(when js/goog.DEBUG
+  (defonce body (atom nil)))
 
 (defn after-load
   []
@@ -181,7 +182,7 @@
 (defn init
   []
   (when quest
-    (js-await [response (js/browser.runtime.sendMessage quest)]
+    (js-await [response (js/chrome.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
               (reset! state {:qa (setval [ALL :seen] false (js->clj (parse response) {:keywordize-keys true}))
                              :id 0})
