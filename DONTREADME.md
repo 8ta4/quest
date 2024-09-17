@@ -84,6 +84,12 @@ No, you can't undo navigation in `quest`. It follows a similar approach to Vim.
 
 Yes, `quest` automatically saves your reading progress. When you reopen the application, it picks up from the last question you were viewing and maintains your scrolling position.
 
+> Can you open the same document with the same query string?
+
+Technically, yes, but when you do that, the new tab will close right away, and it'll bring you back to the tab where the document is already open. This happens to avoid having multiple versions of the same document open, which can mess up data syncing.
+
+If you need to view the document in a separate tab, you can do that, but without the query string.
+
 > Is it possible to use just one window for both questions and the main content in `quest`?
 
 Technically, yes, you can do that by using Chrome's API to combine them into a single window. But, the way `quest` is meant to be used is with separate windows for the main content and the questions. Here's why:
