@@ -12,9 +12,10 @@
                  (map :id)
                  (run! js/chrome.windows.remove))))
 
-(defn create-question-window []
-  (js/chrome.windows.create (clj->js {:url "question.html"
-                                      :type "popup"})))
+(when js/goog.DEBUG
+  (defn create-question-window []
+    (js/chrome.windows.create (clj->js {:url "question.html"
+                                        :type "popup"}))))
 
 (defn init
   []
