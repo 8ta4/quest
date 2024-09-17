@@ -166,7 +166,8 @@
     "ArrowUp" (move-to-previous)
     nil))
 
-(defonce body (atom nil))
+(when js/goog.DEBUG
+  (defonce body (atom nil)))
 
 (defn after-load
   []
