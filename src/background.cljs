@@ -10,13 +10,13 @@
 (defn init
   []
   (js/console.log "Background script initialized")
-  (js/browser.runtime.onMessage.addListener (fn [message _ send-response]
-                                              (js/console.log "Received message")
-                                              (js/console.log message)
-                                              (-> message
-                                                  http/get
-                                                  <!
-                                                  :body
-                                                  send-response
-                                                  go)
-                                              true)))
+  (js/chrome.runtime.onMessage.addListener (fn [message _ send-response]
+                                             (js/console.log "Received message")
+                                             (js/console.log message)
+                                             (-> message
+                                                 http/get
+                                                 <!
+                                                 :body
+                                                 send-response
+                                                 go)
+                                             true)))
