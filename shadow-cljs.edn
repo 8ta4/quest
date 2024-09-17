@@ -13,7 +13,12 @@
   {:target :esm
    :output-dir "public/js"
    :runtime :custom
-   :modules {:background {:init-fn background/init}}}
+   :modules {:base {}
+             :background {:init-fn background/init
+;; If :depends-on is not specified, you may encounter an error: "two modules without deps, please specify which one is the default"
+                          :depends-on #{:base}}
+             :question {:init-fn question/init
+                        :depends-on #{:base}}}}
   :content
   {:target :browser
    :modules {:content {:init-fn content/init}}
