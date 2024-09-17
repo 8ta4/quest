@@ -19,7 +19,8 @@
 (defn init
   []
   (js/console.log "Background script initialized")
-  (remove-popup-windows)
+  (when js/goog.DEBUG
+    (remove-popup-windows))
   (create-question-window)
   (js/chrome.runtime.onMessage.addListener (fn [message _ send-response]
                                              (js/console.log "Received message")
