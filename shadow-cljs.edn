@@ -15,6 +15,7 @@
    :runtime :custom
    :modules {:base {}
              :background {:init-fn background/init
+;; If :depends-on is not specified, you may encounter an error: "two modules without deps, please specify which one is the default"
                           :depends-on #{:base}}
              :question {:init-fn question/init
                         :depends-on #{:base}}}}
