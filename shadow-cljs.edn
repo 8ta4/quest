@@ -13,7 +13,7 @@
   {:target :esm
    :output-dir "public/js"
    :runtime :custom
-   :modules {:base {:entries []}
+   :modules {:base {}
              :background {:init-fn background/init
                           :depends-on #{:base}}
              :question {:init-fn question/init
