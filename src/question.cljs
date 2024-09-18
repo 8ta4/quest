@@ -8,10 +8,13 @@
   (int (:id (query-map js/location.href))))
 
 (defn questions
-  [{:keys [qa]}]
-  [:> List (map (comp (partial vector :> ListItemButton)
-                      :question)
-                qa)])
+  [state]
+  [:> List
+   (map-indexed (fn [index {:keys [question answer]}]
+                  ^{:key answer} [:> ListItemButton
+                                  {:selected (= index (:id state))}
+                                  question])
+                (:qa state))])
 
 (def root
   (client/create-root (js/document.getElementById "app")))
