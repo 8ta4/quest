@@ -183,7 +183,8 @@
   []
   (when quest
     (js/chrome.runtime.onConnect.addListener (fn [port]
-                                               (js/console.log "Connection established")))
+                                               (js/console.log "Connection established")
+                                               (.postMessage port (clj->js @state))))
     (js-await [response (js/chrome.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
               (reset! state {:qa (setval [ALL :seen] false (js->clj (parse response) {:keywordize-keys true}))
