@@ -1,15 +1,16 @@
 (ns question
   (:require [lambdaisland.uri :refer [query-map]]
-            [reagent.dom :as rdom]))
+            [reagent.dom :as rdom]
+            ["@mui/material/List" :default List]))
 
 (def id
   (int (:id (query-map js/location.href))))
 
 (defn questions
   [{:keys [qa]}]
-  [:ol (map (comp (partial vector :li)
-                  :question)
-            qa)])
+  [:> List (map (comp (partial vector :li)
+                      :question)
+                qa)])
 
 (defn init
   []
