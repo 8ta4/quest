@@ -1,5 +1,6 @@
 (ns question
   (:require ["@mui/material/List" :default List]
+            ["@mui/material/ListItemButton" :default ListItemButton]
             [lambdaisland.uri :refer [query-map]]
             [reagent.dom.client :as client]))
 
@@ -8,7 +9,7 @@
 
 (defn questions
   [{:keys [qa]}]
-  [:> List (map (comp (partial vector :li)
+  [:> List (map (comp (partial vector :> ListItemButton)
                       :question)
                 qa)])
 
