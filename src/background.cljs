@@ -20,9 +20,6 @@
 (defn init
   []
   (js/console.log "Background script initialized")
-  (when js/goog.DEBUG
-    (remove-popup-windows))
-  (create-question-window)
   (js/chrome.runtime.onMessage.addListener (fn [message _ send-response]
                                              (js/console.log "Received message")
                                              (js/console.log message)
@@ -32,4 +29,7 @@
                                                  :body
                                                  send-response
                                                  go)
+                                             (when js/goog.DEBUG
+                                               (remove-popup-windows))
+                                             (create-question-window)
                                              true)))
