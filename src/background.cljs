@@ -4,18 +4,18 @@
             [cljs.core.async :refer [<!]]
             [shadow.cljs.modern :refer [js-await]]))
 
-(defn remove-popup-windows []
-  (js-await [windows (js/chrome.windows.getAll)]
-            (->> (js->clj windows {:keywordize-keys true})
-                 (filter (comp (partial = "popup")
-                               :type))
-                 (map :id)
-                 (run! js/chrome.windows.remove))))
-
 (when js/goog.DEBUG
-  (defn create-question-window [id]
-    (js/chrome.windows.create (clj->js {:url (str "question.html?id=" id)
-                                        :type "popup"}))))
+  (defn remove-popup-windows []
+    (js-await [windows (js/chrome.windows.getAll)]
+              (->> (js->clj windows {:keywordize-keys true})
+                   (filter (comp (partial = "popup")
+                                 :type))
+                   (map :id)
+                   (run! js/chrome.windows.remove)))))
+
+(defn create-question-window [id]
+  (js/chrome.windows.create (clj->js {:url (str "question.html?id=" id)
+                                      :type "popup"})))
 
 (defn init
   []
