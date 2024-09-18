@@ -36,7 +36,7 @@
       --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml"
   '';
   scripts.hello.exec = "echo hello from $GREET";
-  scripts.release.exec = "shadow-cljs release :background :content";
+  scripts.compile.exec = "shadow-cljs compile :background :content --config-merge '{:closure-defines {goog.DEBUG false}}'";
 
   enterShell = ''
     hello
