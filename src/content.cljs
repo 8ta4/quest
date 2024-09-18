@@ -160,6 +160,7 @@
   [event]
   (js/console.log "Key down event detected:")
   (js/console.log event.key)
+  (.preventDefault event)
   (case event.key
     " " (toggle)
     "ArrowDown" (move-to-next)
