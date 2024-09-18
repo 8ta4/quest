@@ -136,11 +136,11 @@
 
 (defn toggle
   []
-  (run! #(set! (.-style %) (if (:seen ((:qa @state) (:id @state)))
+  (run! #(set! (.-style %) (if (:visible ((:qa @state) (:id @state)))
                              style
                              ""))
         (js->clj (js/document.getElementsByClassName (:id @state))))
-  (eval-path-transform [ATOM :qa (nthpath (:id @state)) :seen] #(not %) state))
+  (eval-path-transform [ATOM :qa (nthpath (:id @state)) :visible] #(not %) state))
 
 (defn move-to-next
   []
@@ -187,7 +187,7 @@
                                                (.postMessage port (clj->js @state))))
     (js-await [response (js/chrome.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
-              (reset! state {:qa (setval [ALL :seen] false (js->clj (parse response) {:keywordize-keys true}))
+              (reset! state {:qa (setval [ALL :visible] false (js->clj (parse response) {:keywordize-keys true}))
                              :id 0})
               (when js/goog.DEBUG
                 (reset! body (js/document.body.cloneNode true)))
