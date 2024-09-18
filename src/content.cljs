@@ -191,7 +191,9 @@
                                                             (.postMessage port (clj->js new-state))))))
     (js-await [response (js/chrome.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
-              (reset! state {:qa (setval [ALL :visible] false (js->clj (parse response) {:keywordize-keys true}))
+              (reset! state {:qa (setval [ALL :visible]
+                                         false
+                                         (js->clj (parse response) {:keywordize-keys true}))
                              :id 0})
               (when js/goog.DEBUG
                 (reset! body (js/document.body.cloneNode true)))
