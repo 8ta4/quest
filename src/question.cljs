@@ -1,5 +1,6 @@
 (ns question
-  (:require [lambdaisland.uri :refer [query-map]]))
+  (:require [lambdaisland.uri :refer [query-map]]
+            [reagent.dom :as rdom]))
 
 (def id
   (int (:id (query-map js/location.href))))
