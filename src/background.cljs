@@ -13,14 +13,14 @@
                  (run! js/chrome.windows.remove))))
 
 (when js/goog.DEBUG
-  (defn create-question-window []
-    (js/chrome.windows.create (clj->js {:url "question.html"
+  (defn create-question-window [id]
+    (js/chrome.windows.create (clj->js {:url (str "question.html?id=" id)
                                         :type "popup"}))))
 
 (defn init
   []
   (js/console.log "Background script initialized")
-  (js/chrome.runtime.onMessage.addListener (fn [message _ send-response]
+  (js/chrome.runtime.onMessage.addListener (fn [message sender send-response]
                                              (js/console.log "Received message")
                                              (js/console.log message)
                                              (-> message
@@ -31,5 +31,5 @@
                                                  go)
                                              (when js/goog.DEBUG
                                                (remove-popup-windows))
-                                             (create-question-window)
+                                             (create-question-window sender.tab.id)
                                              true)))
