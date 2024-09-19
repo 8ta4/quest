@@ -125,7 +125,7 @@ Let's take Paul Graham's "How to Start a Startup" essay as an example. To add `q
 TODO: Replace `[HASH]` with the actual commit hash once available.
 
 ```
-https://paulgraham.com/start.html?quest=https://github.com/8ta4/quests/blob/[HASH]/paulgraham.com/start.html
+https://paulgraham.com/start.html?quest=https://github.com/8ta4/quests/blob/[HASH]/paulgraham.com/start.html/quest.yaml
 ```
 
 > Can I host the YAML file anywhere other than GitHub?
