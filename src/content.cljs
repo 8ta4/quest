@@ -48,12 +48,12 @@
     context
     (let [result (match-node {:end text-end
                               :answer unmatched-answer
-                              :text (subs (nth text-sequence sequence-start) text-start)
+                              :text (subs (nth text-sequence sequence-end) text-end)
                               :matched (not= complete-answer unmatched-answer)})]
       (cond (integer? result) (setval :text-end result context)
-            (string? result) (recur (merge context {:text-end 0
-                                                    :sequence-end (inc sequence-end)
-                                                    :unmatched-answer result}))
+            (seq? result) (recur (merge context {:text-end 0
+                                                 :sequence-end (inc sequence-end)
+                                                 :unmatched-answer result}))
             (< (inc text-start) (count (nth text-sequence sequence-start))) (recur (merge context {:text-start (inc text-start)
                                                                                                    :sequence-end sequence-start
                                                                                                    :text-end (inc text-start)
