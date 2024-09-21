@@ -40,8 +40,9 @@ Brewfile.lock.json
 .pre-commit-config.yaml
 
 # quest
+release/*
+!release/manifest.json
 release.zip
-release/js
 
 # shadow-cljs
 node_modules/
