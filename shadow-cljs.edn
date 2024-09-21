@@ -7,9 +7,15 @@
   [com.rpl/specter "1.1.4"]
   [lambdaisland/uri "1.19.155"]
   [reagent "1.2.0"]]
-;https://github.com/shadow-cljs/shadow-cljs.github.io/blob/dd4be69c0144dc0b0ae1cbe8a715eb2be7608ece/docs/UsersGuide.adoc?plain=1#L451
+;; https://github.com/shadow-cljs/shadow-cljs.github.io/blob/dd4be69c0144dc0b0ae1cbe8a715eb2be7608ece/docs/UsersGuide.adoc?plain=1#L451
  :dev-http {8000 "public"}
  :builds
+;; Separate builds for :background and :question are necessary to avoid
+;; a syntax error in the release build of 'background.js'.
+;; The error is related to a missing export named '$jscomp' in the module
+;; 'moz-extension://.../js/base.js' when using a single build.
+;; This separation ensures that each build can have its own configuration
+;; and prevents conflicts between different parts of the extension.
  {:background
   {:target :esm
    :output-dir "public/js"
