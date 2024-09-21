@@ -1,5 +1,5 @@
 # https://devenv.sh/integrations/github-actions/#complete-example
-name: "Test"
+name: "Build and Release"
 
 on:
   pull_request:
@@ -32,3 +32,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/') && runner.os == 'macOS'
         with:
           files: release.zip
+
+# https://github.com/softprops/action-gh-release/blob/c7857c88c0b69847af67785971a0b5633c6d22cf/README.md?plain=1#L231-L236
+permissions:
+  contents: write
