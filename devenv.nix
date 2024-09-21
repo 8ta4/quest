@@ -36,7 +36,11 @@
       --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml"
   '';
   scripts.hello.exec = "echo hello from $GREET";
-  scripts.release.exec = "shadow-cljs release background content question";
+  scripts.release.exec = ''
+    rm -rf public/js release/js
+    shadow-cljs release background content question
+    cp -r public/js release
+  '';
 
   enterShell = ''
     hello

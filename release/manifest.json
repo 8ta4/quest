@@ -1,0 +1,15 @@
+{
+  "background": {
+    "service_worker": "js/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "js": ["js/content.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "manifest_version": 3,
+  "name": "quest",
+  "version": "0.1.0"
+}
