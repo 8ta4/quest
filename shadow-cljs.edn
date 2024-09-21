@@ -25,9 +25,11 @@
   :content
   {:target :browser
    :modules {:content {:init-fn content/init}}
-   :devtools {:after-load content/after-load}}
+   :devtools {:after-load content/after-load}
+   :compiler-options {:optimizations :simple}}
   :question
   {:target :esm
    :output-dir "public/js"
    :runtime :custom
-   :modules {:question {:init-fn question/init}}}}}
+   :modules {:question {:init-fn question/init}}
+   :compiler-options {:optimizations :simple}}}}
