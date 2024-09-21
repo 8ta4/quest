@@ -39,7 +39,7 @@
   # Using 'compile' instead of 'release' because 'release' causes a syntax error
   # in the 'background.js' file. The error is related to a missing export named '$jscomp'
   # in the module 'moz-extension://.../js/base.js'.
-  scripts.compile.exec = "shadow-cljs compile :background :content --config-merge '{:closure-defines {goog.DEBUG false}}'";
+  scripts.release.exec = "shadow-cljs release background content question";
 
   enterShell = ''
     hello
