@@ -37,9 +37,10 @@
   '';
   scripts.hello.exec = "echo hello from $GREET";
   scripts.release.exec = ''
-    rm -rf public/js release/js
-    shadow-cljs release background content question
-    cp -r public/js release
+    rm -rf release/js
+    shadow-cljs release background content question --config-merge '{:output-dir "release/js"}'
+    cp public/question.html release/
+    zip -r release.zip release
   '';
 
   enterShell = ''
