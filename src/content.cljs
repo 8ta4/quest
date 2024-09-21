@@ -156,16 +156,18 @@
   []
   (transform [ATOM :id] #(max 0 (dec %)) state))
 
+(def shortcuts
+  {" " toggle
+   "ArrowDown" move-to-next
+   "ArrowUp" move-to-previous})
+
 (defn handle
   [event]
   (js/console.log "Key down event detected:")
   (js/console.log event.key)
-  (.preventDefault event)
-  (case event.key
-    " " (toggle)
-    "ArrowDown" (move-to-next)
-    "ArrowUp" (move-to-previous)
-    nil))
+  (when (shortcuts event.key)
+    (.preventDefault event)
+    ((shortcuts event.key))))
 
 (when js/goog.DEBUG
   (defonce body (atom nil)))
