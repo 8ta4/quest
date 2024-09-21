@@ -21,6 +21,8 @@
    :output-dir "public/js"
    :runtime :custom
    :modules {:background {:init-fn background/init}}
+;; Using :simple optimization instead of :advanced
+;; Advanced optimization may cause silent runtime failures in browser extensions
    :compiler-options {:optimizations :simple}}
   :content
   {:target :browser
