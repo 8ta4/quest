@@ -1,8 +1,6 @@
 (ns background
-  (:require-macros [cljs.core.async.macros :refer [go]])
-  (:require [cljs-http.client :as http]
-            [cljs.core.async :refer [<!]]
-            [shadow.cljs.modern :refer [js-await]]))
+  (:require [shadow.cljs.modern :refer [js-await]]
+            [lambdaisland.fetch :as fetch]))
 
 (when js/goog.DEBUG
   (defn remove-popup-windows []
@@ -23,12 +21,8 @@
   (js/chrome.runtime.onMessage.addListener (fn [message sender send-response]
                                              (js/console.log "Received message")
                                              (js/console.log message)
-                                             (-> message
-                                                 http/get
-                                                 <!
-                                                 :body
-                                                 send-response
-                                                 go)
+                                             (js-await [response (fetch/get message)]
+                                                       (send-response (:body response)))
                                              (when js/goog.DEBUG
                                                (remove-popup-windows))
                                              (create-question-window sender.tab.id)
