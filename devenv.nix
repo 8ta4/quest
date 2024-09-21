@@ -36,9 +36,6 @@
       --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml"
   '';
   scripts.hello.exec = "echo hello from $GREET";
-  # Using 'compile' instead of 'release' because 'release' causes a syntax error
-  # in the 'background.js' file. The error is related to a missing export named '$jscomp'
-  # in the module 'moz-extension://.../js/base.js'.
   scripts.release.exec = "shadow-cljs release background content question";
 
   enterShell = ''
