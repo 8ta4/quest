@@ -54,6 +54,26 @@ Nope, `quest`'s shortcuts are designed to avoid any conflicts with Vimium.
 
 Yep, with `quest`, you can jump around between segments as you like. It keeps track of what you've already read, so you don't have to. This way, you can explore at your own pace and follow your curiosity.
 
+## Setup
+
+> How do I get `quest`'s dev environment up and running?
+
+1. Install [Homebrew](https://brew.sh/#install).
+
+1. Install [devenv](https://github.com/cachix/devenv/blob/bfc6481188a3e7ddda2e745292b737c03949a1ab/docs/getting-started.md#installation).
+
+1. Install [direnv](https://github.com/cachix/devenv/blob/bfc6481188a3e7ddda2e745292b737c03949a1ab/docs/automatic-shell-activation.md#installing-direnv).
+
+1. Run the following commands:
+
+   ```sh
+   git clone git@github.com:8ta4/quest.git
+   cd quest
+   direnv allow
+   ```
+
+The `devenv.nix` file has got all the scripts you need.
+
 ## Functionality
 
 ### Navigation
