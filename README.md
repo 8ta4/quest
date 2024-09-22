@@ -14,7 +14,7 @@ I pledge not to read any new book until my vision comes to life. And until WebAs
 
 > How do I install it?
 
-TODO: Add a link to the Chrome Web Store where the quest extension can be installed.
+TODO: Add a link to the Chrome Web Store where the `quest` extension can be installed.
 
 You can install it from [here]().
 
@@ -22,9 +22,7 @@ You can install it from [here]().
 
 > How do I try it?
 
-TODO: Add a link to a demo page where users can try out the quest extension.
-
-You can try it on this [demo page]().
+You can try it on this [demo page](https://paulgraham.com/start.html?quest=https://raw.githubusercontent.com/8ta4/quests/e313eabecc5e6c78e6c75a6ca7f02c5dd38d92cb/paulgraham.com/start.html/quest.yaml).
 
 > How do I see the answer?
 
