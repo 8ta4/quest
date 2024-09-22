@@ -26,7 +26,7 @@ You can try it on this [demo page](https://paulgraham.com/start.html?quest=https
 
 > How do I see the answer?
 
-If a question is marked as hidden, pressing `Space` will mark it as visible and reveal its answer. `Space` is chosen because it's used to toggle checkboxes, and "visible" and "Space" both have "s".
+If a question is marked as hidden, pressing `Space` will mark it as visible and reveal its answer. `Space` is chosen because it's used to toggle checkboxes.
 
 > How do you identify the start of a segment that corresponds to a question? (Planned)
 
