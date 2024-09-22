@@ -64,7 +64,7 @@ No, it doesn't. `chrome.commands` only supports [up to 4 shortcuts](https://deve
 
 Instead, `quest` relies on event listeners in the content scripts.
 
-> How does the viewport adjust when you reveal an answer?
+> How does the viewport adjust when you reveal an answer? (Planned)
 
 When you reveal an answer, the viewport automatically scrolls to the start of the current segment. Here's why:
 
@@ -80,11 +80,11 @@ When you reveal an answer, the viewport automatically scrolls to the start of th
 
 No, you can't undo navigation in `quest`. It follows a similar approach to Vim.
 
-> Does `quest` remember where I left off reading?
+> Does `quest` remember where I left off reading? (Planned)
 
 Yes, `quest` automatically saves your reading progress. When you reopen the application, it picks up from the last question you were viewing and maintains your scrolling position.
 
-> Can you open the same document with the same query string?
+> Can you open the same document with the same query string? (Planned)
 
 Technically, yes, but when you do that, the new tab will close right away, and it'll bring you back to the tab where the document is already open. This happens to avoid having multiple versions of the same document open, which can mess up data syncing.
 
@@ -177,7 +177,7 @@ The YAML file is a list of maps. In each of these maps, you'll find a "question"
 
 This example is based on Paul Graham's essay "[How to Start a Startup](https://paulgraham.com/start.html)."
 
-> Is the YAML file required to be sorted?
+> Is the YAML file required to be sorted? (Planned)
 
 No, the YAML file doesn't need to be sorted. The software takes care of the ordering based on the content.
 
@@ -235,17 +235,19 @@ Technically, yes, an answer can be any part of the text. However, it is recommen
 
 - Be as concise as possible: The shorter the answer, the easier and quicker it is to evaluate the Q&A pair. It also makes the program run more efficiently by speeding up string searches.
 
-> If the answer appears more than once in the text, `quest` will go with the first occurrence. Here's why:
+> (Planned) 
+
+If the answer appears more than once in the text, `quest` will go with the first occurrence. Here's why:
 
 - Evaluation: This approach makes it easier for anyone manually checking the Q&A pairs, as the first instance is usually the quickest to locate.
 
 - Processing: It's simpler and faster for the program to use the first match it finds when sorting questions based on where the answers appear in the text.
 
-> Will `quest` crash if an answer is not found in the text?
+> Will `quest` crash if an answer is not found in the text? (Planned)
 
 Nah. `quest` isn't gonna crash just because it can't find an answer. If `quest` can't find an answer in the text that matches what's in the YAML file, it'll just skip that question.
 
-> Does `quest` autosave?
+> Does `quest` autosave? (Planned)
 
 Yes, `quest` autosaves your progress. It's like they say, "It's better to be saved than sorry." You can just stay focused on what you're reading.
 
@@ -281,7 +283,7 @@ No, `quest` doesn't rely on chrome.storage.sync. "[The quota limitation is appro
 
 No, `quest` doesn't bother with IndexedDB. The extra complexity, especially with how IndexedDB is asynchronous, would just make the code harder to manage.
 
-> Does `quest` use `chrome.storage.local` or `localStorage` for storing data?
+> Does `quest` use `chrome.storage.local` or `localStorage` for storing data? (Planned)
 
 `quest` goes with `chrome.storage.local`. Here's why:
 
