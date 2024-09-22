@@ -261,7 +261,7 @@ Technically, yes, an answer can be any part of the text. However, it is recommen
 
 - Be as concise as possible: The shorter the answer, the easier and quicker it is to evaluate the Q&A pair. It also makes the program run more efficiently by speeding up string searches.
 
-> Which instance does `quest` use if the answer shows up multiple times in the text? (Planned) 
+> Which instance does `quest` use if the answer shows up multiple times in the text? (Planned)
 
 If the answer appears more than once in the text, `quest` will pick the first one. Here's why:
 
