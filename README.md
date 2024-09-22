@@ -158,4 +158,8 @@ Yes, you can! But you'll need to extract the HTML from the EPUB first. If the co
 
 > Can I use `quest` with [Vimium](https://github.com/philc/vimium)?
 
-Totally! `quest` is designed to play nicely with Vimium.
+Totally! `quest` is designed to play nicely with Vimium both in the reading window and the question window.
+
+> Can I use `quest` with Dark Reader?
+
+Yes, `quest` is compatible with Dark Reader in both the reading and question windows.

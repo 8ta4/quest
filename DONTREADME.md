@@ -78,6 +78,12 @@ The `devenv.nix` file has got all the scripts you need.
 
 ### Navigation
 
+> When a new question window opens, which window is focused: the question window or the reading window?
+
+The question window gets focused. Since it's a new window, it might pop up in an inconvenient spot. By focusing on it first, it gives users the chance to move it using keyboard shortcuts.
+
+If you need to get back to the reading window, switching focus is easy with shortcuts like `Cmd + ~`.
+
 > Does `quest` use `chrome.commands`?
 
 No, it doesn't. `chrome.commands` only supports [up to 4 shortcuts](https://developer.chrome.com/docs/extensions/reference/api/commands#:~:text=at%20most%20four%20suggested%20keyboard%20shortcuts), but `quest` needs more than that.
