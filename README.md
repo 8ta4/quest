@@ -26,7 +26,7 @@ You can try it on this [demo page](https://paulgraham.com/start.html?quest=https
 
 > How do I see the answer?
 
-If a question is marked as unseen, pressing `Space` will mark it as seen and reveal its answer. `Space` is chosen because it's used to toggle checkboxes, and "seen" and "Space" both have "s".
+If a question is marked as hidden, pressing `Space` will mark it as visible and reveal its answer. `Space` is chosen because it's used to toggle checkboxes, and "visible" and "Space" both have "s".
 
 > How do you identify the start of a segment that corresponds to a question? (Planned)
 
@@ -38,7 +38,7 @@ To wrap up a segment, `quest` uses a similar icon in the left margin, but this o
 
 > How do I unsee the answer?
 
-`Space` lets you toggle the current question's seen status. If a question is marked as seen, pressing `Space` will mark it as unseen and hide its answer.
+`Space` lets you toggle the current question's visible status. If a question is marked as visible, pressing `Space` will mark it as hidden and hide its answer.
 
 > How do I get to the next question?
 
@@ -48,13 +48,13 @@ Hit `Down arrow` to move to the next question. But here's a pro tip: you might w
 
 Hit `Up arrow` to move to the next question. Try switching it to `Control + k` across applications. This is inspired by the Vim command for moving the cursor up.
 
-> How do I get to the next unseen question? (Planned)
+> How do I get to the next hidden question? (Planned)
 
-Press `⌘ + j` for the next unseen question. This is inspired by the Vim command for moving the cursor down.
+Press `⌘ + j` for the next hidden question. This is inspired by the Vim command for moving the cursor down.
 
-> How do I get to the previous unseen question? (Planned)
+> How do I get to the previous hidden question? (Planned)
 
-Press `⌘ + k` for the previous unseen question. This is inspired by the Vim command for moving the cursor up.
+Press `⌘ + k` for the previous hidden question. This is inspired by the Vim command for moving the cursor up.
 
 > How do I select the question whose segment is the topmost within the main window's viewport? (Planned)
 
@@ -76,9 +76,9 @@ Hit `zb`. This Vim-inspired command will bring the bottom of your current segmen
 
 Hit `zz`. This Vim-inspired command will adjust your view so that the segment is centered on your screen.
 
-> How do I undo toggling the seen status? (Planned)
+> How do I undo toggling the visible status? (Planned)
 
-`Space` lets you toggle the current question's seen status.
+`Space` lets you toggle the current question's visible status.
 
 Alternatively, you can press `⌘ + z` to undo it.
 
