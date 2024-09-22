@@ -14,7 +14,7 @@ I pledge not to read any new book until my vision comes to life. And until WebAs
 
 > How do I install it?
 
-TODO: Add a link to the Chrome Web Store where the quest extension can be installed.
+TODO: Add a link to the Chrome Web Store where the `quest` extension can be installed.
 
 You can install it from [here]().
 
