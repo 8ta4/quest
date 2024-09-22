@@ -156,10 +156,10 @@ Nope, `quest` isn't built for DRM-protected EPUB files.
 
 Yes, you can! But you'll need to extract the HTML from the EPUB first. If the content is spread across multiple HTML files, you might have to combine them.
 
-> Can I use `quest` with [Vimium](https://github.com/philc/vimium)?
+> Can I use `quest` with [Vimium](https://github.com/philc/vimium)? (Planned)
 
 Totally! `quest` is designed to play nicely with Vimium both in the reading window and the question window.
 
-> Can I use `quest` with Dark Reader?
+> Can I use `quest` with [Dark Reader](https://github.com/darkreader/darkreader)? (Planned)
 
 Yes, `quest` is compatible with Dark Reader in both the reading and question windows.

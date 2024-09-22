@@ -78,7 +78,7 @@ The `devenv.nix` file has got all the scripts you need.
 
 ### Navigation
 
-> When a new question window opens, which window is focused: the question window or the reading window?
+> When a new question window opens, which window is focused: the question window or the reading window? (Planned)
 
 The question window gets focused. Since it's a new window, it might pop up in an inconvenient spot. By focusing on it first, it gives users the chance to move it using keyboard shortcuts.
 
