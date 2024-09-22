@@ -36,7 +36,7 @@ When you're using `quest`, you'll see a little triangle icon (▼) that'll alway
 
 To wrap up a segment, `quest` uses a similar icon in the left margin, but this one points up (▲). This marker lines up with the last line of text for that particular question's content.
 
-> How do I unsee the answer?
+> How do I hide the answer?
 
 `Space` lets you toggle the current question's visible status. If a question is marked as visible, pressing `Space` will mark it as hidden and hide its answer.
 
