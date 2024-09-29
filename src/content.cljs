@@ -185,7 +185,8 @@
 (defn init
   []
   (when quest
-    (let [port (js/chrome.runtime.connect)]
+    (let [port (js/chrome.runtime.connect (clj->js {:name quest}))]
+      (js/console.log "Connected to background script")
       (port.onMessage.addListener
        (fn [response]
          (js/console.log "Received response from background script")
@@ -195,5 +196,4 @@
                         :id 0})
          (when js/goog.DEBUG
            (reset! body (js/document.body.cloneNode true)))
-         (after-load)))
-      (port.postMessage quest))))
+         (after-load))))))
