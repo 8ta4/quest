@@ -186,6 +186,7 @@
   []
   (when quest
     (let [port (js/chrome.runtime.connect (clj->js {:name quest}))]
+      (js/console.log "Connected to background script")
       (port.onMessage.addListener
        (fn [response]
          (js/console.log "Received response from background script")
