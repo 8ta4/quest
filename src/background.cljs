@@ -12,7 +12,7 @@
                    (run! js/chrome.windows.remove)))))
 
 (defn create-question-window [id]
-  (js/chrome.windows.create (clj->js {:url (str "question.html?id=" id)
+  (js/chrome.windows.create (clj->js {:url (str "localhost:8000/question.html?id=" id)
                                       :type "popup"})))
 
 (defn init

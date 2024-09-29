@@ -39,7 +39,6 @@
   scripts.release.exec = ''
     rm -rf release/js
     shadow-cljs release background content question --config-merge '{:output-dir "release/js"}'
-    cp public/question.html release/
     zip -r release.zip release
   '';
 
