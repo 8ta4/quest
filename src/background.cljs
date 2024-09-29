@@ -8,9 +8,6 @@
   (js/chrome.runtime.onConnect.addListener
    (fn [port]
      (js/console.log "Connected to content script")
-     (port.onMessage.addListener
-      (fn [message]
-        (js/console.log "Received message")
-        (js/console.log message)
-        (js-await [response (fetch/get message)]
-                  (.postMessage port (:body response))))))))
+     (js/console.log port.name)
+     (js-await [response (fetch/get port.name)]
+               (.postMessage port (:body response))))))
