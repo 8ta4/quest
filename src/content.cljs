@@ -185,13 +185,6 @@
 (defn init
   []
   (when quest
-    (js/chrome.runtime.onConnect.addListener (fn [port]
-                                               (js/console.log "Connection established")
-                                               (.postMessage port (clj->js @state))
-                                               (add-watch state
-                                                          :change
-                                                          (fn [_ _ _ new-state]
-                                                            (.postMessage port (clj->js new-state))))))
     (js-await [response (js/chrome.runtime.sendMessage quest)]
               (js/console.log "Received response from background script")
               (reset! state {:qa (setval [ALL :visible]
