@@ -11,5 +11,6 @@
   ],
   "manifest_version": 3,
   "name": "quest",
+  "permissions": ["webNavigation"],
   "version": "0.1.0"
 }
