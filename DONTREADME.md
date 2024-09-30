@@ -106,10 +106,6 @@ When you reveal an answer, the viewport automatically scrolls to the start of th
 
 No, you can't undo navigation in `quest`. It follows a similar approach to Vim.
 
-> Does `quest` remember where I left off reading? (Planned)
-
-Yes, `quest` automatically saves your reading progress. When you reopen the application, it picks up from the last question you were viewing.
-
 > Can you open the same document with the same URL? (Planned)
 
 Technically, yes, but when you do that, the new tab will close right away, and it'll bring you back to the tab where the document is already open. This happens to avoid having multiple versions of the same document open, which can mess up data syncing.

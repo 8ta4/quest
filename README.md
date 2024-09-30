@@ -104,6 +104,10 @@ Yes, it works the same way. Closing the question window will also close the read
 
 Yes, you can! `quest` is designed to let you work with multiple documents simultaneously. When you open a new document, it'll use the current reading window for its content and pop open a new question window just for that document.
 
+> If I close the page or navigate away, can I pick up where I left off? (Planned)
+
+Yes, definitely! Just go back to the same URL you were using, and you should be able to resume right from where you left off.
+
 > Can data be lost when `quest` updates?
 
 Yes, it's possible. Since `quest` hasn't reached version 1.0 yet, there might be updates that introduce breaking changes. These changes could lead to losing data.
