@@ -1,15 +1,10 @@
 (ns content
   (:require [clojure.string :as str]
             [com.rpl.specter :refer [ALL ATOM END nthpath setval transform]]
-            [lambdaisland.uri :refer [query-map]]
-            [shadow.cljs.modern :refer [js-await]]
             [yaml :refer [parse]]))
 
 (defonce state
   (atom {}))
-
-(def quest
-  (:quest (query-map js/location.href)))
 
 (def remove-blanks
   (partial remove str/blank?))
@@ -184,16 +179,13 @@
 
 (defn init
   []
-  (when quest
-    (let [port (js/chrome.runtime.connect (clj->js {:name quest}))]
-      (js/console.log "Connected to background script")
-      (port.onMessage.addListener
-       (fn [response]
-         (js/console.log "Received response from background script")
-         (reset! state {:qa (setval [ALL :visible]
-                                    false
-                                    (js->clj (parse response) {:keywordize-keys true}))
-                        :id 0})
-         (when js/goog.DEBUG
-           (reset! body (js/document.body.cloneNode true)))
-         (after-load))))))
+  (.onMessage.addListener (js/chrome.runtime.connect)
+                          (fn [response]
+                            (js/console.log "Received response from background script")
+                            (reset! state {:qa (setval [ALL :visible]
+                                                       false
+                                                       (js->clj (parse response) {:keywordize-keys true}))
+                                           :id 0})
+                            (when js/goog.DEBUG
+                              (reset! body (js/document.body.cloneNode true)))
+                            (after-load))))
