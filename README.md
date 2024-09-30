@@ -12,15 +12,15 @@ I pledge not to read any new book until my vision comes to life. And until WebAs
 
 ## Setup
 
-> How do I install it?
+> Is `quest` available on the Chrome Web Store?
 
-You can install it from [here](https://chromewebstore.google.com/detail/quest/pbgjongjakhehokeemfciihdpdlmgche).
+Yep, you can install it from [here](https://chromewebstore.google.com/detail/quest/pbgjongjakhehokeemfciihdpdlmgche).
 
 ## Usage
 
-> How do I try it?
+> Can I try `quest`?
 
-You can try it on this [demo page](https://paulgraham.com/start.html?quest=https://raw.githubusercontent.com/8ta4/quests/e313eabecc5e6c78e6c75a6ca7f02c5dd38d92cb/paulgraham.com/start.html/quest.yaml).
+Absolutely! Give it a spin on this [demo page](https://paulgraham.com/start.html?quest=https://raw.githubusercontent.com/8ta4/quests/e313eabecc5e6c78e6c75a6ca7f02c5dd38d92cb/paulgraham.com/start.html/quest.yaml).
 
 > How do I see the answer?
 
