@@ -1,6 +1,7 @@
 (ns content
   (:require [clojure.string :as str]
-            [com.rpl.specter :refer [ATOM END nthpath setval transform]]))
+            [com.rpl.specter :refer [ALL ATOM END nthpath setval transform]]
+            [yaml :refer [parse]]))
 
 (defonce state
   (atom {}))
@@ -178,4 +179,13 @@
 
 (defn init
   []
-  (js/chrome.runtime.connect))
+  (.onMessage.addListener (js/chrome.runtime.connect)
+                          (fn [response]
+                            (js/console.log "Received response from background script")
+                            (reset! state {:qa (setval [ALL :visible]
+                                                       false
+                                                       (js->clj (parse response) {:keywordize-keys true}))
+                                           :id 0})
+                            (when js/goog.DEBUG
+                              (reset! body (js/document.body.cloneNode true)))
+                            (after-load))))

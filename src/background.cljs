@@ -1,6 +1,8 @@
 (ns background
   (:require [com.rpl.specter :refer [ATOM setval]]
-            [lambdaisland.uri :refer [query-map]]))
+            [lambdaisland.fetch :as fetch]
+            [lambdaisland.uri :refer [query-map]]
+            [shadow.cljs.modern :refer [js-await]]))
 
 (def state (atom {}))
 
@@ -15,7 +17,9 @@
   []
   (js/console.log "Background script initialized")
   (js/chrome.runtime.onConnect.addListener (fn [port]
-                                             (when-let [quest (@state port.sender.tab.id)])))
+                                             (when-let [quest (@state port.sender.tab.id)]
+                                               (js-await [response (fetch/get quest)]
+                                                         (port.postMessage (:body response))))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log (str "URL with quest query committed"))
