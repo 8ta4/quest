@@ -1,5 +1,6 @@
 (ns background
-  (:require [com.rpl.specter :refer [ATOM setval]]))
+  (:require [com.rpl.specter :refer [ATOM setval]]
+            [lambdaisland.uri :refer [query-map]]))
 
 (def state (atom {}))
 
@@ -14,4 +15,5 @@
   []
   (js/console.log "Background script initialized")
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
-                                                     (eval-path-setval [ATOM details.tabId] details.url state))))
+                                                     (when-let [quest (:quest (query-map details.url))]
+                                                       (eval-path-setval [ATOM details.tabId] quest state)))))

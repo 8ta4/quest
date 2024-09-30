@@ -1,13 +1,9 @@
 (ns content
   (:require [clojure.string :as str]
-            [com.rpl.specter :refer [ATOM END nthpath setval transform]]
-            [lambdaisland.uri :refer [query-map]]))
+            [com.rpl.specter :refer [ATOM END nthpath setval transform]]))
 
 (defonce state
   (atom {}))
-
-(def quest
-  (:quest (query-map js/location.href)))
 
 (def remove-blanks
   (partial remove str/blank?))
