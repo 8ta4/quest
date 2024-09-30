@@ -14,6 +14,8 @@
 (defn init
   []
   (js/console.log "Background script initialized")
+  (js/chrome.runtime.onConnect.addListener (fn [port]
+                                             (when-let [quest (@state port.sender.tab.id)])))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log (str "URL with quest query committed"))

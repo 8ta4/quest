@@ -177,4 +177,5 @@
   (set! js/document.onkeydown handle))
 
 (defn init
-  [])
+  []
+  (js/chrome.runtime.connect))
