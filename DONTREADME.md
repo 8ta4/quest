@@ -112,6 +112,10 @@ Technically, yes, but when you do that, the new tab will close right away, and i
 
 If you need to view the document in a separate tab, you can do that, but without the query string.
 
+> Does `quest` detect the URL using a content script or a background script? (Planned)
+
+`quest` uses a background script to detect the URL. Content scripts can run at different times during the page load, and sometimes other scripts or extensions could change the URL before the content script has a chance to grab it.
+
 > Is it possible to use just one window for both questions and the main content in `quest`?
 
 Technically, yes, you can do that by using Chrome's API to combine them into a single window. But, the way `quest` is meant to be used is with separate windows for the main content and the questions. Here's why:
