@@ -16,4 +16,5 @@
   (js/console.log "Background script initialized")
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
+                                                       (js/console.log (str "URL with quest query committed"))
                                                        (eval-path-setval [ATOM details.tabId] quest state)))))
