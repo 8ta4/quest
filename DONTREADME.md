@@ -108,7 +108,7 @@ No, you can't undo navigation in `quest`. It follows a similar approach to Vim.
 
 > Does `quest` remember where I left off reading? (Planned)
 
-Yes, `quest` automatically saves your reading progress. When you reopen the application, it picks up from the last question you were viewing and maintains your scrolling position.
+Yes, `quest` automatically saves your reading progress. When you reopen the application, it picks up from the last question you were viewing.
 
 > Can you open the same document with the same URL? (Planned)
 
