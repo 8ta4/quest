@@ -4,4 +4,5 @@
   []
   (js/console.log "Initializing the question module")
   (.onMessage.addListener (js/chrome.runtime.connect)
-                          (fn [message])))
+                          (fn [message]
+                            (js/console.log "Received message from background script"))))
