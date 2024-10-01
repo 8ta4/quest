@@ -4,7 +4,7 @@
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]))
 
-(def state (atom {}))
+(def state (atom {:answer {}}))
 
 (defn eval-path-setval
   "Sets the value `aval` at the specified path `apath` within the `structure`.
@@ -17,18 +17,22 @@
   []
   (js/console.log "Background script initialized")
   (js/chrome.runtime.onConnect.addListener (fn [port]
-                                             (when-let [quest (@state port.sender.tab.id)]
+                                             (when-let [quest ((:answer @state) port.sender.tab.id)]
                                                (js-await [response (fetch/get quest)]
                                                          (.postMessage port (:body response)))
                                                (js/chrome.windows.create (clj->js {:url "http://localhost:8000/question.html"
                                                                                    :type "popup"})
                                                                          (fn [window]
-                                                                           (-> window
-                                                                               (js->clj {:keywordize-keys true})
-                                                                               :tabs
-                                                                               first
-                                                                               :id))))))
+                                                                           (eval-path-setval [ATOM
+                                                                                              :question
+                                                                                              (-> window
+                                                                                                  (js->clj {:keywordize-keys true})
+                                                                                                  :tabs
+                                                                                                  first
+                                                                                                  :id)]
+                                                                                             port
+                                                                                             state))))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
-                                                       (eval-path-setval [ATOM details.tabId] quest state)))))
+                                                       (eval-path-setval [ATOM :answer details.tabId] quest state)))))
