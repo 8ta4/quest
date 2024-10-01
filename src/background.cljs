@@ -13,6 +13,15 @@
   [apath aval structure]
   (setval apath aval structure))
 
+(when js/goog.DEBUG
+  (defn remove-popup-windows []
+    (js-await [windows (js/chrome.windows.getAll)]
+              (->> (js->clj windows {:keywordize-keys true})
+                   (filter (comp (partial = "popup")
+                                 :type))
+                   (map :id)
+                   (run! js/chrome.windows.remove)))))
+
 (defn init
   []
   (js/console.log "Background script initialized")
@@ -20,6 +29,8 @@
                                              (when-let [quest ((:answer @state) port.sender.tab.id)]
                                                (js-await [response (fetch/get quest)]
                                                          (.postMessage port (:body response)))
+                                               (when js/goog.DEBUG
+                                                 (remove-popup-windows))
                                                (js/chrome.windows.create (clj->js {:url "http://localhost:8000/question.html"
                                                                                    :type "popup"})
                                                                          (fn [window]
