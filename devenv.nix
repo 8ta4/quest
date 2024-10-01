@@ -38,7 +38,7 @@
   scripts.hello.exec = "echo hello from $GREET";
   scripts.release.exec = ''
     rm -rf release/js
-    shadow-cljs release background content question --config-merge '{:output-dir "release/js"}'
+    shadow-cljs release background answer question --config-merge '{:output-dir "release/js"}'
     zip -r release.zip release
   '';
 

@@ -18,8 +18,12 @@
 ;; Using :simple optimization instead of :advanced
 ;; Advanced optimization may cause silent runtime failures in browser extensions
    :compiler-options {:optimizations :simple}}
-  :content
+  :answer
   {:target :browser
-   :modules {:content {:init-fn content/init}}
-   :devtools {:after-load content/after-load}
+   :modules {:answer {:init-fn answer/init}}
+   :devtools {:after-load answer/after-load}
+   :compiler-options {:optimizations :simple}}
+  :question
+  {:target :browser
+   :modules {:question {:init-fn question/init}}
    :compiler-options {:optimizations :simple}}}}

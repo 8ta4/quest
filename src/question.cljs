@@ -1,0 +1,4 @@
+(ns question)
+
+(defn init
+  [])

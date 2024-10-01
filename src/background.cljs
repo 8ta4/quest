@@ -19,7 +19,9 @@
   (js/chrome.runtime.onConnect.addListener (fn [port]
                                              (when-let [quest (@state port.sender.tab.id)]
                                                (js-await [response (fetch/get quest)]
-                                                         (port.postMessage (:body response))))))
+                                                         (port.postMessage (:body response)))
+                                               (js/chrome.windows.create (clj->js {:url "http://localhost:8000/question.html"
+                                                                                   :type "popup"})))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
