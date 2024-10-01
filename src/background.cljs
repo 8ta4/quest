@@ -51,6 +51,7 @@
                                                (js/console.log "Question window connected")
                                                (.addListener port*.onMessage
                                                              (fn [message]
+                                                               (js/console.log "Received message from answer window")
                                                                (.postMessage port message))))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
