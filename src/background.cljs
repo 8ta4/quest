@@ -21,7 +21,13 @@
                                                (js-await [response (fetch/get quest)]
                                                          (.postMessage port (:body response)))
                                                (js/chrome.windows.create (clj->js {:url "http://localhost:8000/question.html"
-                                                                                   :type "popup"})))))
+                                                                                   :type "popup"})
+                                                                         (fn [window]
+                                                                           (-> window
+                                                                               (js->clj {:keywordize-keys true})
+                                                                               :tabs
+                                                                               first
+                                                                               :id))))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
