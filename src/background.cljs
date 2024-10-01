@@ -22,6 +22,20 @@
                    (map :id)
                    (run! js/chrome.windows.remove)))))
 
+(defn create-question-window [port]
+  (js/chrome.windows.create (clj->js {:url "http://localhost:8000/question.html"
+                                      :type "popup"})
+                            (fn [window]
+                              (eval-path-setval [ATOM
+                                                 :question
+                                                 (-> window
+                                                     (js->clj {:keywordize-keys true})
+                                                     :tabs
+                                                     first
+                                                     :id)]
+                                                port
+                                                state))))
+
 (defn init
   []
   (js/console.log "Background script initialized")
@@ -31,18 +45,7 @@
                                                          (.postMessage port (:body response)))
                                                (when js/goog.DEBUG
                                                  (remove-popup-windows))
-                                               (js/chrome.windows.create (clj->js {:url "http://localhost:8000/question.html"
-                                                                                   :type "popup"})
-                                                                         (fn [window]
-                                                                           (eval-path-setval [ATOM
-                                                                                              :question
-                                                                                              (-> window
-                                                                                                  (js->clj {:keywordize-keys true})
-                                                                                                  :tabs
-                                                                                                  first
-                                                                                                  :id)]
-                                                                                             port
-                                                                                             state))))))
+                                               (create-question-window port))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
