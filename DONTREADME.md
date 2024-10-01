@@ -78,11 +78,11 @@ The `devenv.nix` file has got all the scripts you need.
 
 ### Navigation
 
-> When a new question window opens, which window is focused: the question window or the reading window? (Planned)
+> When a new question window opens, which window is focused: the question window or the answer window? (Planned)
 
 The question window gets focused. Since it's a new window, it might pop up in an inconvenient spot. By focusing on it first, it gives users the chance to move it using keyboard shortcuts.
 
-If you need to get back to the reading window, switching focus is easy with shortcuts like `Cmd + ~`.
+If you need to get back to the answer window, switching focus is easy with shortcuts like `Cmd + ~`.
 
 > Does `quest` use `chrome.commands`?
 
@@ -132,9 +132,9 @@ The question window in `quest` actually uses a `popup` type. Here's why:
 
 - Functionality: Since it's a `popup`, you can't open new tabs. It prevents you from navigating away from the questions.
 
-> Does `quest` use Chrome extension message passing or `window.postMessage()` to communicate between the reading window and the question window?
+> Does `quest` use Chrome extension message passing or `window.postMessage()` to communicate between the answer window and the question window?
 
-`quest` uses Chrome extension message passing to handle communication between the reading window and the question window. It simplifies things by removing the need for manual origin checking, which can be overlooked when using `window.postMessage()`. By sticking with Chrome extension message passing, communication is restricted to within the extension.
+`quest` uses Chrome extension message passing to handle communication between the answer window and the question window. It simplifies things by removing the need for manual origin checking, which can be overlooked when using `window.postMessage()`. By sticking with Chrome extension message passing, communication is restricted to within the extension.
 
 > Does `quest` assume a left-to-right language or right-to-left language?
 
