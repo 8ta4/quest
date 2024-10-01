@@ -45,7 +45,8 @@
                                                          (.postMessage port (:body response)))
                                                (when js/goog.DEBUG
                                                  (remove-popup-windows))
-                                               (create-question-window port))))
+                                               (create-question-window port))
+                                             (when-let [port* ((:question @state) port.sender.tab.id)])))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
