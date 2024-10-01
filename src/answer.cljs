@@ -180,11 +180,11 @@
 (defn init
   []
   (.onMessage.addListener (js/chrome.runtime.connect)
-                          (fn [response]
-                            (js/console.log "Received response from background script")
+                          (fn [message]
+                            (js/console.log "Received message from background script")
                             (reset! state {:qa (setval [ALL :visible]
                                                        false
-                                                       (js->clj (parse response) {:keywordize-keys true}))
+                                                       (js->clj (parse message) {:keywordize-keys true}))
                                            :id 0})
                             (when js/goog.DEBUG
                               (reset! body (js/document.body.cloneNode true)))

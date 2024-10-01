@@ -41,11 +41,18 @@
   (js/console.log "Background script initialized")
   (js/chrome.runtime.onConnect.addListener (fn [port]
                                              (when-let [quest ((:answer @state) port.sender.tab.id)]
+                                               (js/console.log "Answer window connected")
                                                (js-await [response (fetch/get quest)]
                                                          (.postMessage port (:body response)))
                                                (when js/goog.DEBUG
                                                  (remove-popup-windows))
-                                               (create-question-window port))))
+                                               (create-question-window port))
+                                             (when-let [port* ((:question @state) port.sender.tab.id)]
+                                               (js/console.log "Question window connected")
+                                               (.addListener port*.onMessage
+                                                             (fn [message]
+                                                               (js/console.log "Received message from answer window")
+                                                               (.postMessage port message))))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
