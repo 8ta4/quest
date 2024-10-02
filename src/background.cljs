@@ -13,15 +13,6 @@
   [apath aval structure]
   (setval apath aval structure))
 
-(when js/goog.DEBUG
-  (defn remove-popup-windows []
-    (js-await [windows (js/chrome.windows.getAll)]
-              (->> (js->clj windows {:keywordize-keys true})
-                   (filter (comp (partial = "popup")
-                                 :type))
-                   (map :id)
-                   (run! js/chrome.windows.remove)))))
-
 (defn create-question-window [port]
   (js/chrome.windows.create (clj->js {:url "http://localhost:8000/question.html"
                                       :type "popup"})
@@ -45,8 +36,6 @@
                                                (js-await [response (fetch/get quest)]
                                                          (.postMessage port (clj->js {:data (:body response)
                                                                                       :action "init"})))
-                                               (when js/goog.DEBUG
-                                                 (remove-popup-windows))
                                                (create-question-window port))
                                              (when-let [port* ((:question @state) port.sender.tab.id)]
                                                (js/console.log "Question window connected")
@@ -58,4 +47,10 @@
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
-                                                       (eval-path-setval [ATOM :answer details.tabId] quest state)))))
+                                                       (eval-path-setval [ATOM :answer details.tabId] quest state))))
+  (when js/goog.DEBUG
+    (js-await [windows (js/chrome.windows.getAll)]
+              (->> (js->clj windows {:keywordize-keys true})
+                   (map :id)
+                   (run! js/chrome.windows.remove))
+              (js/chrome.windows.create (clj->js {:url "http://localhost:8000?quest=http://localhost:8000/index.yaml"})))))
