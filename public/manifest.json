@@ -7,11 +7,11 @@
     {
       "js": ["js/answer.js"],
       "matches": ["<all_urls>"],
-      "exclude_matches": ["https://8ta4.github.io/quest/public/question.html"]
+      "exclude_matches": ["http://localhost/question.html"]
     },
     {
       "js": ["js/question.js"],
-      "matches": ["https://8ta4.github.io/quest/public/question.html"]
+      "matches": ["http://localhost/question.html"]
     }
   ],
   "manifest_version": 3,
