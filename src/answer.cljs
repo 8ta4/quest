@@ -180,12 +180,23 @@
 (defn init
   []
   (.onMessage.addListener (js/chrome.runtime.connect)
-                          (fn [message]
+                          (fn [message sender]
                             (js/console.log "Received message from background script")
-                            (reset! state {:qa (setval [ALL :visible]
-                                                       false
-                                                       (js->clj (parse message) {:keywordize-keys true}))
-                                           :id 0})
-                            (when js/goog.DEBUG
-                              (reset! body (js/document.body.cloneNode true)))
-                            (after-load))))
+                            (let [message* (js->clj message {:keywordize-keys true})]
+                              (case (:action message*)
+                                "init" (do (reset! state
+                                                   {:qa (setval [ALL :visible]
+                                                                false
+                                                                (-> message*
+                                                                    :data
+                                                                    parse
+                                                                    (js->clj {:keywordize-keys true})))
+                                                    :id 0})
+                                           (add-watch state
+                                                      :change
+                                                      (fn [_ _ _ new-state]
+                                                        (.postMessage sender (clj->js new-state))))
+                                           (when js/goog.DEBUG
+                                             (reset! body (js/document.body.cloneNode true)))
+                                           (after-load))
+                                "sync" (.postMessage sender (clj->js @state)))))))

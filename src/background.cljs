@@ -43,7 +43,8 @@
                                              (when-let [quest ((:answer @state) port.sender.tab.id)]
                                                (js/console.log "Answer window connected")
                                                (js-await [response (fetch/get quest)]
-                                                         (.postMessage port (:body response)))
+                                                         (.postMessage port (clj->js {:data (:body response)
+                                                                                      :action "init"})))
                                                (when js/goog.DEBUG
                                                  (remove-popup-windows))
                                                (create-question-window port))
@@ -52,7 +53,8 @@
                                                (.addListener port*.onMessage
                                                              (fn [message]
                                                                (js/console.log "Received message from answer window")
-                                                               (.postMessage port message))))))
+                                                               (.postMessage port message)))
+                                               (.postMessage port* (clj->js {:action "sync"})))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
