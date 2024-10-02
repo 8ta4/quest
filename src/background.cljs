@@ -43,7 +43,8 @@
                                              (when-let [quest ((:answer @state) port.sender.tab.id)]
                                                (js/console.log "Answer window connected")
                                                (js-await [response (fetch/get quest)]
-                                                         (.postMessage port (:body response)))
+                                                         (.postMessage port (clj->js {:data (:body response)
+                                                                                      :action "init"})))
                                                (when js/goog.DEBUG
                                                  (remove-popup-windows))
                                                (create-question-window port))
