@@ -4,7 +4,8 @@
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]))
 
-(def state (atom {:answer {}}))
+(def state (atom {:answer {}
+                  :question {}}))
 
 (defn eval-path-setval
   "Sets the value `aval` at the specified path `apath` within the `structure`.
