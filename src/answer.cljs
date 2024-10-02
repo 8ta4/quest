@@ -180,7 +180,7 @@
 (defn init
   []
   (.onMessage.addListener (js/chrome.runtime.connect)
-                          (fn [message]
+                          (fn [message sender]
                             (js/console.log "Received message from background script")
                             (let [message* (js->clj message {:keywordize-keys true})]
                               (case (:action message*)
@@ -194,4 +194,5 @@
                                                     :id 0})
                                            (when js/goog.DEBUG
                                              (reset! body (js/document.body.cloneNode true)))
-                                           (after-load)))))))
+                                           (after-load))
+                                "sync" (.postMessage sender (clj->js @state)))))))

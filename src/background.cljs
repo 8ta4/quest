@@ -53,7 +53,8 @@
                                                (.addListener port*.onMessage
                                                              (fn [message]
                                                                (js/console.log "Received message from answer window")
-                                                               (.postMessage port message))))))
+                                                               (.postMessage port message)))
+                                               (.postMessage port* (clj->js {:action "sync"})))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
