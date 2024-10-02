@@ -192,6 +192,10 @@
                                                                     parse
                                                                     (js->clj {:keywordize-keys true})))
                                                     :id 0})
+                                           (add-watch state
+                                                      :change
+                                                      (fn [_ _ _ new-state]
+                                                        (.postMessage sender (clj->js new-state))))
                                            (when js/goog.DEBUG
                                              (reset! body (js/document.body.cloneNode true)))
                                            (after-load))
