@@ -186,7 +186,10 @@
                               (case (:action message*)
                                 "init" (do (reset! state {:qa (setval [ALL :visible]
                                                                       false
-                                                                      (js->clj (parse (:data message*)) {:keywordize-keys true}))
+                                                                      (-> message*
+                                                                          :data
+                                                                          parse
+                                                                          (js->clj {:keywordize-keys true})))
                                                           :id 0})
                                            (when js/goog.DEBUG
                                              (reset! body (js/document.body.cloneNode true)))
