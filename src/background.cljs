@@ -14,6 +14,7 @@
   (setval apath aval structure))
 
 (defn create-question-window [port]
+;; Using the production URL during development can lead to a DOMException: "The operation is insecure."
   (js/chrome.windows.create (clj->js {:url (str (if js/goog.DEBUG
                                                   "http://localhost:8000"
                                                   "https://8ta4.github.io/quest/public")
