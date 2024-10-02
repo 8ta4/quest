@@ -14,7 +14,7 @@
   (setval apath aval structure))
 
 (defn create-question-window [port]
-  (js/chrome.windows.create (clj->js {:url "http://localhost:8000/question.html"
+  (js/chrome.windows.create (clj->js {:url "https://8ta4.github.io/quest/public/question.html"
                                       :type "popup"})
                             (fn [window]
                               (eval-path-setval [ATOM
