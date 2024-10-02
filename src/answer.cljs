@@ -184,13 +184,14 @@
                             (js/console.log "Received message from background script")
                             (let [message* (js->clj message {:keywordize-keys true})]
                               (case (:action message*)
-                                "init" (do (reset! state {:qa (setval [ALL :visible]
-                                                                      false
-                                                                      (-> message*
-                                                                          :data
-                                                                          parse
-                                                                          (js->clj {:keywordize-keys true})))
-                                                          :id 0})
+                                "init" (do (reset! state
+                                                   {:qa (setval [ALL :visible]
+                                                                false
+                                                                (-> message*
+                                                                    :data
+                                                                    parse
+                                                                    (js->clj {:keywordize-keys true})))
+                                                    :id 0})
                                            (when js/goog.DEBUG
                                              (reset! body (js/document.body.cloneNode true)))
                                            (after-load)))))))
