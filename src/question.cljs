@@ -1,11 +1,7 @@
 (ns question
   (:require ["@mui/material/List" :default List]
             ["@mui/material/ListItemButton" :default ListItemButton]
-            [lambdaisland.uri :refer [query-map]]
             [reagent.dom.client :as client]))
-
-(def id
-  (int (:id (query-map js/location.href))))
 
 (defn questions
   [state]
@@ -21,9 +17,10 @@
 
 (defn init
   []
-  (js/console.log "Question script initialized")
-  (.onMessage.addListener (js/chrome.tabs.connect id)
+  (js/console.log "Initializing the question module")
+  (.onMessage.addListener (js/chrome.runtime.connect)
                           (fn [message]
+                            (js/console.log "Received message from background script")
                             (client/render root
                                            [questions (js->clj message
                                                                {:keywordize-keys true})]))))

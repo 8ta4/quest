@@ -22,8 +22,7 @@
       --devtools \
       --pref devtools.toolbox.alwaysOnTop=false \
       --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" \
-      -s public \
-      --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml"
+      -s public
   '';
   scripts.content.exec = ''
     brew bundle
@@ -32,14 +31,12 @@
       --no-reload \
       --pref devtools.toolbox.alwaysOnTop=false \
       --pref extensions.webextensions.base-content-security-policy.v3="script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval';" \
-      -s public \
-      --start-url "http://localhost:8000?quest=http://localhost:8000/index.yaml"
+      -s public
   '';
   scripts.hello.exec = "echo hello from $GREET";
   scripts.release.exec = ''
     rm -rf release/js
-    shadow-cljs release background content question --config-merge '{:output-dir "release/js"}'
-    cp public/question.html release/
+    shadow-cljs release background answer question --config-merge '{:output-dir "release/js"}'
     zip -r release.zip release
   '';
 

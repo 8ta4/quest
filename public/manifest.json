@@ -5,11 +5,17 @@
   },
   "content_scripts": [
     {
-      "js": ["js/content.js"],
-      "matches": ["<all_urls>"]
+      "js": ["js/answer.js"],
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["http://localhost/question.html"]
+    },
+    {
+      "js": ["js/question.js"],
+      "matches": ["http://localhost/question.html"]
     }
   ],
   "manifest_version": 3,
   "name": "quest",
+  "permissions": ["webNavigation"],
   "version": "0.1.0"
 }

@@ -10,12 +10,6 @@
 ;; https://github.com/shadow-cljs/shadow-cljs.github.io/blob/dd4be69c0144dc0b0ae1cbe8a715eb2be7608ece/docs/UsersGuide.adoc?plain=1#L451
  :dev-http {8000 "public"}
  :builds
-;; Separate builds for :background and :question are necessary to avoid
-;; a syntax error in the release build of 'background.js'.
-;; The error is related to a missing export named '$jscomp' in the module
-;; 'moz-extension://.../js/base.js' when using a single build.
-;; This separation ensures that each build can have its own configuration
-;; and prevents conflicts between different parts of the extension.
  {:background
   {:target :esm
    :output-dir "public/js"
@@ -24,14 +18,12 @@
 ;; Using :simple optimization instead of :advanced
 ;; Advanced optimization may cause silent runtime failures in browser extensions
    :compiler-options {:optimizations :simple}}
-  :content
+  :answer
   {:target :browser
-   :modules {:content {:init-fn content/init}}
-   :devtools {:after-load content/after-load}
+   :modules {:answer {:init-fn answer/init}}
+   :devtools {:after-load answer/after-load}
    :compiler-options {:optimizations :simple}}
   :question
-  {:target :esm
-   :output-dir "public/js"
-   :runtime :custom
+  {:target :browser
    :modules {:question {:init-fn question/init}}
    :compiler-options {:optimizations :simple}}}}
