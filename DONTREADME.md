@@ -112,7 +112,7 @@ Technically, yes, but when you do that, the new tab will close right away, and i
 
 If you need to view the document in a separate tab, you can do that, but without the query string.
 
-> Does `quest` detect the URL using a content script or a background script? (Planned)
+> Does `quest` detect the URL using a content script or a background script?
 
 `quest` uses a background script to detect the URL. Content scripts can run at different times during the page load, and sometimes other scripts or extensions could change the URL before the content script has a chance to grab it.
 
