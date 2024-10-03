@@ -46,7 +46,8 @@
   []
   (js/console.log "Background script initialized")
   (js/chrome.tabs.onRemoved.addListener (fn [tab-id]
-                                          (invert-and-merge (:answer-question @state))))
+                                          (when-let [tab-id* ((invert-and-merge (:answer-question @state)) tab-id)]
+                                            (js/chrome.tabs.remove tab-id*))))
   (js/chrome.runtime.onConnect.addListener (fn [port]
                                              (when-let [quest ((:answer-quest @state) port.sender.tab.id)]
                                                (js/console.log "Answer tab connected")
