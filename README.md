@@ -92,13 +92,13 @@ Yep, you can use `quest` with all sorts of content beyond just the demo page. Ju
 
 Absolutely. Just open the page using its regular URL, without any `quest`-related query string.
 
-> If I close the answer tab, does the question tab close too? (Planned)
+> If I close the answer tab or navigate away, does the question tab close? (Planned)
 
-Yep, if you close the answer tab, the question tab will close as well.
+Yep, if you close the answer tab or navigate away, the question tab will close.
 
-> If I close the question tab, does the answer tab close too? (Planned)
+> If I close the question tab or navigate away, does the answer tab close? (Planned)
 
-Yes, it works the same way. Closing the question tab will also close the answer tab.
+Yes, it works the same way. if you close the question tab or navigate away, the answer tab will close.
 
 > Can I have multiple documents open in `quest` at the same time?
 
