@@ -4,8 +4,8 @@
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]))
 
-(def state (atom {:answer {}
-                  :question {}
+(def state (atom {:answer-quest {}
+                  :question-port {}
                   :answer-question {}}))
 
 (defn eval-path-setval
@@ -29,7 +29,7 @@
                                            first
                                            :id)]
                                 (eval-path-setval [ATOM
-                                                   :question
+                                                   :question-port
                                                    id]
                                                   port
                                                   (eval-path-setval [ATOM
@@ -42,13 +42,13 @@
   []
   (js/console.log "Background script initialized")
   (js/chrome.runtime.onConnect.addListener (fn [port]
-                                             (when-let [quest ((:answer @state) port.sender.tab.id)]
+                                             (when-let [quest ((:answer-quest @state) port.sender.tab.id)]
                                                (js/console.log "Answer window connected")
                                                (js-await [response (fetch/get quest)]
                                                          (.postMessage port (clj->js {:data (:body response)
                                                                                       :action "init"})))
                                                (create-question-window port))
-                                             (when-let [port* ((:question @state) port.sender.tab.id)]
+                                             (when-let [port* ((:question-port @state) port.sender.tab.id)]
                                                (js/console.log "Question window connected")
                                                (.addListener port*.onMessage
                                                              (fn [message]
@@ -58,7 +58,7 @@
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
-                                                       (eval-path-setval [ATOM :answer details.tabId] quest state))))
+                                                       (eval-path-setval [ATOM :answer-quest details.tabId] quest state))))
   (when js/goog.DEBUG
     (js-await [windows (js/chrome.windows.getAll)]
               (->> (js->clj windows {:keywordize-keys true})
