@@ -54,11 +54,11 @@ Press `⌘ + j` for the next hidden question. This is inspired by the Vim comman
 
 Press `⌘ + k` for the previous hidden question. This is inspired by the Vim command for moving the cursor up.
 
-> How do I select the question whose segment is the topmost within the answer window's viewport? (Planned)
+> How do I select the question whose segment is the topmost within the answer tab's viewport? (Planned)
 
 Hit the `s` key. I like to think of "s" for "select."
 
-> How do I select the question whose segment is the lowermost within the answer window's viewport? (Planned)
+> How do I select the question whose segment is the lowermost within the answer tab's viewport? (Planned)
 
 Press `Shift + s`. Again, "s" for "select."
 
@@ -92,17 +92,17 @@ Yep, you can use `quest` with all sorts of content beyond just the demo page. Ju
 
 Absolutely. Just open the page using its regular URL, without any `quest`-related query string.
 
-> If I close the answer window, does the question window close too? (Planned)
+> If I close the answer tab, does the question tab close too? (Planned)
 
-Yep, if you close the answer window, the question window will close as well.
+Yep, if you close the answer tab, the question tab will close as well.
 
-> If I close the question window, does the answer window close too? (Planned)
+> If I close the question tab, does the answer tab close too? (Planned)
 
-Yes, it works the same way. Closing the question window will also close the answer window.
+Yes, it works the same way. Closing the question tab will also close the answer tab.
 
 > Can I have multiple documents open in `quest` at the same time?
 
-Yes, you can! `quest` is designed to let you work with multiple documents simultaneously. When you open a new document, it'll use the current answer window for its content and pop open a new question window just for that document.
+Yes, you can! `quest` is designed to let you work with multiple documents simultaneously. When you open a new document, it'll use the current answer tab for its content and pop open a new question tab just for that document.
 
 > If I close the page or navigate away, can I pick up where I left off? (Planned)
 
@@ -160,8 +160,8 @@ Yes, you can! But you'll need to extract the HTML from the EPUB first. If the co
 
 > Can I use `quest` with [Vimium](https://github.com/philc/vimium)?
 
-Totally! `quest` is designed to play nicely with Vimium both in the answer window and the question window.
+Totally! `quest` is designed to play nicely with Vimium both in the answer tab and the question tab.
 
 > Can I use `quest` with [Dark Reader](https://github.com/darkreader/darkreader)?
 
-Yes, `quest` is compatible with Dark Reader in both the answer and question windows.
+Yes, `quest` is compatible with Dark Reader in both the answer and question tabs.

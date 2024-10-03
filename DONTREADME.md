@@ -78,11 +78,11 @@ The `devenv.nix` file has got all the scripts you need.
 
 ### Navigation
 
-> When a new question window opens, which window is focused: the question window or the answer window? (Planned)
+> When a new question tab opens, which window is focused: the question tab or the answer tab? (Planned)
 
-The question window gets focused. Since it's a new window, it might pop up in an inconvenient spot. By focusing on it first, it gives users the chance to move it using keyboard shortcuts.
+The question tab gets focused. Since it's a new window, it might pop up in an inconvenient spot. By focusing on it first, it gives users the chance to move it using keyboard shortcuts.
 
-If you need to get back to the answer window, switching focus is easy with shortcuts like `Cmd + ~`.
+If you need to get back to the answer tab, switching focus is easy with shortcuts like `Cmd + ~`.
 
 > Does `quest` use `chrome.commands`?
 
@@ -124,17 +124,17 @@ Technically, yes, you can do that by using Chrome's API to combine them into a s
 
 - Flexibility: You can arrange the windows side by side, on different monitors, or in any setup that suits your reading style and screen space.
 
-> Is the question window in `quest` a `normal` window or a `popup`?
+> Is the question tab in `quest` a `normal` window or a `popup`?
 
-The question window in `quest` actually uses a `popup` type. Here's why:
+The question tab in `quest` actually uses a `popup` type. Here's why:
 
 - Appearance: With no address bar or tabs cluttering the view, the window looks cleaner. This is especially helpful if you're working on a smaller screen.
 
 - Functionality: Since it's a `popup`, you can't open new tabs. It prevents you from navigating away from the questions.
 
-> Does `quest` use Chrome extension message passing or `window.postMessage()` to communicate between the answer window and the question window?
+> Does `quest` use Chrome extension message passing or `window.postMessage()` to communicate between the answer tab and the question tab?
 
-`quest` uses Chrome extension message passing to handle communication between the answer window and the question window. It simplifies things by removing the need for manual origin checking, which can be overlooked when using `window.postMessage()`. By sticking with Chrome extension message passing, communication is restricted to within the extension.
+`quest` uses Chrome extension message passing to handle communication between the answer tab and the question tab. It simplifies things by removing the need for manual origin checking, which can be overlooked when using `window.postMessage()`. By sticking with Chrome extension message passing, communication is restricted to within the extension.
 
 > Does `quest` assume a left-to-right language or right-to-left language?
 
