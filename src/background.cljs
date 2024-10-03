@@ -1,5 +1,6 @@
 (ns background
-  (:require [com.rpl.specter :refer [ATOM setval]]
+  (:require [clojure.set :refer [map-invert]]
+            [com.rpl.specter :refer [ATOM setval]]
             [lambdaisland.fetch :as fetch]
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]))
@@ -38,9 +39,14 @@
                                                                     id
                                                                     state))))))
 
+(defn invert-and-merge [m]
+  (merge m (map-invert m)))
+
 (defn init
   []
   (js/console.log "Background script initialized")
+  (js/chrome.tabs.onRemoved.addListener (fn [tab-id]
+                                          (invert-and-merge (:answer-question @state))))
   (js/chrome.runtime.onConnect.addListener (fn [port]
                                              (when-let [quest ((:answer-quest @state) port.sender.tab.id)]
                                                (js/console.log "Answer tab connected")
