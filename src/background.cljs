@@ -5,7 +5,8 @@
             [shadow.cljs.modern :refer [js-await]]))
 
 (def state (atom {:answer {}
-                  :question {}}))
+                  :question {}
+                  :answer-question {}}))
 
 (defn eval-path-setval
   "Sets the value `aval` at the specified path `apath` within the `structure`.
@@ -22,15 +23,20 @@
                                                 "/question.html")
                                       :type "popup"})
                             (fn [window]
-                              (eval-path-setval [ATOM
-                                                 :question
-                                                 (-> window
-                                                     (js->clj {:keywordize-keys true})
-                                                     :tabs
-                                                     first
-                                                     :id)]
-                                                port
-                                                state))))
+                              (let [id (-> window
+                                           (js->clj {:keywordize-keys true})
+                                           :tabs
+                                           first
+                                           :id)]
+                                (eval-path-setval [ATOM
+                                                   :question
+                                                   id]
+                                                  port
+                                                  (eval-path-setval [ATOM
+                                                                     :answer-question
+                                                                     port.sender.tab.id]
+                                                                    id
+                                                                    state))))))
 
 (defn init
   []
