@@ -43,16 +43,16 @@
   (js/console.log "Background script initialized")
   (js/chrome.runtime.onConnect.addListener (fn [port]
                                              (when-let [quest ((:answer-quest @state) port.sender.tab.id)]
-                                               (js/console.log "Answer window connected")
+                                               (js/console.log "Answer tab connected")
                                                (js-await [response (fetch/get quest)]
                                                          (.postMessage port (clj->js {:data (:body response)
                                                                                       :action "init"})))
                                                (create-question-window port))
                                              (when-let [port* ((:question-port @state) port.sender.tab.id)]
-                                               (js/console.log "Question window connected")
+                                               (js/console.log "Question tab connected")
                                                (.addListener port*.onMessage
                                                              (fn [message]
-                                                               (js/console.log "Received message from answer window")
+                                                               (js/console.log "Received message from answer tab")
                                                                (.postMessage port message)))
                                                (.postMessage port* (clj->js {:action "sync"})))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
