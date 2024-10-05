@@ -136,7 +136,12 @@
 
 (defn toggle
   []
-  (run! toggle-visibility (js->clj (js/document.getElementsByClassName (:id @state))))
+  (let [elements (js->clj (js/document.getElementsByClassName (:id @state)))]
+    (run! toggle-visibility elements)
+    (when-let [element (first (remove (comp str/blank?
+                                            #(.-innerText %))
+                                      elements))]
+      (.scrollIntoView element)))
   (eval-path-transform [ATOM :qa (nthpath (:id @state)) :visible] #(not %) state))
 
 (defn move-to-next
