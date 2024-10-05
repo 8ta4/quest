@@ -64,8 +64,10 @@
                                                                            port.sender.tab.id)]
                                                               (eval-path-setval [ATOM
                                                                                  (multi-path :answer-quest
-                                                                                             :answer-question)
-                                                                                 port.sender.tab.id]
+                                                                                             :answer-question
+                                                                                             :question-port)
+                                                                                 (multi-path id
+                                                                                             port.sender.tab.id)]
                                                                                 NONE
                                                                                 state)
                                                               (js/chrome.tabs.remove id)))))
