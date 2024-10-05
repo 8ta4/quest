@@ -66,6 +66,7 @@
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
                                                        (eval-path-setval [ATOM :answer-quest details.tabId] quest state))))
+  (js/setInterval js/chrome.runtime.getPlatformInfo 10000)
   (when js/goog.DEBUG
     (js-await [windows (js/chrome.windows.getAll)]
               (->> (js->clj windows {:keywordize-keys true})
