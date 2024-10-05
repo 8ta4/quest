@@ -1,6 +1,6 @@
 (ns background
   (:require [clojure.set :refer [map-invert]]
-            [com.rpl.specter :refer [ATOM NONE multi-path setval]]
+            [com.rpl.specter :refer [ATOM multi-path NONE setval]]
             [lambdaisland.fetch :as fetch]
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]))
