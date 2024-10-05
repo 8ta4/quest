@@ -66,6 +66,7 @@
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
                                                        (eval-path-setval [ATOM :answer-quest details.tabId] quest state))))
+;; https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle#:~:text=Chrome%20terminates%20a,resets%20this%20timer.
 ;; The following line is used to periodically call an extension API to prevent the service worker
 ;; from being terminated due to inactivity. Chrome terminates a service worker after 30 seconds
 ;; of inactivity, but calling an extension API like `chrome.runtime.getPlatformInfo` resets this timer.
