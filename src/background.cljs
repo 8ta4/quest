@@ -1,6 +1,6 @@
 (ns background
   (:require [clojure.set :refer [map-invert]]
-            [com.rpl.specter :refer [ATOM setval]]
+            [com.rpl.specter :refer [ATOM NONE multi-path setval]]
             [lambdaisland.fetch :as fetch]
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]))
@@ -62,6 +62,12 @@
                                              (.addListener port.onDisconnect
                                                            #(when-let [id ((invert-and-merge (:answer-question @state))
                                                                            port.sender.tab.id)]
+                                                              (eval-path-setval [ATOM
+                                                                                 (multi-path :answer-quest
+                                                                                             :answer-question)
+                                                                                 port.sender.tab.id]
+                                                                                NONE
+                                                                                state)
                                                               (js/chrome.tabs.remove id)))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
