@@ -45,9 +45,6 @@
 (defn init
   []
   (js/console.log "Background script initialized")
-  (js/chrome.tabs.onRemoved.addListener (fn [tab-id]
-                                          (when-let [tab-id* ((invert-and-merge (:answer-question @state)) tab-id)]
-                                            (js/chrome.tabs.remove tab-id*))))
   (js/chrome.runtime.onConnect.addListener (fn [port]
                                              (when-let [quest ((:answer-quest @state) port.sender.tab.id)]
                                                (js/console.log "Answer tab connected")
@@ -61,7 +58,11 @@
                                                              (fn [message]
                                                                (js/console.log "Received message from answer tab")
                                                                (.postMessage port message)))
-                                               (.postMessage port* (clj->js {:action "sync"})))))
+                                               (.postMessage port* (clj->js {:action "sync"})))
+                                             (.addListener port.onDisconnect
+                                                           #(when-let [id ((invert-and-merge (:answer-question @state))
+                                                                           port.sender.tab.id)]
+                                                              (js/chrome.tabs.remove id)))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
