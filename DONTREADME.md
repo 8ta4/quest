@@ -90,13 +90,17 @@ No, it doesn't. `chrome.commands` only supports [up to 4 shortcuts](https://deve
 
 Instead, `quest` relies on event listeners in the content scripts.
 
-> How does the viewport adjust when you reveal an answer? (Planned)
+> Can the viewport adjust when you reveal an answer? (Planned)
 
-When you reveal an answer, the viewport automatically scrolls to the start of the current segment. Here's why:
+Yes, it can! Whenever you reveal an answer, the viewport may adjust so that the beginning of the newly revealed content is as close to the top of the screen as possible. In most cases, it'll position the content right at the top. But, if you're near the end of the document, it might not be able to place it exactly there.
 
-- Expectation: You probably expect to see new content when you reveal an answer.
+This viewport adjustment improves your reading experience in several ways:
 
-- Context: This adjustment nudges you to read through the whole segment from the top. That way, you've got all the context before you reaching the answer.
+1. Consistency: You'll know where to look for the new content. It's consistently positioned at the top or as close to it as possible.
+
+1. Scrolling: If the content is larger than your screen, you'll be able to read as much as possible before needing to scroll again.
+
+1. Eye Movement: Even when the content can't be placed exactly at the top, it's positioned as high as possible, minimizing how far your eyes need to move.
 
 > Does `quest` use inline styles, internal styles, or external styles to control the visibility of content?
 
