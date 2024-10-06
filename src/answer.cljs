@@ -168,9 +168,9 @@
   [event]
   (js/console.log "Key down event detected:")
   (js/console.log event.key)
-  (when (shortcuts event.key)
+  (when-let [command (shortcuts event.key)]
     (.preventDefault event)
-    ((shortcuts event.key))))
+    (command)))
 
 (when js/goog.DEBUG
   (defonce body (atom nil)))
