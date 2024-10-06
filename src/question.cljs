@@ -15,6 +15,11 @@
 (def root
   (client/create-root (js/document.getElementById "app")))
 
+(defn handle
+  [event]
+  (js/console.log "Key down event detected:")
+  (js/console.log event.key))
+
 (defn init
   []
   (js/console.log "Initializing the question module")
@@ -23,4 +28,5 @@
                             (js/console.log "Received message from background script")
                             (client/render root
                                            [questions (js->clj message
-                                                               {:keywordize-keys true})]))))
+                                                               {:keywordize-keys true})])
+                            (set! js/document.onkeydown handle))))
