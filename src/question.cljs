@@ -13,7 +13,8 @@
   [:> List
    (map-indexed (fn [index {:keys [question answer]}]
                   ^{:key answer} [:> ListItemButton
-                                  {:selected (= index (:id state))}
+                                  (when (= index (:id state))
+                                    {:style {:background-color "lightgray"}})
                                   question])
                 (:qa state))])
 
