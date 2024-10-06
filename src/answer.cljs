@@ -208,6 +208,6 @@
                                                 (after-load))
                                  core/sync #(.postMessage sender (clj->js @state))
                                  core/keydown #(do (js/console.log (:data message*))
-                                                   (when (shortcuts (:data message*))
-                                                     ((shortcuts (:data message*)))))}
+                                                   (when-let [command (shortcuts (:data message*))]
+                                                     (command)))}
                                 (:action message*)))))))
