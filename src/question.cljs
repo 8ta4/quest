@@ -1,7 +1,11 @@
 (ns question
   (:require ["@mui/material/List" :default List]
             ["@mui/material/ListItemButton" :default ListItemButton]
+            [core]
             [reagent.dom.client :as client]))
+
+(defonce port
+  (js/chrome.runtime.connect))
 
 (defn questions
   [state]
@@ -12,15 +16,23 @@
                                   question])
                 (:qa state))])
 
-(def root
+(defonce root
   (client/create-root (js/document.getElementById "app")))
+
+(defn handle
+  [event]
+  (js/console.log "Key down event detected:")
+  (js/console.log event.key)
+  (.postMessage port (clj->js {:action core/keydown
+                               :data event.key})))
 
 (defn init
   []
   (js/console.log "Initializing the question module")
-  (.onMessage.addListener (js/chrome.runtime.connect)
+  (.onMessage.addListener port
                           (fn [message]
                             (js/console.log "Received message from background script")
                             (client/render root
                                            [questions (js->clj message
-                                                               {:keywordize-keys true})]))))
+                                                               {:keywordize-keys true})])
+                            (set! js/document.onkeydown handle))))

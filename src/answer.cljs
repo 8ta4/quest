@@ -1,6 +1,7 @@
 (ns answer
   (:require [clojure.string :as str]
             [com.rpl.specter :refer [ALL ATOM END nthpath setval transform]]
+            [core]
             [yaml :refer [parse]]))
 
 (defonce state
@@ -167,9 +168,9 @@
   [event]
   (js/console.log "Key down event detected:")
   (js/console.log event.key)
-  (when (shortcuts event.key)
+  (when-let [command (shortcuts event.key)]
     (.preventDefault event)
-    ((shortcuts event.key))))
+    (command)))
 
 (when js/goog.DEBUG
   (defonce body (atom nil)))
@@ -190,20 +191,22 @@
                           (fn [message sender]
                             (js/console.log "Received message from background script")
                             (let [message* (js->clj message {:keywordize-keys true})]
-                              (case (:action message*)
-                                "init" (do (reset! state
-                                                   {:qa (setval [ALL :visible]
-                                                                false
-                                                                (-> message*
-                                                                    :data
-                                                                    parse
-                                                                    (js->clj {:keywordize-keys true})))
-                                                    :id 0})
-                                           (add-watch state
-                                                      :change
-                                                      (fn [_ _ _ new-state]
-                                                        (.postMessage sender (clj->js new-state))))
-                                           (when js/goog.DEBUG
-                                             (reset! body (js/document.body.cloneNode true)))
-                                           (after-load))
-                                "sync" (.postMessage sender (clj->js @state)))))))
+                              (({core/init #(do (reset! state
+                                                        {:qa (setval [ALL :visible]
+                                                                     false
+                                                                     (-> message*
+                                                                         :data
+                                                                         parse
+                                                                         (js->clj {:keywordize-keys true})))
+                                                         :id 0})
+                                                (add-watch state
+                                                           :change
+                                                           (fn [_ _ _ new-state]
+                                                             (.postMessage sender (clj->js new-state))))
+                                                (when js/goog.DEBUG
+                                                  (reset! body (js/document.body.cloneNode true)))
+                                                (after-load))
+                                 core/sync #(.postMessage sender (clj->js @state))
+                                 core/keydown #(when-let [command (shortcuts (:data message*))]
+                                                 (command))}
+                                (:action message*)))))))

@@ -1,6 +1,7 @@
 (ns background
   (:require [clojure.set :refer [map-invert]]
             [com.rpl.specter :refer [ATOM multi-path NONE setval]]
+            [core]
             [lambdaisland.fetch :as fetch]
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]))
@@ -42,6 +43,14 @@
 (defn invert-and-merge [m]
   (merge m (map-invert m)))
 
+(defn relay
+  [port port*]
+  (.addListener port*.onMessage
+                (fn [message]
+                  (js/console.log "Received message")
+                  (js/console.log message)
+                  (.postMessage port message))))
+
 (defn init
   []
   (js/console.log "Background script initialized")
@@ -50,15 +59,13 @@
                                                (js/console.log "Answer tab connected")
                                                (js-await [response (fetch/get quest)]
                                                          (.postMessage port (clj->js {:data (:body response)
-                                                                                      :action "init"})))
+                                                                                      :action core/init})))
                                                (create-question-window port))
                                              (when-let [port* ((:question-port @state) port.sender.tab.id)]
                                                (js/console.log "Question tab connected")
-                                               (.addListener port*.onMessage
-                                                             (fn [message]
-                                                               (js/console.log "Received message from answer tab")
-                                                               (.postMessage port message)))
-                                               (.postMessage port* (clj->js {:action "sync"})))
+                                               (relay port port*)
+                                               (relay port* port)
+                                               (.postMessage port* (clj->js {:action core/sync})))
                                              (.addListener port.onDisconnect
                                                            #(when-let [id ((invert-and-merge (:answer-question @state))
                                                                            port.sender.tab.id)]
