@@ -207,7 +207,6 @@
                                                   (reset! body (js/document.body.cloneNode true)))
                                                 (after-load))
                                  core/sync #(.postMessage sender (clj->js @state))
-                                 core/keydown #(do (js/console.log (:data message*))
-                                                   (when-let [command (shortcuts (:data message*))]
-                                                     (command)))}
+                                 core/keydown #(when-let [command (shortcuts (:data message*))]
+                                                 (command))}
                                 (:action message*)))))))
