@@ -26,4 +26,5 @@
   :question
   {:target :browser
    :modules {:question {:init-fn question/init}}
+   :devtools {:after-load question/after-load}
    :compiler-options {:optimizations :simple}}}}

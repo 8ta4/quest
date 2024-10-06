@@ -13,7 +13,8 @@
   [:> List
    (map-indexed (fn [index {:keys [question answer]}]
                   ^{:key answer} [:> ListItemButton
-                                  {:selected (= index (:id state))}
+                                  (when (= index (:id state))
+                                    {:style {:background-color "lightgray"}})
                                   question])
                 (:qa state))])
 
@@ -29,13 +30,19 @@
     (.postMessage port (clj->js {:action core/keydown
                                  :data event.key}))))
 
+(defonce state
+  (atom nil))
+
+(defn after-load
+  []
+  (client/render root [questions (js->clj @state {:keywordize-keys true})])
+  (set! js/document.onkeydown handle))
+
 (defn init
   []
   (js/console.log "Initializing the question module")
   (.onMessage.addListener port
                           (fn [message]
                             (js/console.log "Received message from background script")
-                            (client/render root
-                                           [questions (js->clj message
-                                                               {:keywordize-keys true})])
-                            (set! js/document.onkeydown handle))))
+                            (reset! state (js->clj message {:keywordize-keys true}))
+                            (after-load))))
