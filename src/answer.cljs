@@ -1,6 +1,7 @@
 (ns answer
   (:require [clojure.string :as str]
             [com.rpl.specter :refer [ALL ATOM END nthpath setval transform]]
+            [core]
             [yaml :refer [parse]]))
 
 (defonce state
@@ -190,20 +191,20 @@
                           (fn [message sender]
                             (js/console.log "Received message from background script")
                             (let [message* (js->clj message {:keywordize-keys true})]
-                              (case (:action message*)
-                                "init" (do (reset! state
-                                                   {:qa (setval [ALL :visible]
-                                                                false
-                                                                (-> message*
-                                                                    :data
-                                                                    parse
-                                                                    (js->clj {:keywordize-keys true})))
-                                                    :id 0})
-                                           (add-watch state
-                                                      :change
-                                                      (fn [_ _ _ new-state]
-                                                        (.postMessage sender (clj->js new-state))))
-                                           (when js/goog.DEBUG
-                                             (reset! body (js/document.body.cloneNode true)))
-                                           (after-load))
-                                "sync" (.postMessage sender (clj->js @state)))))))
+                              (({core/init #(do (reset! state
+                                                        {:qa (setval [ALL :visible]
+                                                                     false
+                                                                     (-> message*
+                                                                         :data
+                                                                         parse
+                                                                         (js->clj {:keywordize-keys true})))
+                                                         :id 0})
+                                                (add-watch state
+                                                           :change
+                                                           (fn [_ _ _ new-state]
+                                                             (.postMessage sender (clj->js new-state))))
+                                                (when js/goog.DEBUG
+                                                  (reset! body (js/document.body.cloneNode true)))
+                                                (after-load))
+                                 core/sync #(.postMessage sender (clj->js @state))}
+                                (:action message*)))))))

@@ -1,6 +1,7 @@
 (ns background
   (:require [clojure.set :refer [map-invert]]
             [com.rpl.specter :refer [ATOM multi-path NONE setval]]
+            [core]
             [lambdaisland.fetch :as fetch]
             [lambdaisland.uri :refer [query-map]]
             [shadow.cljs.modern :refer [js-await]]))
@@ -50,7 +51,7 @@
                                                (js/console.log "Answer tab connected")
                                                (js-await [response (fetch/get quest)]
                                                          (.postMessage port (clj->js {:data (:body response)
-                                                                                      :action "init"})))
+                                                                                      :action core/init})))
                                                (create-question-window port))
                                              (when-let [port* ((:question-port @state) port.sender.tab.id)]
                                                (js/console.log "Question tab connected")
@@ -58,7 +59,7 @@
                                                              (fn [message]
                                                                (js/console.log "Received message from answer tab")
                                                                (.postMessage port message)))
-                                               (.postMessage port* (clj->js {:action "sync"})))
+                                               (.postMessage port* (clj->js {:action core/sync})))
                                              (.addListener port.onDisconnect
                                                            #(when-let [id ((invert-and-merge (:answer-question @state))
                                                                            port.sender.tab.id)]
