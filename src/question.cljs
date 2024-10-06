@@ -12,7 +12,7 @@
                                   question])
                 (:qa state))])
 
-(def root
+(defonce root
   (client/create-root (js/document.getElementById "app")))
 
 (defn handle
