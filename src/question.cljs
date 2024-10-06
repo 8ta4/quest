@@ -1,6 +1,7 @@
 (ns question
   (:require ["@mui/material/List" :default List]
             ["@mui/material/ListItemButton" :default ListItemButton]
+            [answer]
             [core]
             [reagent.dom.client :as client]))
 
@@ -23,8 +24,10 @@
   [event]
   (js/console.log "Key down event detected:")
   (js/console.log event.key)
-  (.postMessage port (clj->js {:action core/keydown
-                               :data event.key})))
+  (when (answer/shortcuts event.key)
+    (.preventDefault event)
+    (.postMessage port (clj->js {:action core/keydown
+                                 :data event.key}))))
 
 (defn init
   []
