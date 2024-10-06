@@ -5,3 +5,6 @@
 
 (def sync
   "sync")
+
+(def keydown
+  "keydown")

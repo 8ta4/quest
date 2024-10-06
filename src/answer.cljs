@@ -206,5 +206,6 @@
                                                 (when js/goog.DEBUG
                                                   (reset! body (js/document.body.cloneNode true)))
                                                 (after-load))
-                                 core/sync #(.postMessage sender (clj->js @state))}
+                                 core/sync #(.postMessage sender (clj->js @state))
+                                 core/keydown #(js/console.log (:data message*))}
                                 (:action message*)))))))

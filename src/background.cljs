@@ -43,6 +43,14 @@
 (defn invert-and-merge [m]
   (merge m (map-invert m)))
 
+(defn relay
+  [port port*]
+  (.addListener port*.onMessage
+                (fn [message]
+                  (js/console.log "Received message")
+                  (js/console.log message)
+                  (.postMessage port message))))
+
 (defn init
   []
   (js/console.log "Background script initialized")
@@ -55,10 +63,8 @@
                                                (create-question-window port))
                                              (when-let [port* ((:question-port @state) port.sender.tab.id)]
                                                (js/console.log "Question tab connected")
-                                               (.addListener port*.onMessage
-                                                             (fn [message]
-                                                               (js/console.log "Received message from answer tab")
-                                                               (.postMessage port message)))
+                                               (relay port port*)
+                                               (relay port* port)
                                                (.postMessage port* (clj->js {:action core/sync})))
                                              (.addListener port.onDisconnect
                                                            #(when-let [id ((invert-and-merge (:answer-question @state))
