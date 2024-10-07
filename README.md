@@ -92,11 +92,11 @@ Yep, you can use `quest` with all sorts of content beyond just the demo page. Ju
 
 Absolutely. Just open the page using its regular URL, without any `quest`-related query string.
 
-> If I close the answer tab or navigate away, does the question tab close? (Planned)
+> If I close the answer tab or navigate away, does the question tab close?
 
 Yep, if you close the answer tab or navigate away, the question tab will close.
 
-> If I close the question tab or navigate away, does the answer tab close? (Planned)
+> If I close the question tab or navigate away, does the answer tab close?
 
 Yes, it works the same way. if you close the question tab or navigate away, the answer tab will close.
 
