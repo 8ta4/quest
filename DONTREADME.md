@@ -78,7 +78,7 @@ The `devenv.nix` file has got all the scripts you need.
 
 ### Navigation
 
-> When a new question tab opens, which window is focused: the question tab or the answer tab? (Planned)
+> When a new question tab opens, which window is focused: the question tab or the answer tab?
 
 The question tab gets focused. Since it's a new window, it might pop up in an inconvenient spot. By focusing on it first, it gives users the chance to move it using keyboard shortcuts.
 
