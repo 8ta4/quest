@@ -190,19 +190,23 @@ YAML is chosen over JSON because:
 
 The YAML FAQ recommends "[using '.yaml' when possible.](https://yaml.org/faq.html#:~:text=Is%20there%20an,yaml%22%20when%20possible.)"
 
-> Is the structure of the YAML file a list or a map?
+> Is the structure of the YAML file a list or a map? (Planned)
 
-The YAML file is a list of maps. In each of these maps, you'll find a "question" field and an "answer" field, both using literal block scalars. Here's a quick example to show you what that looks like:
+The YAML file is a list of maps. In each of these maps, you'll find a `question` field and an `answer` field, both using literal block scalars. You'll also see a `yes` field in each map, which is a Boolean that tells you if the correct answer is "yes" (`true`) or "no" (`false`).
+
+Here's a quick example to show you what that looks like:
 
 ```yaml
 - question: |
     Will a startup that starts with good people, makes something customers actually want, and spends as little money as possible probably succeed?
   answer: |
     to start with good people, to make something customers actually want, and to spend as little money as possible. Most startups that fail do it because they fail at one of these. A startup that does all three will probably succeed.
+  yes: true
 - question: |
-    Is getting rich doable?
+    Is getting rich hard?
   answer: |
     getting rich is doable too. Hard, but doable.
+  yes: false
 ```
 
 This example is based on Paul Graham's essay "[How to Start a Startup](https://paulgraham.com/start.html)."
@@ -229,13 +233,19 @@ No, they don't have to be unique. Here's the reasoning:
 
 - Reinforcement: Sometimes, repeating questions reinforces important points that are repeated in the text.
 
-> Can a question be arbitrary text?
+> Does a question need to be in a yes/no format? (Planned)
 
-Technically, yes, a question in `quest` can be pretty much any text you want. But it's recommended that each question should:
+Yes, a question needs to be in a yes/no format. Here's why:
+
+- Decision-Making: A yes/no question helps you make a quick decision, allowing you to keep your focus as you read.
+
+- Input: You get consistent input using the same keyboard shortcut for "yes" or "no" across different questions.
+
+- Feedback: It's easy to check if you got the answer right because your response can be matched with the expected answer.
+
+Beyond being yes/no, a question should also:
 
 - Have an answer in the text: Including the answer directly in the text provides immediate validation and prevents the frustration of encountering a question you can't answer.
-
-- Be a binary choice: This helps you make quick decisions, keeping your reading momentum going. It also makes it easier to provide clear right or wrong feedback.
 
 - Not use terms unique to the author or text: Avoiding these terms ensures that you can understand the question even if you haven't read the text first. If you don't understand the question, it's hard to form a tentative answer in your mind.
 
