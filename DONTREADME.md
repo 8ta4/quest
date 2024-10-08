@@ -203,7 +203,7 @@ Here's a quick example to show you what that looks like:
     to start with good people, to make something customers actually want, and to spend as little money as possible. Most startups that fail do it because they fail at one of these. A startup that does all three will probably succeed.
   yes: true
 - question: |
-    Is getting rich hard?
+    Is getting rich easy?
   answer: |
     getting rich is doable too. Hard, but doable.
   yes: false
