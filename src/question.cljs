@@ -10,13 +10,22 @@
 (defonce port
   (js/chrome.runtime.connect))
 
+(defn is-fully-visible?
+  [element]
+  (let [rect (.getBoundingClientRect element)]
+    (and (>= rect.top 0)
+         (<= rect.bottom js/window.innerHeigt))))
+
 (defn questions
   [state]
   [:> List
    (map-indexed (fn [index {:keys [question answer yes response]}]
                   ^{:key answer} [:> ListItemButton
                                   (if (= index (:id state))
-                                    {:style {:background-color "lightgray"}}
+                                    {:ref (fn [element]
+                                            (when (and element (not (is-fully-visible? element)))
+                                              (.scrollIntoView element (clj->js {:block "nearest"}))))
+                                     :style {:background-color "lightgray"}}
                                     {})
                                   (cond
                                     (nil? response) [:> CheckCircle
