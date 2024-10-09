@@ -165,8 +165,13 @@
                     (merge selected {:response response
                                      :visible true}))
         elements (js->clj (js/document.getElementsByClassName (:id @state)))]
-    (setval [ATOM :qa (nthpath (:id @state))] selected* state)
-    (run! (partial set-visibility (:visible selected*)) elements)))
+    (run! (partial set-visibility (:visible selected*)) elements)
+    (when-not (:visible selected)
+      (when-let [element (first (remove (comp str/blank?
+                                              #(.-innerText %))
+                                        elements))]
+        (.scrollIntoView element)))
+    (setval [ATOM :qa (nthpath (:id @state))] selected* state)))
 
 (def shortcuts
   {"ArrowRight" #(answer true)
