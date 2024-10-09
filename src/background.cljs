@@ -10,13 +10,6 @@
                   :question-port {}
                   :answer-question {}}))
 
-(defn eval-path-setval
-  "Sets the value `aval` at the specified path `apath` within the `structure`.
-   The path is dynamically evaluated, allowing for runtime determination of where
-   the value should be set."
-  [apath aval structure]
-  (setval apath aval structure))
-
 (defn create-question-window [port]
 ;; Using the production URL during development can lead to a DOMException: "The operation is insecure."
   (js/chrome.windows.create (clj->js {:url (str (if js/goog.DEBUG
@@ -30,15 +23,15 @@
                                            :tabs
                                            first
                                            :id)]
-                                (eval-path-setval [ATOM
-                                                   :question-port
-                                                   id]
-                                                  port
-                                                  (eval-path-setval [ATOM
-                                                                     :answer-question
-                                                                     port.sender.tab.id]
-                                                                    id
-                                                                    state))))))
+                                (core/eval-path-setval [ATOM
+                                                        :question-port
+                                                        id]
+                                                       port
+                                                       (core/eval-path-setval [ATOM
+                                                                               :answer-question
+                                                                               port.sender.tab.id]
+                                                                              id
+                                                                              state))))))
 
 (defn invert-and-merge [m]
   (merge m (map-invert m)))
@@ -69,19 +62,19 @@
                                              (.addListener port.onDisconnect
                                                            #(when-let [id ((invert-and-merge (:answer-question @state))
                                                                            port.sender.tab.id)]
-                                                              (eval-path-setval [ATOM
-                                                                                 (multi-path :answer-quest
-                                                                                             :answer-question
-                                                                                             :question-port)
-                                                                                 (multi-path id
-                                                                                             port.sender.tab.id)]
-                                                                                NONE
-                                                                                state)
+                                                              (core/eval-path-setval [ATOM
+                                                                                      (multi-path :answer-quest
+                                                                                                  :answer-question
+                                                                                                  :question-port)
+                                                                                      (multi-path id
+                                                                                                  port.sender.tab.id)]
+                                                                                     NONE
+                                                                                     state)
                                                               (js/chrome.tabs.remove id)))))
   (js/chrome.webNavigation.onCommitted.addListener (fn [details]
                                                      (when-let [quest (:quest (query-map details.url))]
                                                        (js/console.log "URL with quest query committed")
-                                                       (eval-path-setval [ATOM :answer-quest details.tabId] quest state))))
+                                                       (core/eval-path-setval [ATOM :answer-quest details.tabId] quest state))))
 ;; https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle#:~:text=Chrome%20terminates%20a,resets%20this%20timer.
 ;; The following line is used to periodically call an extension API to prevent the service worker
 ;; from being terminated due to inactivity. Chrome terminates a service worker after 30 seconds
