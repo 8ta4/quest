@@ -152,14 +152,21 @@
   []
   (transform [ATOM :id] #(max 0 (dec %)) state))
 
+(defn set-visibility
+  [bar element]
+  (set! (.-style element) (if bar
+                            ""
+                            style)))
+
 (defn answer [response]
-  (let [selected (nth (:qa @state) (:id @state))]
-    (setval [ATOM :qa (nthpath (:id @state))]
-            (if (= (:response selected) response)
-              (setval :visible false (setval :response NONE selected))
-              (merge selected {:response response
-                               :visible true}))
-            state)))
+  (let [selected (nth (:qa @state) (:id @state))
+        selected* (if (= (:response selected) response)
+                    (setval :visible false (setval :response NONE selected))
+                    (merge selected {:response response
+                                     :visible true}))
+        elements (js->clj (js/document.getElementsByClassName (:id @state)))]
+    (setval [ATOM :qa (nthpath (:id @state))] selected* state)
+    (run! (partial set-visibility (:visible selected*)) elements)))
 
 (def shortcuts
   {"ArrowRight" #(answer true)
