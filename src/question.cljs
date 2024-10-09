@@ -17,11 +17,11 @@
          (<= rect.bottom js/window.innerHeigt))))
 
 (defn questions
-  [state]
+  [state*]
   [:> List
    (map-indexed (fn [index {:keys [question answer yes response]}]
                   ^{:key answer} [:> ListItemButton
-                                  (if (= index (:id state))
+                                  (if (= index (:id state*))
                                     {:ref (fn [element]
                                             (when (and element (not (is-fully-visible? element)))
                                               (.scrollIntoView element (clj->js {:block "nearest"}))))
@@ -33,7 +33,7 @@
                                     (= yes response) [:> CheckCircle]
                                     :else [:> Cancel])
                                   question])
-                (:qa state))])
+                (:qa state*))])
 
 (defonce root
   (client/create-root (js/document.getElementById "app")))
