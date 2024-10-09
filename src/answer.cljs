@@ -123,13 +123,6 @@
   []
   (run! (partial apply wrap-node (collect-text-nodes)) (build-segments)))
 
-(defn eval-path-transform
-  "The path (`apath`) is dynamically evaluated, and the `transform-fn` is applied
-   to the value at that path within the `structure`. This is useful when the path
-   needs to be determined at runtime."
-  [apath transform-fn structure]
-  (transform apath transform-fn structure))
-
 (defn toggle-visibility [element]
   (set! (.-style element) (if (:visible ((:qa @state) (:id @state)))
                             style
@@ -143,7 +136,7 @@
                                             #(.-innerText %))
                                       elements))]
       (.scrollIntoView element)))
-  (eval-path-transform [ATOM :qa (nthpath (:id @state)) :visible] #(not %) state))
+  (core/eval-path-transform [ATOM :qa (nthpath (:id @state)) :visible] #(not %) state))
 
 (defn move-to-next
   []
