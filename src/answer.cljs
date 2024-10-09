@@ -1,6 +1,6 @@
 (ns answer
   (:require [clojure.string :as str]
-            [com.rpl.specter :refer [ALL ATOM END nthpath setval transform]]
+            [com.rpl.specter :refer [ALL ATOM END NONE nthpath setval transform]]
             [core]
             [yaml :refer [parse]]))
 
@@ -160,7 +160,13 @@
   (transform [ATOM :id] #(max 0 (dec %)) state))
 
 (defn answer [response]
-  (core/eval-path-setval [ATOM :qa (nthpath (:id @state)) :response] response state))
+  (let [selected (nth (:qa @state) (:id @state))]
+    (setval [ATOM :qa (nthpath (:id @state))]
+            (if (= (:response selected) response)
+              (setval :visible false (setval :response NONE selected))
+              (merge selected {:response response
+                               :visible true}))
+            state)))
 
 (def shortcuts
   {"ArrowRight" #(answer true)
