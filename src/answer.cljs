@@ -159,8 +159,12 @@
   []
   (transform [ATOM :id] #(max 0 (dec %)) state))
 
+(defn answer [response]
+  (core/eval-path-setval [ATOM :qa (nthpath (:id @state)) :response] response state))
+
 (def shortcuts
-  {" " toggle
+  {"ArrowRight" #(answer true)
+   "ArrowLeft" #(answer false)
    "ArrowDown" move-to-next
    "ArrowUp" move-to-previous})
 
