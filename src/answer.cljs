@@ -171,7 +171,7 @@
                                               #(.-innerText %))
                                         elements))]
         (.scrollIntoView element)))
-    (setval [ATOM :qa (nthpath (:id @state))] selected* state)))
+    (core/eval-path-setval [ATOM :qa (nthpath (:id @state))] selected* state)))
 
 (def shortcuts
   {"ArrowRight" #(answer true)
