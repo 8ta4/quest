@@ -19,7 +19,8 @@
                                     (recur {:end (inc end)
                                             :answer answer
                                             :text (rest text)
-                                            :matched true}))
+                                            :matched true})
+                                    nil)
         (= (first answer) (first text)) (recur {:end (inc end)
                                                 :answer (rest answer)
                                                 :text (rest text)
