@@ -124,21 +124,6 @@
   []
   (run! (partial apply wrap-node (collect-text-nodes)) (build-segments)))
 
-(defn toggle-visibility [element]
-  (set! (.-style element) (if (:visible ((:qa @state) (:id @state)))
-                            style
-                            "")))
-
-(defn toggle
-  []
-  (let [elements (js->clj (js/document.getElementsByClassName (:id @state)))]
-    (run! toggle-visibility elements)
-    (when-let [element (first (remove (comp str/blank?
-                                            #(.-innerText %))
-                                      elements))]
-      (.scrollIntoView element)))
-  (core/eval-path-transform [ATOM :qa (nthpath (:id @state)) :visible] #(not %) state))
-
 (defn move-to-next
   []
   (transform [ATOM :id]
