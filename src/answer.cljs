@@ -1,6 +1,7 @@
 (ns answer
   (:require [clojure.string :as str]
-            [com.rpl.specter :refer [ALL ATOM END NONE nthpath setval transform]]
+            [com.rpl.specter :refer [ALL ATOM END NONE nthpath setval
+                                     transform]]
             [core]
             [yaml :refer [parse]]))
 
