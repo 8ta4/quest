@@ -90,7 +90,7 @@ No, it doesn't. `chrome.commands` only supports [up to 4 shortcuts](https://deve
 
 Instead, `quest` relies on event listeners in the content scripts.
 
-> Can the viewport adjust when you reveal an answer? (Planned)
+> Can the viewport adjust when you reveal an answer?
 
 Yes, it can! Whenever you reveal an answer, the viewport may adjust so that the beginning of the newly revealed content is as close to the top of the screen as possible. In most cases, it'll position the content right at the top. But, if you're near the end of the document, it might not be able to place it exactly there.
 
@@ -190,7 +190,7 @@ YAML is chosen over JSON because:
 
 The YAML FAQ recommends "[using '.yaml' when possible.](https://yaml.org/faq.html#:~:text=Is%20there%20an,yaml%22%20when%20possible.)"
 
-> Is the structure of the YAML file a list or a map? (Planned)
+> Is the structure of the YAML file a list or a map?
 
 The YAML file is a list of maps. In each of these maps, you'll find a `question` field and an `answer` field, both using literal block scalars. You'll also see a `yes` field in each map, which is a Boolean that tells you if the correct answer is "yes" (`true`) or "no" (`false`).
 
@@ -233,7 +233,7 @@ No, they don't have to be unique. Here's the reasoning:
 
 - Reinforcement: Sometimes, repeating questions reinforces important points that are repeated in the text.
 
-> Does a question need to be in a yes/no format? (Planned)
+> Does a question need to be in a yes/no format?
 
 Yes, a question needs to be in a yes/no format. Here's why:
 
