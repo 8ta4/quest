@@ -1,6 +1,7 @@
 (ns answer
   (:require [clojure.string :as str]
-            [com.rpl.specter :refer [ALL ATOM END nthpath setval transform]]
+            [com.rpl.specter :refer [ALL ATOM END NONE nthpath setval
+                                     transform]]
             [core]
             [yaml :refer [parse]]))
 
@@ -123,28 +124,6 @@
   []
   (run! (partial apply wrap-node (collect-text-nodes)) (build-segments)))
 
-(defn eval-path-transform
-  "The path (`apath`) is dynamically evaluated, and the `transform-fn` is applied
-   to the value at that path within the `structure`. This is useful when the path
-   needs to be determined at runtime."
-  [apath transform-fn structure]
-  (transform apath transform-fn structure))
-
-(defn toggle-visibility [element]
-  (set! (.-style element) (if (:visible ((:qa @state) (:id @state)))
-                            style
-                            "")))
-
-(defn toggle
-  []
-  (let [elements (js->clj (js/document.getElementsByClassName (:id @state)))]
-    (run! toggle-visibility elements)
-    (when-let [element (first (remove (comp str/blank?
-                                            #(.-innerText %))
-                                      elements))]
-      (.scrollIntoView element)))
-  (eval-path-transform [ATOM :qa (nthpath (:id @state)) :visible] #(not %) state))
-
 (defn move-to-next
   []
   (transform [ATOM :id]
@@ -159,8 +138,26 @@
   []
   (transform [ATOM :id] #(max 0 (dec %)) state))
 
+(defn set-visibility
+  [bar element]
+  (set! (.-style element) (if bar
+                            ""
+                            style)))
+
 (defn answer [response]
-  (core/eval-path-setval [ATOM :qa (nthpath (:id @state)) :response] response state))
+  (let [selected (nth (:qa @state) (:id @state))
+        selected* (if (= (:response selected) response)
+                    (setval :visible false (setval :response NONE selected))
+                    (merge selected {:response response
+                                     :visible true}))
+        elements (js->clj (js/document.getElementsByClassName (:id @state)))]
+    (run! (partial set-visibility (:visible selected*)) elements)
+    (when-not (:visible selected)
+      (when-let [element (first (remove (comp str/blank?
+                                              #(.-innerText %))
+                                        elements))]
+        (.scrollIntoView element)))
+    (core/eval-path-setval [ATOM :qa (nthpath (:id @state))] selected* state)))
 
 (def shortcuts
   {"ArrowRight" #(answer true)

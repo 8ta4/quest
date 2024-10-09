@@ -1,5 +1,7 @@
 (ns question
-  (:require ["@mui/material/List" :default List]
+  (:require ["@mui/icons-material/Cancel" :default Cancel]
+            ["@mui/icons-material/CheckCircle" :default CheckCircle]
+            ["@mui/material/List" :default List]
             ["@mui/material/ListItemButton" :default ListItemButton]
             [answer]
             [core]
@@ -11,10 +13,15 @@
 (defn questions
   [state]
   [:> List
-   (map-indexed (fn [index {:keys [question answer]}]
+   (map-indexed (fn [index {:keys [question answer yes response]}]
                   ^{:key answer} [:> ListItemButton
                                   (when (= index (:id state))
                                     {:style {:background-color "lightgray"}})
+                                  (cond
+                                    (nil? response) [:> CheckCircle
+                                                     {:style {:visibility "hidden"}}]
+                                    (= yes response) [:> CheckCircle]
+                                    :else [:> Cancel])
                                   question])
                 (:qa state))])
 
