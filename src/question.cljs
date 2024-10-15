@@ -1,5 +1,7 @@
 (ns question
-  (:require ["@mui/material/List" :default List]
+  (:require ["@mui/icons-material/Cancel" :default Cancel]
+            ["@mui/icons-material/CheckCircle" :default CheckCircle]
+            ["@mui/material/List" :default List]
             ["@mui/material/ListItemButton" :default ListItemButton]
             [answer]
             [core]
@@ -9,14 +11,23 @@
   (js/chrome.runtime.connect))
 
 (defn questions
-  [state]
+  [state*]
   [:> List
-   (map-indexed (fn [index {:keys [question answer]}]
+   (map-indexed (fn [index {:keys [question answer yes response]}]
                   ^{:key answer} [:> ListItemButton
-                                  (when (= index (:id state))
-                                    {:style {:background-color "lightgray"}})
+                                  (if (= index (:id state*))
+                                    {:ref (fn [element]
+                                            (when element
+                                              (.scrollIntoView element (clj->js {:block "nearest"}))))
+                                     :style {:background-color "lightgray"}}
+                                    {})
+                                  (cond
+                                    (nil? response) [:> CheckCircle
+                                                     {:style {:visibility "hidden"}}]
+                                    (= yes response) [:> CheckCircle]
+                                    :else [:> Cancel])
                                   question])
-                (:qa state))])
+                (:qa state*))])
 
 (defonce root
   (client/create-root (js/document.getElementById "app")))

@@ -20,11 +20,15 @@ Yep, you can install it from [here](https://chromewebstore.google.com/detail/que
 
 > Can I try `quest`?
 
-Absolutely! Give it a spin on this [demo page](https://paulgraham.com/start.html?quest=https://raw.githubusercontent.com/8ta4/quests/dfcc6a670f3555ffcaf6373667e5a94ceb6e35e9/paulgraham.com/start.html/quest.yaml).
+Absolutely! Give it a spin on this [demo page](https://paulgraham.com/start.html?quest=https://raw.githubusercontent.com/8ta4/quests/f8be518e585428fe38b551376074f57b2cf7eaab/paulgraham.com/start.html/quest.yaml).
 
-> How do I see the answer?
+> How do I answer the question with a "yes"? (Planned)
 
-If a question is marked as hidden, pressing `Space` will mark it as visible and reveal its answer. `Space` is chosen because it's used to toggle checkboxes.
+Press `Right arrow` to answer "yes".
+
+> How do I answer the question with a "no"? (Planned)
+
+Press `Left arrow` to answer "no".
 
 > How do you identify the start of a segment that corresponds to a question? (Planned)
 
@@ -34,9 +38,21 @@ When you're using `quest`, you'll see a little triangle icon (▼) that'll alway
 
 To wrap up a segment, `quest` uses a similar icon in the left margin, but this one points up (▲). This marker lines up with the last line of text for that particular question's content.
 
-> How do I hide the answer?
+> Can I change my answer? (Planned)
 
-`Space` lets you toggle the current question's visible status. If a question is marked as visible, pressing `Space` will mark it as hidden and hide its answer.
+Yes, you can.
+
+- If your current answer is "yes", pressing `Left arrow` will change your answer to "no".
+
+> Can I hide the answer? (Planned)
+
+Absolutely.
+
+- If your current answer is "yes", press `Right arrow` to hide the answer.
+
+- If your current answer is "no", press `Left arrow` to hide the answer.
+
+- If your current answer is "no", pressing `Right arrow` will change your answer to "yes".
 
 > How do I get to the next question?
 
