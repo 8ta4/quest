@@ -22,11 +22,11 @@ Yep, you can install it from [here](https://chromewebstore.google.com/detail/que
 
 Absolutely! Give it a spin on this [demo page](https://paulgraham.com/start.html?quest=https://raw.githubusercontent.com/8ta4/quests/f8be518e585428fe38b551376074f57b2cf7eaab/paulgraham.com/start.html/quest.yaml).
 
-> How do I answer the question with a "yes"? (Planned)
+> How do I answer the question with a "yes"?
 
 Press `Right arrow` to answer "yes".
 
-> How do I answer the question with a "no"? (Planned)
+> How do I answer the question with a "no"?
 
 Press `Left arrow` to answer "no".
 
@@ -38,7 +38,7 @@ When you're using `quest`, you'll see a little triangle icon (▼) that'll alway
 
 To wrap up a segment, `quest` uses a similar icon in the left margin, but this one points up (▲). This marker lines up with the last line of text for that particular question's content.
 
-> Can I change my answer? (Planned)
+> Can I change my answer?
 
 Yes, you can.
 
@@ -46,7 +46,7 @@ Yes, you can.
 
 - If your current answer is "no", pressing `Right arrow` will change your answer to "yes".
 
-> Can I hide the answer? (Planned)
+> Can I hide the answer?
 
 Absolutely.
 
