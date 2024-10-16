@@ -44,6 +44,8 @@ Yes, you can.
 
 - If your current answer is "yes", pressing `Left arrow` will change your answer to "no".
 
+- If your current answer is "no", pressing `Right arrow` will change your answer to "yes".
+
 > Can I hide the answer? (Planned)
 
 Absolutely.
@@ -51,8 +53,6 @@ Absolutely.
 - If your current answer is "yes", press `Right arrow` to hide the answer.
 
 - If your current answer is "no", press `Left arrow` to hide the answer.
-
-- If your current answer is "no", pressing `Right arrow` will change your answer to "yes".
 
 > How do I get to the next question?
 
