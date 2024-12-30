@@ -20,7 +20,7 @@ Yep, you can install it from [here](https://chromewebstore.google.com/detail/que
 
 > Can I try `quest`?
 
-Absolutely! Give it a spin on this [demo page](https://paulgraham.com/start.html?quest=https://raw.githubusercontent.com/8ta4/quests/f8be518e585428fe38b551376074f57b2cf7eaab/paulgraham.com/start.html/quest.yaml).
+Absolutely! Give it a spin on this [demo page](https://paulgraham.com/start.html?quest=https://raw.githubusercontent.com/8ta4/quests/e1ba866e7e1642bb456cf34b7c99fd9921fbd185/paulgraham.com/start.html/quest.yaml).
 
 > How do I answer the question with a "yes"?
 
